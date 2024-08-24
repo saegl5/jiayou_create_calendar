@@ -2,6 +2,9 @@ function createCalendarWithEvents() {
   // Create a new calendar named "JIA YOU"
   var calendar = CalendarApp.createCalendar('JIA YOU');
   
+  // Set its time zone
+  calendar.setTimeZone('America/Los_Angeles'); // **MODIFY**
+
   // Define the letters to cycle through
   var letters = ['J', 'I', 'A', 'Y', 'O', 'U'];
   
