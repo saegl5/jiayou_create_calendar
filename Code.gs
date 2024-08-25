@@ -1,4 +1,4 @@
-function createCalendarWithEvents() {
+function createCalendar() {
   // Create a new calendar named "JIA YOU"
   var calendar = CalendarApp.createCalendar('JIA YOU');
   
