@@ -5,8 +5,13 @@ function createCalendarWithEvents() {
   // Set its time zone
   calendar.setTimeZone('America/Los_Angeles'); // **MODIFY**
 
-  // Define the letters to cycle through
-  var letters = ['J', 'I', 'A', 'Y', 'O', 'U'];
+  // Define the words to cycle through
+  var words = [ 'J &nbsp; Day', 
+                'I &nbsp; Day', 
+                'A &nbsp; Day', 
+                'Y &nbsp; Day', 
+                'O &nbsp; Day', 
+                'U &nbsp; Day']; // Added extra spacing
   
   // Define the start and end months
   var startMonth = 9; // **MODIFY**
@@ -38,9 +43,9 @@ function createCalendarWithEvents() {
         continue;
       }
       
-      // Create an event with the current letter
-      var letter = letters[eventIndex % letters.length];
-      calendar.createAllDayEvent(letter, date);
+      // Create an event with the current word
+      var word = words[eventIndex % words.length];
+      calendar.createAllDayEvent(word, date);
       
       // Increment the event counter
       eventIndex++;
