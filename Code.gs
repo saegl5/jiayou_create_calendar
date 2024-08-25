@@ -11,7 +11,7 @@ function createCalendarWithEvents() {
                 'A &nbsp; Day', 
                 'Y &nbsp; Day', 
                 'O &nbsp; Day', 
-                'U &nbsp; Day']; // Added extra spacing
+                'U &nbsp; Day' ]; // Added extra spacing
   
   // Define the start and end months
   var startMonth = 9; // **MODIFY**

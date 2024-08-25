@@ -1,4 +1,4 @@
-# 加油 ("jiayou")
+# 加油 ("jia you")
 
 Google Apps Script for creating a calendar of events that cycles the words "J Day" "I Day" "A Day" "Y Day" "O Day" "U Day," except on weekends and holidays. Modify as needed.
 
