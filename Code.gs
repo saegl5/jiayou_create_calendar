@@ -1,13 +1,22 @@
+// Modify the time zone, holiday calendar, start month, and end month as desired
+
+var myTimeZone = "America/Los_Angeles";
+var myHolidayCalendar = "en.usa#holiday@group.v.calendar.google.com";
+var myStartMonth = 9;
+var myEndMonth = 12;
+
+
+
 // ** WARNING **
-// If this script is modified improperly, running it may cause irrevocable damage.
-// This script comes with absolutely no warranty. Use it at your own risk.
+// If the script below is modified improperly, running it may cause irrevocable damage.
+// The script below comes with absolutely no warranty. Use it at your own risk.
 
 function createCalendar() {
   // Create a new calendar named "JIA YOU"
   var calendar = CalendarApp.createCalendar('JIA YOU');
   
   // Set its time zone
-  calendar.setTimeZone('America/Los_Angeles'); // **MODIFY**
+  calendar.setTimeZone(myTimeZone);
 
   // Define the words to cycle through
   var words = [ 'J &nbsp; Day', 
@@ -18,8 +27,8 @@ function createCalendar() {
                 'U &nbsp; Day' ]; // Added extra spacing
   
   // Define the start and end months
-  var startMonth = 9; // **MODIFY**
-  var endMonth = 12;  // **MODIFY**
+  var startMonth = myStartMonth;
+  var endMonth = myEndMonth;
   var year = new Date().getFullYear(); // Current year
   
   // Get the holidays for the current year (adjust as needed for your location)
@@ -72,7 +81,7 @@ function isHoliday(date, holidays) {
 // Function to get holidays
 function getHolidays(year) {
   var holidays = [];
-  var calendar = CalendarApp.getCalendarById('en.usa#holiday@group.v.calendar.google.com'); // **MODIFY**
+  var calendar = CalendarApp.getCalendarById(myHolidayCalendar);
   var start = new Date(year, 0, 1); // Start from January 1st
   var end = new Date(year, 11, 31); // End on December 31st
   
