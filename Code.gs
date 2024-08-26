@@ -50,13 +50,13 @@ function createCalendar() {
       // Create an event with the current word
       var word = words[eventIndex % words.length];
       calendar.createAllDayEvent(word, date);
+
+      Logger.log('Created ' + word + " on " + date + "!");
       
       // Increment the event counter
       eventIndex++;
     }
   }
-  
-  Logger.log('Calendar created!');
 }
 
 // Function to check if a date is a holiday
