@@ -1,3 +1,7 @@
+// ** WARNING **
+// If this script is modified improperly, running it may cause irrevocable damage.
+// This script comes with absolutely no warranty. Use it at your own risk.
+
 function createCalendar() {
   // Create a new calendar named "JIA YOU"
   var calendar = CalendarApp.createCalendar('JIA YOU');
