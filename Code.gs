@@ -3,6 +3,20 @@
 var myCalendarName = "JIA YOU";
 var myTimeZone = "America/Los_Angeles";
 var myHolidayCalendar = "en.usa#holiday@group.v.calendar.google.com";
+var myHolidayExceptions = [ // still create events on these holidays
+  new Date("October 31, 2024"), // Halloween
+  new Date("November 5, 2024"), // Election Day (General Election)
+  new Date("November 11, 2024") // Veterans Day
+];
+var myExtraHolidays = [ // don't create events on these non-holidays
+  new Date("November 25, 2024"), // Thanksgiving Break
+  new Date("November 26, 2024"), // Thanksgiving Break
+  new Date("November 27, 2024"), // Thanksgiving Break
+  new Date("December 23, 2024"), // Winter Holiday Break
+  new Date("December 26, 2024"), // Winter Holiday Break
+  new Date("December 27, 2024"), // Winter Holiday Break
+  new Date("December 30, 2024") // Winter Holiday Break
+];
 var myStartMonth = 9;
 var myEndMonth = 12;
 
@@ -81,15 +95,28 @@ function isHoliday(date, holidays) {
 
 // Function to get holidays
 function getHolidays(year) {
-  var holidays = [];
+  var holidays = myExtraHolidays;
   var calendar = CalendarApp.getCalendarById(myHolidayCalendar);
   var start = new Date(year, 0, 1); // Start from January 1st
   var end = new Date(year, 12, 31); // End on December 31st
   
   var events = calendar.getEvents(start, end);
+  var match = "no";
   
   for (var i = 0; i < events.length; i++) {
-    holidays.push(events[i].getAllDayStartDate());
+    for (var j = 0; j < myHolidayExceptions.length; j++) {
+      if ((events[i].getAllDayStartDate()).toDateString() === myHolidayExceptions[j].toDateString()) {
+        match = "yes";
+        continue;
+      }
+    }
+    if (match === "yes") {
+      match = "no" // reset
+      // then skip
+    }
+    else {
+      holidays.push(events[i].getAllDayStartDate());
+    }
   }
   
   return holidays;
