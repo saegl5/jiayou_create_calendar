@@ -84,7 +84,7 @@ function getHolidays(year) {
   var holidays = [];
   var calendar = CalendarApp.getCalendarById(myHolidayCalendar);
   var start = new Date(year, 0, 1); // Start from January 1st
-  var end = new Date(year, 11, 31); // End on December 31st
+  var end = new Date(year, 12, 31); // End on December 31st
   
   var events = calendar.getEvents(start, end);
   
