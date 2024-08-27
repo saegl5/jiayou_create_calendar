@@ -1,5 +1,6 @@
 // Modify the time zone, holiday calendar, start month, and end month as desired
 
+var myCalendarName = "JIA YOU";
 var myTimeZone = "America/Los_Angeles";
 var myHolidayCalendar = "en.usa#holiday@group.v.calendar.google.com";
 var myStartMonth = 9;
@@ -13,7 +14,7 @@ var myEndMonth = 12;
 
 function createCalendar() {
   // Create a new calendar named "JIA YOU"
-  var calendar = CalendarApp.createCalendar('JIA YOU');
+  var calendar = CalendarApp.createCalendar(myCalendarName);
   
   // Set its time zone
   calendar.setTimeZone(myTimeZone);
