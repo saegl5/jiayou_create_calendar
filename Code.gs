@@ -8,6 +8,9 @@ var myHolidayExceptions = [ // still create events on these holidays
   new Date("November 5, 2024"), // Election Day (General Election)
   new Date("November 11, 2024") // Veterans Day
 ];
+var myHalfDays = [
+  new Date("November 22, 2024") // repeat this event once
+];
 var myExtraHolidays = [ // don't create events on these non-holidays
   new Date("November 25, 2024"), // Thanksgiving Break
   new Date("November 26, 2024"), // Thanksgiving Break
@@ -77,16 +80,29 @@ function createCalendar() {
 
       Logger.log("Created " + word + " on " + date + "!");
       
-      // Increment the event counter
-      eventIndex++;
+      // Unless an event is a half-day, increment the event counter
+      var halfDay = "no";
+      for (var i = 0; i < myHalfDays.length; i++) {
+        if (date.toDateString() === myHalfDays[i].toDateString()) {
+          halfDay = "yes";
+          continue;
+        }
+      }
+      if (halfDay === "yes") {
+        halfDay = "no" // reset
+        // then skip
+      }
+      else {
+        eventIndex++;
+      }
     }
   }
 }
 
 // Function to check if a date is a holiday
 function isHoliday(date, holidays) {
-  for (var i = 0; i < holidays.length; i++) {
-    if (holidays[i].getTime() === date.getTime()) {
+  for (var j = 0; j < holidays.length; j++) {
+    if (holidays[j].getTime() === date.getTime()) {
       return true;
     }
   }
@@ -101,11 +117,12 @@ function getHolidays(year) {
   var end = new Date(year, 12, 31); // End on December 31st
   
   var events = calendar.getEvents(start, end);
-  var match = "no";
   
-  for (var i = 0; i < events.length; i++) {
-    for (var j = 0; j < myHolidayExceptions.length; j++) {
-      if ((events[i].getAllDayStartDate()).toDateString() === myHolidayExceptions[j].toDateString()) {
+  // Exempt these holidays
+  var match = "no";
+  for (var k = 0; k < events.length; k++) {
+    for (var l = 0; l < myHolidayExceptions.length; l++) {
+      if ((events[k].getAllDayStartDate()).toDateString() === myHolidayExceptions[l].toDateString()) {
         match = "yes";
         continue;
       }
@@ -115,7 +132,7 @@ function getHolidays(year) {
       // then skip
     }
     else {
-      holidays.push(events[i].getAllDayStartDate());
+      holidays.push(events[k].getAllDayStartDate());
     }
   }
   
