@@ -4,7 +4,7 @@ Google Apps Script for batch creating a calendar of events that cycles the words
 
 ## Visual Example
 
-<img src="screenshots/calendar.png" alt="screenshot of calendar" width="800">
+<img src="screenshots/calendar.png" alt="screenshot of calendar" width="800"><br>"JIA YOU" calendar of events was created.
 
 ## Getting Started
 
