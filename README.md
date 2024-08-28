@@ -13,3 +13,6 @@ Google Apps Script for batch creating a calendar of events that cycles the words
 7. Add any extra holidays. (By default, Thanksgiving Break and Winter Holiday Break are extra holidays. This will tell the script *not* to create events on these non-holidays.)
 8. Modify start and end months. (By default, `startMonth = 9;` and `endMonth = 12;` for September through December.)
 9. Save and run the script. (Requires authorization.)
+
+<hr>
+Made with &heartsuit; in Visual Studio Code
