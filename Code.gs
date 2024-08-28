@@ -34,12 +34,12 @@ function createCalendar() {
   calendar.setTimeZone(myTimeZone);
 
   // Define the words to cycle through
-  var words = [ 'J &nbsp; Day', 
-                'I &nbsp; Day', 
-                'A &nbsp; Day', 
-                'Y &nbsp; Day', 
-                'O &nbsp; Day', 
-                'U &nbsp; Day' ]; // Added extra spacing
+  var words = [ "J &nbsp; Day", 
+                "I &nbsp; Day", 
+                "A &nbsp; Day", 
+                "Y &nbsp; Day", 
+                "O &nbsp; Day", 
+                "U &nbsp; Day" ]; // Added extra spacing
   
   // Define the start and end months
   var startMonth = myStartMonth;
@@ -75,7 +75,7 @@ function createCalendar() {
       var word = words[eventIndex % words.length];
       calendar.createAllDayEvent(word, date);
 
-      Logger.log('Created ' + word + " on " + date + "!");
+      Logger.log("Created " + word + " on " + date + "!");
       
       // Increment the event counter
       eventIndex++;
