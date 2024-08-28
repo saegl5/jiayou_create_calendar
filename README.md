@@ -2,6 +2,10 @@
 
 Google Apps Script for batch creating a calendar of events that cycles the words "J Day," "I Day," "A Day," "Y Day," "O Day," and "U Day," except on weekends and holidays. Modify as needed.
 
+## Visual Example
+
+<img src="screenshots/calendar.png" alt="screenshot of calendar" width="800">
+
 ## Getting Started
 
 1. Go to [Google Apps Script](https://script.google.com/), and create a new project.
