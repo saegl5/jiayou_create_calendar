@@ -1,4 +1,5 @@
-// Modify the time zone, holiday calendar, start month, and end month as desired
+// Modify the calendar name, time zone, public holiday calendar, start month, and end month as desired
+// Add any exceptions to the holiday schedule, any half-days, and any extra holidays as desired too
 
 var myCalendarName = "JIA YOU";
 var myTimeZone = "America/Los_Angeles";
