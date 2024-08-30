@@ -13,7 +13,7 @@
       }
       label, select, input, textarea {
         display: block;
-        margin-bottom: 10px;
+        margin-bottom: 0px;
         width: 100%;
       }
       input[type="submit"] {
@@ -26,7 +26,7 @@
     <form id="calendarForm">
       <label for="calendarName">Calendar Name:</label>
       <input type="text" id="calendarName" name="calendarName" required>
-
+      </br>
       <label for="timeZone">Time Zone:</label>
       <select id="timeZone" name="timeZone">
         <!-- Add more time zones as needed -->
@@ -35,22 +35,22 @@
         <option value="America/Chicago">Central</option>
         <option value="America/Denver">Mountain</option>
       </select>
-      
+      </br>
       <label for="holidayCalendar">Public Holiday Calendar:</label>
       <select id="holidayCalendar" name="holidayCalendar">
         <!-- Sample holiday calendars -->
         <option value="en.usa#holiday@group.v.calendar.google.com">US Holidays</option>
       </select>
-      
+      </br>
       <label for="holidayExceptions">List any exceptions:</label>
       <textarea type="text" id="holidayExceptions" name="holidayExceptions">October 31, 2024</textarea>
-      
+      </br>
       <label for="halfDays">List any half-days:</label>
       <textarea type="text" id="halfDays" name="halfDays">November 5, 2024; November 11, 2024</textarea>
-      
+      </br>
       <label for="extraHolidays">List any extra holidays:</label>
       <textarea type="text" id="extraHolidays" name="extraHolidays">November 22, 2024; October 10, 2024; October 11, 2024</textarea>
-      
+      </br>
       <label for="startMonth">Start Month:</label>
       <select id="startMonth" name="startMonth">
         <!-- Add more months as needed -->
@@ -67,7 +67,7 @@
         <option value="11">November</option>
         <option value="12">December</option>
       </select>
-
+      </br>
       <label for="endMonth">End Month:</label>
       <select id="endMonth" name="endMonth">
         <!-- Add more months as needed -->
