@@ -1,28 +1,28 @@
 // Modify the calendar name, time zone, public holiday calendar, start month, and end month as desired
 // Add any exceptions to the holiday schedule, any half-days, and any extra holidays as desired too
 
-var myCalendarName = "JIA YOU"; // Must name it differently from the owner name
-var myTimeZone = "America/Los_Angeles";
-var myHolidayCalendar = "en.usa#holiday@group.v.calendar.google.com";
-var myHolidayExceptions = [ // still create events on these holidays
-  new Date("Oct 31, 2024"), // Halloween
-  new Date("Nov 5, 2024"), // Election Day (General Election)
-  new Date("Nov 11, 2024") // Veterans Day
-];
-var myHalfDays = [
-  new Date("Nov 22, 2024") // repeat this event once
-];
-var myExtraHolidays = [ // don't create events on these non-holidays
-  new Date("Nov 25, 2024"), // Thanksgiving Break
-  new Date("Nov 26, 2024"), // Thanksgiving Break
-  new Date("Nov 27, 2024"), // Thanksgiving Break
-  new Date("Dec 23, 2024"), // Winter Holiday Break
-  new Date("Dec 26, 2024"), // Winter Holiday Break
-  new Date("Dec 27, 2024"), // Winter Holiday Break
-  new Date("Dec 30, 2024") // Winter Holiday Break
-];
-var myStartMonth = 9;
-var myEndMonth = 12;
+// var myCalendarName = "JIA YOU"; // Must name it differently from the owner name
+// var myTimeZone = "America/Los_Angeles";
+// var myHolidayCalendar = "en.usa#holiday@group.v.calendar.google.com";
+// var myHolidayExceptions = [ // still create events on these holidays
+//   new Date("Oct 31, 2024"), // Halloween
+//   new Date("Nov 5, 2024"), // Election Day (General Election)
+//   new Date("Nov 11, 2024") // Veterans Day
+// ];
+// var myHalfDays = [
+//   new Date("Nov 22, 2024") // repeat this event once
+// ];
+// var myExtraHolidays = [ // don't create events on these non-holidays
+//   new Date("Nov 25, 2024"), // Thanksgiving Break
+//   new Date("Nov 26, 2024"), // Thanksgiving Break
+//   new Date("Nov 27, 2024"), // Thanksgiving Break
+//   new Date("Dec 23, 2024"), // Winter Holiday Break
+//   new Date("Dec 26, 2024"), // Winter Holiday Break
+//   new Date("Dec 27, 2024"), // Winter Holiday Break
+//   new Date("Dec 30, 2024") // Winter Holiday Break
+// ];
+// var myStartMonth = 9;
+// var myEndMonth = 12;
 // Accepted date formats: Mmm DD YYYY; MM/DD/YYYY; DD Mmm YYYY
 // If startMonth > endMonth, then the calendar will roll over to the new year
 
@@ -32,12 +32,16 @@ var myEndMonth = 12;
 // If the script below is modified improperly, running it may cause irrevocable damage.
 // The script below comes with absolutely no warranty. Use it at your own risk.
 
-function createCalendar() {
+function doGet() {
+  return HtmlService.createHtmlOutputFromFile('Index')
+}
+
+function createCalendar(calendarName, timeZone, holidayCalendar, holidayExceptions, halfDays, extraHolidays, startMonth, endMonth) {
   // Create a new calendar named "JIA YOU"
-  var calendar = CalendarApp.createCalendar(myCalendarName); // built-in function
+  var calendar = CalendarApp.createCalendar(calendarName); // built-in function
   
   // Set its time zone
-  calendar.setTimeZone(myTimeZone);
+  calendar.setTimeZone(timeZone);
 
   // Define the words to cycle through
   var words = [ "J &nbsp; Day", 
@@ -48,12 +52,28 @@ function createCalendar() {
                 "U &nbsp; Day" ]; // Added extra spacing
   
   // Define the start and end months
-  var startMonth = myStartMonth;
-  var endMonth = myEndMonth;
+  var startMonth = parseInt(startMonth);
+  var endMonth = parseInt(endMonth);
   var year = new Date().getFullYear(); // Current year
+
+  // Split strings into lists of dates
+  holidayExceptions = holidayExceptions.split('; ');
+  for (var i = 0; i < holidayExceptions.length; i++) {
+    holidayExceptions[i] = new Date(holidayExceptions[i]);
+  }  
+
+  halfDays = halfDays.split('; ');
+  for (var j = 0; j < halfDays.length; j++) {
+    halfDays[j] = new Date(halfDays[j]);
+  }
+
+  extraHolidays = extraHolidays.split('; ');
+  for (var k = 0; k < extraHolidays.length; k++) {
+    extraHolidays[k] = new Date(extraHolidays[k]);
+  }
   
   // Get the holidays for the current year (adjust as needed for your location)
-  var holidays = getHolidays(year);
+  var holidays = getHolidays(year, holidayCalendar, holidayExceptions, extraHolidays);
   
   // Event counter
   var eventIndex = 0;
@@ -101,8 +121,8 @@ function createCalendar() {
       
       // Unless an event is a half-day, increment the event counter
       var halfDay = "no";
-      for (var i = 0; i < myHalfDays.length; i++) {
-        if (date.toDateString() === myHalfDays[i].toDateString()) {
+      for (var l = 0; l < halfDays.length; l++) {
+        if (date.toDateString() === halfDays[l].toDateString()) {
           halfDay = "yes";
           continue;
         }
@@ -116,12 +136,13 @@ function createCalendar() {
       }
     }
   }
+  return "Calendar created!";
 }
 
 // Function to check if a date is a holiday
 function isHoliday(date, holidays) {
-  for (var j = 0; j < holidays.length; j++) {
-    if (holidays[j].getTime() === date.getTime()) {
+  for (var m = 0; m < holidays.length; m++) {
+    if (holidays[m].getTime() === date.getTime()) {
       return true;
     }
   }
@@ -129,9 +150,9 @@ function isHoliday(date, holidays) {
 }
 
 // Function to get holidays
-function getHolidays(year) {
-  var holidays = myExtraHolidays;
-  var calendar = CalendarApp.getCalendarById(myHolidayCalendar);
+function getHolidays(year, holidayCalendar, holidayExceptions, extraHolidays) {
+  var holidays = extraHolidays;
+  var calendar = CalendarApp.getCalendarById(holidayCalendar);
   var start = new Date(year, 0, 1); // Start from January 1st
   var end = new Date(year + 1, 12, 31); // End on December 31st, roll over
   
@@ -139,9 +160,9 @@ function getHolidays(year) {
   
   // Exempt these holidays
   var match = "no";
-  for (var k = 0; k < events.length; k++) {
-    for (var l = 0; l < myHolidayExceptions.length; l++) {
-      if ((events[k].getAllDayStartDate()).toDateString() === myHolidayExceptions[l].toDateString()) {
+  for (var n = 0; n < events.length; n++) {
+    for (var o = 0; o < holidayExceptions.length; o++) {
+      if ((events[n].getAllDayStartDate()).toDateString() === holidayExceptions[o].toDateString()) {
         match = "yes";
         continue;
       }
@@ -151,7 +172,7 @@ function getHolidays(year) {
       // then skip
     }
     else {
-      holidays.push(events[k].getAllDayStartDate());
+      holidays.push(events[n].getAllDayStartDate());
     }
   }
   

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      /* Basic styling for the form */
+      form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      label, select, input {
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
+      }
+      input[type="submit"] {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="calendarForm">
+      <label for="calendarName">Calendar Name:</label>
+      <input type="text" id="calendarName" name="calendarName" required>
+
+      <label for="timeZone">Time Zone:</label>
+      <select id="timeZone" name="timeZone">
+        <!-- Add more time zones as needed -->
+        <option value="America/Los_Angeles">America/Los_Angeles</option>
+        <option value="America/New_York">America/New_York</option>
+        <option value="Europe/London">Europe/London</option>
+      </select>
+      
+      <label for="holidayCalendar">Public Holiday Calendar:</label>
+      <select id="holidayCalendar" name="holidayCalendar">
+        <!-- Sample holiday calendars -->
+        <option value="en.usa#holiday@group.v.calendar.google.com">US Holidays</option>
+        <option value="en.uk#holiday@group.v.calendar.google.com">UK Holidays</option>
+      </select>
+      
+      <label for="holidayExceptions">List any exceptions:</label>
+      <input type="text" id="holidayExceptions" name="holidayExceptions">
+      
+      <label for="halfDays">List any half-days:</label>
+      <input type="text" id="halfDays" name="halfDays">
+      
+      <label for="extraHolidays">List any extra holidays:</label>
+      <input type="text" id="extraHolidays" name="extraHolidays">
+      
+      <label for="startMonth">Start Month:</label>
+      <select id="startMonth" name="startMonth">
+        <!-- Add more months as needed -->
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+      </select>
+
+      <label for="endMonth">End Month:</label>
+      <select id="endMonth" name="endMonth">
+        <!-- Add more months as needed -->
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+
+      <input type="submit" value="Submit">
+    </form>
+    
+    <script>
+      // Add JavaScript to handle form submission and send data to the Google Apps Script
+      document.getElementById('calendarForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting the traditional way
+
+        var calendarName = document.getElementById('calendarName').value;
+        var timeZone = document.getElementById('timeZone').value;
+        var holidayCalendar = document.getElementById('holidayCalendar').value;
+        var holidayExceptions = document.getElementById('holidayExceptions').value;
+        var halfDays = document.getElementById('halfDays').value;
+        var extraHolidays = document.getElementById('extraHolidays').value;
+        var startMonth = document.getElementById('startMonth').value;
+        var endMonth = document.getElementById('endMonth').value;
+
+        google.script.run.withSuccessHandler(function(response) {
+          alert(response); // Display success message
+        }).createCalendar(calendarName, timeZone, holidayCalendar, holidayExceptions, halfDays, extraHolidays, startMonth, endMonth);
+      });
+    </script>
+  </body>
+</html>
