@@ -94,17 +94,17 @@
         event.preventDefault(); // Prevent the form from submitting the traditional way
 
         var calendarName = document.getElementById('calendarName').value;
-        var timeZone = document.getElementById('timeZone').value;
-        var holidayCalendar = document.getElementById('holidayCalendar').value;
         var holidayExceptions = document.getElementById('holidayExceptions').value;
         var halfDays = document.getElementById('halfDays').value;
         var extraHolidays = document.getElementById('extraHolidays').value;
+        var timeZone = document.getElementById('timeZone').value;
+        var holidayCalendar = document.getElementById('holidayCalendar').value;
         var startMonth = document.getElementById('startMonth').value;
         var endMonth = document.getElementById('endMonth').value;
 
         google.script.run.withSuccessHandler(function(response) {
           alert(response); // Display success message
-        }).createCalendar(calendarName, timeZone, holidayCalendar, holidayExceptions, halfDays, extraHolidays, startMonth, endMonth);
+        }).createCalendar(calendarName, holidayExceptions, halfDays, extraHolidays, timeZone, holidayCalendar, startMonth, endMonth);
       });
     </script>
   </body>
