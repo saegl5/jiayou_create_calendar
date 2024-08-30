@@ -57,7 +57,7 @@ function createCalendar() {
   var eventIndex = 0;
   
   // Loop through each month
-  for (var month = startMonth; month <= endMonth; month++) {
+  for (var month = myStartMonth; month <= myEndMonth; month++) {
     // Determine the number of days in the month
     var daysInMonth = new Date(year, month, 0).getDate();
     
