@@ -1,8 +1,3 @@
-// Modify the calendar name, time zone, public holiday calendar, start month, and end month as desired
-// Add any exceptions to the holiday schedule, any half-days, and any extra holidays as desired too
-
-
-
 // ** WARNING **
 // If the script below is modified improperly, running it may cause irrevocable damage.
 // The script below comes with absolutely no warranty. Use it at your own risk.
