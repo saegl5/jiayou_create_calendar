@@ -20,9 +20,5 @@ Google Apps Script for batch creating a calendar of events that cycles the words
 8. Modify the start and end months. (If the start month is greater than the end month, then the calendar will roll over to the new year.)
 9. Press submit. (Requires authorization. ***Note also that creating calendars is subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en).***)
 
-### Web App
-
-To deploy the project as a web app, please consult the [development branch](https://github.com/saegl5/jiayou_create_calendar/tree/development).
-
 <hr>
 Made with &heartsuit; in Visual Studio Code
