@@ -19,5 +19,9 @@ Google Apps Script for batch creating a calendar of events that cycles the words
 9. Modify start and end months. (By default, `startMonth = 9;` and `endMonth = 12;` for September through December.)
 10. Save and run the script. (Requires authorization. ***Note also that creating calendars is subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en).***)
 
+### Web App
+
+To deploy the project as a web app, please consult the [development branch](https://github.com/saegl5/jiayou_create_calendar/tree/development).
+
 <hr>
 Made with &heartsuit; in Visual Studio Code
