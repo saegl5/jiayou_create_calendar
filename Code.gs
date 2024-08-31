@@ -1,31 +1,6 @@
 // Modify the calendar name, time zone, public holiday calendar, start month, and end month as desired
 // Add any exceptions to the holiday schedule, any half-days, and any extra holidays as desired too
 
-// var myCalendarName = "JIA YOU"; // Must name it differently from the owner name
-// var myTimeZone = "America/Los_Angeles";
-// var myHolidayCalendar = "en.usa#holiday@group.v.calendar.google.com";
-// var myHolidayExceptions = [ // still create events on these holidays
-//   new Date("Oct 31, 2024"), // Halloween
-//   new Date("Nov 5, 2024"), // Election Day (General Election)
-//   new Date("Nov 11, 2024") // Veterans Day
-// ];
-// var myHalfDays = [
-//   new Date("Nov 22, 2024") // repeat this event once
-// ];
-// var myExtraHolidays = [ // don't create events on these non-holidays
-//   new Date("Nov 25, 2024"), // Thanksgiving Break
-//   new Date("Nov 26, 2024"), // Thanksgiving Break
-//   new Date("Nov 27, 2024"), // Thanksgiving Break
-//   new Date("Dec 23, 2024"), // Winter Holiday Break
-//   new Date("Dec 26, 2024"), // Winter Holiday Break
-//   new Date("Dec 27, 2024"), // Winter Holiday Break
-//   new Date("Dec 30, 2024") // Winter Holiday Break
-// ];
-// var myStartMonth = 9;
-// var myEndMonth = 12;
-// Accepted date formats: Mmm DD YYYY; MM/DD/YYYY; DD Mmm YYYY
-// If startMonth > endMonth, then the calendar will roll over to the new year
-
 
 
 // ** WARNING **
