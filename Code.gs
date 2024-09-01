@@ -1,7 +1,7 @@
 // Modify the calendar name, time zone, public holiday calendar, start month, and end month as desired
 // Add any exceptions to the holiday schedule, any half-days, and any extra holidays as desired too
 
-var myCalendarName = "JIA YOU";
+var myCalendarName = "JIA YOU"; // Must name it differently from the owner name
 var myTimeZone = "America/Los_Angeles";
 var myHolidayCalendar = "en.usa#holiday@group.v.calendar.google.com";
 var myHolidayExceptions = [ // still create events on these holidays
