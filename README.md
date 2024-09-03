@@ -12,17 +12,17 @@ Google Apps Script for batch creating a calendar of events that cycles the words
 
 1. Go to [Google Apps Script](https://script.google.com/), and create a new project.
 2. Copy and paste [the script](./Code.gs) into the editor, and save the file.
-3. Create an HTML file, and name it "Index."
-4. Copy and paste [the markup text](./Index.html) into the editor, and save the file.
-5. Deploy the project as a Web app, and open the assigned URL.
-6. Modify the calendar name, time zone, and public holiday calendar. (***Must name it differently from the owner name, otherwise the script will not create the calendar.***)
-7. Add any exceptions to the holiday schedule, any half-days, and any extra holidays.
-8. Modify the start and end months. (If the start month is greater than the end month, then the calendar will roll over to the new year.)
-9. Press submit. (Requires authorization. ***Note also that creating calendars is subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en).***)
+3. Run the script to acquire authorization.
+4. Create an HTML file, and name it "Index."
+5. Copy and paste [the markup text](./Index.html) into the editor, and save the file.
+6. Deploy the project as a Web app, and open the assigned URL.
+7. Modify the calendar name, time zone, and public holiday calendar. (***Must name it differently from the owner name, otherwise the script will not create the calendar.***)
+8. Add any exceptions to the holiday schedule, any half-days, and any extra holidays.
+9. Modify the start and end months. (If the start month is greater than the end month, then the calendar will roll over to the new year.)
+10. Press submit. (Requires another authorization. ***Note also that creating calendars is subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en).***)
 
 ## Known Issues
 
-- [ ] Deploying the project as a Web app should, but does not always, grant the app authorization. You may need to run the script manually, then re-open the assigned URL. **(still investigating)**
 - [ ] Events do not roll over until the new year **(considering to add feature, maybe even allow users to set the start year, would backport! for now, can simply create a calendar in the new year)**
 - [ ] Form does not display feedback **(to do)**
 
