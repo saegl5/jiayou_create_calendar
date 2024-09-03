@@ -20,9 +20,11 @@ Google Apps Script for batch creating a calendar of events that cycles the words
 8. Modify the start and end months. (If the start month is greater than the end month, then the calendar will roll over to the new year.)
 9. Press submit. (Requires authorization. ***Note also that creating calendars is subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en).***)
 
-## Known Issue
+## Known Issues
 
-Deploying the project as a Web app should, but does not always, grant the app authorization. You may need to run the script manually, then re-open the assigned URL.
+- [ ] Deploying the project as a Web app should, but does not always, grant the app authorization. You may need to run the script manually, then re-open the assigned URL. **(still investigating)**
+- [ ] Events do not roll over until the new year **(considering to add feature, maybe even allow users to set the start year, would backport! for now, can simply create a calendar in the new year)**
+- [ ] Form does not display feedback **(to do)**
 
 <hr>
 Made with &heartsuit; in Visual Studio Code
