@@ -32,7 +32,7 @@ var myEndMonth = 12;
 
 function createCalendar() {
   // Create a new calendar named "JIA YOU"
-  var calendar = CalendarApp.createCalendar(myCalendarName);
+  var calendar = CalendarApp.createCalendar(myCalendarName); // built-in function
   
   // Set its time zone
   calendar.setTimeZone(myTimeZone);
