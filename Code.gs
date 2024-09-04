@@ -5,24 +5,25 @@ var myCalendarName = "JIA YOU"; // Must name it differently from the owner name
 var myTimeZone = "America/Los_Angeles";
 var myHolidayCalendar = "en.usa#holiday@group.v.calendar.google.com";
 var myHolidayExceptions = [ // still create events on these holidays
-  new Date("October 31, 2024"), // Halloween
-  new Date("November 5, 2024"), // Election Day (General Election)
-  new Date("November 11, 2024") // Veterans Day
+  new Date("Oct 31, 2024"), // Halloween
+  new Date("Nov 5, 2024"), // Election Day (General Election)
+  new Date("Nov 11, 2024") // Veterans Day
 ];
 var myHalfDays = [
-  new Date("November 22, 2024") // repeat this event once
+  new Date("Nov 22, 2024") // repeat this event once
 ];
 var myExtraHolidays = [ // don't create events on these non-holidays
-  new Date("November 25, 2024"), // Thanksgiving Break
-  new Date("November 26, 2024"), // Thanksgiving Break
-  new Date("November 27, 2024"), // Thanksgiving Break
-  new Date("December 23, 2024"), // Winter Holiday Break
-  new Date("December 26, 2024"), // Winter Holiday Break
-  new Date("December 27, 2024"), // Winter Holiday Break
-  new Date("December 30, 2024") // Winter Holiday Break
+  new Date("Nov 25, 2024"), // Thanksgiving Break
+  new Date("Nov 26, 2024"), // Thanksgiving Break
+  new Date("Nov 27, 2024"), // Thanksgiving Break
+  new Date("Dec 23, 2024"), // Winter Holiday Break
+  new Date("Dec 26, 2024"), // Winter Holiday Break
+  new Date("Dec 27, 2024"), // Winter Holiday Break
+  new Date("Dec 30, 2024") // Winter Holiday Break
 ];
 var myStartMonth = 9;
 var myEndMonth = 12;
+// Accepted date formats: Mmm DD YYYY; MM/DD/YYYY; DD Mmm YYYY
 
 
 
