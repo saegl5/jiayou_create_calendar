@@ -1,6 +1,6 @@
 # Create 加油 ("jiā yóu") Calendar
 
-Google Apps Script for batch creating a calendar of events that cycles the words "J Day," "I Day," "A Day," "Y Day," "O Day," and "U Day," except on weekends and holidays. Modify as needed, and back up your calendars before you run the script. These events are not recurring events, so without a batch script one would need to create these events manually.
+Google Web app for batch creating a calendar of events that cycles the words "J Day," "I Day," "A Day," "Y Day," "O Day," and "U Day," except on weekends and holidays. Modify as needed, and back up your calendars before you run the app. These events are not recurring events, so without a batch script one would need to create these events manually.
 
 ## Visual Example
 
@@ -16,7 +16,7 @@ Google Apps Script for batch creating a calendar of events that cycles the words
 4. Create an HTML file, and name it "Index."
 5. Copy and paste [the markup text](./Index.html) into the editor, and save the file.
 6. Deploy the project as a Web app, and open the assigned URL.
-7. Modify the calendar name, time zone, and public holiday calendar. (***Must name it differently from the owner name, otherwise the script will not create the calendar.***)
+7. Modify the calendar name, time zone, and public holiday calendar. (***Must name it differently from the owner name, otherwise the app will not create the calendar.***)
 8. Add any exceptions to the holiday schedule, any half-days, and any extra holidays.
 9. Modify the start and end months. (If the start month is greater than the end month, then the calendar will roll over to the new year.)
 10. Press submit. (Requires another authorization. ***Note also that creating calendars is subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en).***)
