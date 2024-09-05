@@ -130,7 +130,7 @@
         document.getElementById("wait").innerHTML = "Please wait...";
 
         google.script.run.withSuccessHandler(function(response) {
-          alert(response); // Displays a success message
+        document.getElementById('wait').innerHTML = response; // Displays a success message when completed
         }).createCalendar(calendarName, timeZone, holidayCalendar, holidayExceptions, halfDays, extraHolidays, startMonth, endMonth);
       });
     </script>
