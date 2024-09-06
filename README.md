@@ -1,6 +1,6 @@
 # Create 加油 ("jiā yóu") Calendar
 
-Google Apps Script for batch creating a calendar of events that cycles the words "J Day," "I Day," "A Day," "Y Day," "O Day," and "U Day," except on weekends and holidays. Modify as needed, and back up your calendars before you run the script.
+Google Apps Script for batch creating a calendar of events that cycles the words "J Day," "I Day," "A Day," "Y Day," "O Day," and "U Day," except on weekends and holidays. Modify as needed, and back up your calendars before you run the script. These events are not recurring events, so without a batch script one would need to create these events manually.
 
 ## Visual Example
 
