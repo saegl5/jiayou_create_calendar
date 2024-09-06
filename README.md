@@ -23,7 +23,7 @@ Google Web app for batch creating a calendar of events that cycles the words "J 
 
 ## Known Issue
 
-- [ ] Events do not roll over until the new year **(considering to add feature, maybe even allow users to set the start year, would backport! for now, can simply create a calendar in the new year)**
+- [ ] Events do not roll over until the new year **(~~considering to add~~ feature coming soon, maybe even allow users to set the start year, would backport! for now, can simply create a calendar in the new year)**
 
 <hr>
 Made with &heartsuit; in Visual Studio Code
