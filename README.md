@@ -21,9 +21,5 @@ Google Web app for batch creating a calendar of events that cycles the words "J 
 9. Modify the start and end months. (If the start month is greater than the end month, then the calendar will roll over to the new year.)
 10. Press submit. (Requires another authorization. ***Note also that creating calendars is subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en).***)
 
-## Known Issue
-
-- [ ] Events do not roll over until the new year **(~~considering to add~~ feature coming soon, maybe even allow users to set the start year, would backport! for now, can simply create a calendar in the new year)**
-
 <hr>
 Made with &heartsuit; in Visual Studio Code
