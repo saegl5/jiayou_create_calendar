@@ -24,6 +24,7 @@ var myExtraHolidays = [ // don't create events on these non-holidays
 var myStartMonth = 9;
 var myEndMonth = 12;
 // Accepted date formats: Mmm DD YYYY; MM/DD/YYYY; DD Mmm YYYY
+// If startMonth > endMonth, then the calendar will roll over to the new year
 
 
 
@@ -57,14 +58,30 @@ function createCalendar() {
   // Event counter
   var eventIndex = 0;
   
+  // Allow roll over
+  if (startMonth > endMonth) {
+    endMonth += 12;
+  }
+
   // Loop through each month
-  for (var month = myStartMonth; month <= myEndMonth; month++) {
+  for (var month = startMonth; month <= endMonth; month++) {
     // Determine the number of days in the month
-    var daysInMonth = new Date(year, month, 0).getDate();
+    if (month <= 12) {
+      var daysInMonth = new Date(year, month, 0).getDate();
+    }
+    else { // roll over
+      var daysInMonth = new Date(year + 1, month % 12, 0).getDate();
+    }
     
     // Loop through each day of the month
     for (var day = 1; day <= daysInMonth; day++) {
-      var date = new Date(year, month - 1, day);
+      if (month <= 12) {
+        var date = new Date(year, month - 1, day);
+      }
+      else { // roll over
+        var date = new Date(year + 1, month % 12 - 1, day);
+      }
+      
       
       // Check if the day is a weekend (Saturday or Sunday)
       if (date.getDay() == 0 || date.getDay() == 6) {
@@ -116,7 +133,7 @@ function getHolidays(year) {
   var holidays = myExtraHolidays;
   var calendar = CalendarApp.getCalendarById(myHolidayCalendar);
   var start = new Date(year, 0, 1); // Start from January 1st
-  var end = new Date(year, 12, 31); // End on December 31st
+  var end = new Date(year + 1, 12, 31); // End on December 31st, roll over
   
   var events = calendar.getEvents(start, end);
   
