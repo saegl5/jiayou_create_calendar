@@ -53,7 +53,7 @@ function createCalendar(
     extraHolidays[k] = new Date(extraHolidays[k]);
   }
 
-  // Get the holidays for the current year (adjust as needed for your location)
+  // Get the holidays starting the current year
   var holidays = getHolidays(
     year,
     holidayCalendar,
@@ -102,6 +102,7 @@ function createCalendar(
       var word = words[eventIndex % words.length];
       calendar.createAllDayEvent(word, date);
 
+      // Log which words were created
       Logger.log("Created " + word + " on " + date + "!");
 
       // Unless an event is a half-day, increment the event counter
@@ -137,8 +138,8 @@ function isHoliday(date, holidays) {
 function getHolidays(year, holidayCalendar, holidayExceptions, extraHolidays) {
   var holidays = extraHolidays;
   var calendar = CalendarApp.getCalendarById(holidayCalendar);
-  var start = new Date(year, 0, 1); // Start from January 1st
-  var end = new Date(year + 1, 12, 31); // End on December 31st, roll over
+  var start = new Date(year, 0, 1); // Start from January 1st of current year
+  var end = new Date(year + 1, 12, 31); // End on December 31st of next year (roll over)
 
   var events = calendar.getEvents(start, end);
 
