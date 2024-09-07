@@ -16,10 +16,10 @@ Google Web app for batch creating a calendar of events that cycles the words "J 
 4. Create an HTML file, and name it "Index."
 5. Copy and paste [the markup text](./Index.html) into the editor, and save the file.
 6. Deploy the project as a Web app, and open the assigned URL.
-7. Modify the calendar name, time zone, and public holiday calendar. (***Must name it differently from the owner name, otherwise the app will not create the calendar.***)
+7. Modify the calendar name, time zone, and public holiday calendar. (**_Must name it differently from the owner name, otherwise the app will not create the calendar._**)
 8. Add any exceptions to the holiday schedule, any half-days, and any extra holidays.
 9. Modify the start and end months. (If the start month is greater than the end month, then the calendar will roll over to the new year.)
-10. Press submit. (Requires another authorization. ***Note also that creating calendars is subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en).***)
+10. Press submit. (Requires another authorization. **_Note also that creating calendars is subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en)._**)
 
 <hr>
 Made with &heartsuit; in Visual Studio Code
