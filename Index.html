@@ -5,19 +5,18 @@
     <style>
       /* Basic styling for the form */
       form {
-        max-width: 540px;
+        max-width: 565px;
         margin: 0 auto;
-        padding-top: 10px;
-        padding-left: 15px;
-        padding-right: 20px;
+        padding: 15px;
         border: 1px solid Silver;
         border-radius: 5px;
-        background-color: #F8F8F8;
+        background-color: Gainsboro;
       }
       label, select, input, textarea {
         display: block;
         margin-bottom: 0px;
         width: 100%;
+        -webkit-box-sizing: border-box;
       }
       select, input, textarea, div {
         font-family: 'Courier New', Courier, monospace;
@@ -35,6 +34,18 @@
         text-align: center;
         color: #000;
       }
+      div[id="settings"] {
+        text-align: left;
+        padding-top: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+        border: 1px solid Silver;
+        border-radius: 5px;
+        background-color: #F8F8F8;
+      }
+      text[id="settings"] {
+        font-style: normal;
+      }
       input[type="submit"] {
         background-color: white;
         border-color: Silver;
@@ -46,85 +57,95 @@
   <body>
     <h1><center>Create 加油 ("jiā yóu") Calendar</center></h1>
     <form id="calendarForm">
-      <label for="calendarName">Calendar name:</label>
-      <input type="text" id="calendarName" name="calendarName" value="JIA YOU" required>
-      <!-- Must name it differently from the owner name -->
-      </br>
 
-      <label for="timeZone">Time zone:</label>
-      <select id="timeZone" name="timeZone">
-        <option value="America/New_York">Eastern</option>
-        <option value="America/Chicago">Central</option>
-        <option value="America/Denver">Mountain</option>
-        <option value="America/Los_Angeles" selected="selected">Pacific</option>
-        <!-- Consult https://www.iana.org/time-zones for time zone IDs of other locations. -->
-      </select>
-      <!-- preselected for convenience -->
-      </br>
+      <div id="settings">
 
-      <label for="holidayCalendar">Public holiday calendar:</label>
-      <select id="holidayCalendar" name="holidayCalendar">
-        <option value="en.usa#holiday@group.v.calendar.google.com">US Holidays</option>
-        <!-- Consult https://gist.github.com/dhoeric/76bd1c15168ee0ee61ad3bf1730dcb65#file-cal-csv for calendar IDs of other countries -->
-      </select>
-      <!-- preselected for convenience -->
-      </br>
+        <text id="settings"><center>Event Settings</center></text>
+        </br>
+      
+        <label for="calendarName">Calendar name:</label>
+        <input type="text" id="calendarName" name="calendarName" value="JIA YOU" required>
+        <!-- Must name it differently from the owner name -->
+        </br>
 
-      <!--still create events on these holidays-->
-      <label for="holidayExceptions">List any exceptions:</label>
-      <textarea type="text" id="holidayExceptions" name="holidayExceptions" rows="1" placeholder="Optional">Oct 31, 2024; Nov 5, 2024; Nov 11, 2024</textarea>
-      <!-- prefilled for convenience and clarity -->
-      <text>Accepted formats: Mmm DD YYYY; MM/DD/YYYY; DD Mmm YYYY</text>
-      </br></br>
+        <label for="timeZone">Time zone:</label>
+        <select id="timeZone" name="timeZone">
+          <option value="America/New_York">Eastern</option>
+          <option value="America/Chicago">Central</option>
+          <option value="America/Denver">Mountain</option>
+          <option value="America/Los_Angeles" selected="selected">Pacific</option>
+          <!-- Consult https://www.iana.org/time-zones for time zone IDs of other locations. -->
+        </select>
+        <!-- preselected for convenience -->
+        </br>
 
-      <!--repeat this event once-->
-      <label for="halfDays">List any half-days:</label>
-      <textarea type="text" id="halfDays" name="halfDays" rows="1" placeholder="Optional">Nov 22, 2024</textarea>
-      <!-- prefilled for convenience and clarity -->
-      <text>Accepted formats: Mmm DD YYYY; MM/DD/YYYY; DD Mmm YYYY</text>
-      </br></br>
+        <label for="holidayCalendar">Public holiday calendar:</label>
+        <select id="holidayCalendar" name="holidayCalendar">
+          <option value="en.usa#holiday@group.v.calendar.google.com">US Holidays</option>
+          <!-- Consult https://gist.github.com/dhoeric/76bd1c15168ee0ee61ad3bf1730dcb65#file-cal-csv for calendar IDs of other countries -->
+        </select>
+        <!-- preselected for convenience -->
+        </br>
 
-      <!--don't create events on these non-holidays-->
-      <label for="extraHolidays">List any extra holidays:</label>
-      <textarea type="text" id="extraHolidays" name="extraHolidays" rows="3" placeholder="Optional">Oct 10, 2024; Oct 11, 2024; Nov 1, 2024; Nov 8, 2024; Nov 25, 2024; Nov 26, 2024; Nov 27, 2024; Dec 23, 2024; Dec 26, 2024; Dec 27, 2024; Dec 30, 2024</textarea>
-      <!-- prefilled for convenience and clarity -->
-      <text>Accepted formats: Mmm DD YYYY; MM/DD/YYYY; DD Mmm YYYY</text>
-      </br></br>
+        <!--still create events on these holidays-->
+        <label for="holidayExceptions">List exceptions:</label>
+        <textarea type="text" id="holidayExceptions" name="holidayExceptions" rows="1" placeholder="Optional">Oct 31, 2024; Nov 5, 2024; Nov 11, 2024</textarea>
+        <!-- prefilled for convenience and clarity -->
+        <text>Accepted formats: Mmm DD YYYY; MM/DD/YYYY; DD Mmm YYYY</text>
+        </br></br>
 
-      <label for="startMonth">Start month:</label>
-      <select id="startMonth" name="startMonth">
-        <option value="1">January</option>
-        <option value="2">February</option>
-        <option value="3">March</option>
-        <option value="4">April</option>
-        <option value="5">May</option>
-        <option value="6">June</option>
-        <option value="7">July</option>
-        <option value="8">August</option>
-        <option value="9" selected="selected">September</option>
-        <option value="10">October</option>
-        <option value="11">November</option>
-        <option value="12">December</option>
-      </select>
-      <!-- preselected for convenience -->
-      </br>
+        <!--repeat this event once-->
+        <label for="halfDays">List half-days:</label>
+        <textarea type="text" id="halfDays" name="halfDays" rows="1" placeholder="Optional">Nov 22, 2024</textarea>
+        <!-- prefilled for convenience and clarity -->
+        <text>Accepted formats: Mmm DD YYYY; MM/DD/YYYY; DD Mmm YYYY</text>
+        </br></br>
 
-      <label for="endMonth">End month:</label>
-      <select id="endMonth" name="endMonth">
-        <option value="1">January</option>
-        <option value="2">February</option>
-        <option value="3">March</option>
-        <option value="4">April</option>
-        <option value="5">May</option>
-        <option value="6">June</option>
-        <option value="7">July</option>
-        <option value="8">August</option>
-        <option value="9">September</option>
-        <option value="10">October</option>
-        <option value="11">November</option>
-        <option value="12" selected="selected">December</option>
-      </select>
-      <!-- preselected for convenience -->
+        <!--don't create events on these non-holidays-->
+        <label for="extraHolidays">List extra holidays:</label>
+        <textarea type="text" id="extraHolidays" name="extraHolidays" rows="3" placeholder="Optional">Oct 10, 2024; Oct 11, 2024; Nov 1, 2024; Nov 8, 2024; Nov 25, 2024; Nov 26, 2024; Nov 27, 2024; Dec 23, 2024; Dec 26, 2024; Dec 27, 2024; Dec 30, 2024</textarea>
+        <!-- prefilled for convenience and clarity -->
+        <text>Accepted formats: Mmm DD YYYY; MM/DD/YYYY; DD Mmm YYYY</text>
+        </br></br>
+
+        <label for="startMonth">Start month:</label>
+        <select id="startMonth" name="startMonth">
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9" selected="selected">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+        <!-- preselected for convenience -->
+        </br>
+
+        <label for="endMonth">End month:</label>
+        <select id="endMonth" name="endMonth">
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12" selected="selected">December</option>
+        </select>
+        <!-- preselected for convenience -->
+        </br>
+
+      </div>
+
       </br>
 
       <input type="submit" value="Submit">
