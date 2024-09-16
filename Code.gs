@@ -14,13 +14,16 @@ function createCalendar(
   halfDays,
   extraHolidays,
   startMonth,
-  endMonth
+  endMonth,
+  dryRun
 ) {
   // Create a new calendar named "JIA YOU"
-  var calendar = CalendarApp.createCalendar(calendarName); // built-in function
+  if (!dryRun) {
+    var calendar = CalendarApp.createCalendar(calendarName); // built-in function
 
-  // Set its time zone
-  calendar.setTimeZone(timeZone);
+    // Set its time zone
+    calendar.setTimeZone(timeZone);
+  }
 
   // Define the words to cycle through
   var words = [
@@ -100,7 +103,10 @@ function createCalendar(
 
       // Create an event with the current word
       var word = words[eventIndex % words.length];
-      calendar.createAllDayEvent(word, date);
+
+      if (!dryRun) {
+        calendar.createAllDayEvent(word, date);
+      }
 
       // Log which words were created
       Logger.log("Created " + word + " on " + date + "!");
