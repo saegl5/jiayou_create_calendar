@@ -1,4 +1,5 @@
 // Create 加油 ("jiā yóu") Calendar
+// Modify the following event settings, then press |> Run
 
 // Event settings
 var myCalendarName = "JIA YOU"; // Must name it differently from the owner name
@@ -33,6 +34,7 @@ var myDryRun = false; // test script before running it in production
 
 
 
+// -----------------------------------------------------------------------------------
 // ** WARNING **
 // If the script below is modified improperly, running it may cause irrevocable damage.
 // The script below comes with absolutely no warranty. Use it at your own risk.
