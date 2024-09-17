@@ -25,6 +25,7 @@ var myExtraHolidays = [ // don't create events on these non-holidays
   "Dec 30 2024" // Winter Holiday Break
 ];
 // Accepted date formats: Mmm DD YYYY, MM/DD/YYYY, DD Mmm YYYY
+// Why not accept YYYY/MM/DD ? Because it defaults to Coordinated Universal Time
 var myStartMonth = "9"; // September
 var myEndMonth = "12"; // December
 // If myStartMonth > myEndMonth, then the calendar will roll over to the new year
