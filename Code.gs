@@ -142,7 +142,8 @@ function createCalendar() {
       }
     }
   }
-  return "Calendar created!";
+  Logger.log("Calendar created!");
+  return null;
 }
 
 // Function to check if a date is a holiday
