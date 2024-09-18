@@ -162,19 +162,19 @@ function getHolidays(year) {
   var events = calendar.getEvents(start, end);
 
   // Exempt these holidays
-  var match = "no";
+  var match = false;
   for (var n = 0; n < events.length; n++) {
     for (var o = 0; o < myHolidayExceptions.length; o++) {
       if (
         events[n].getAllDayStartDate().toDateString() ===
         myHolidayExceptions[o].toDateString()
       ) {
-        match = "yes";
+        match = true;
         continue;
       }
     }
-    if (match === "yes") {
-      match = "no"; // reset
+    if (match === true) {
+      match = false; // reset
       // then skip
     } else {
       holidays.push(events[n].getAllDayStartDate());
