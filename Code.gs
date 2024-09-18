@@ -7,22 +7,25 @@ var myTimeZone = "America/Los_Angeles"; // Other examples: America/New_York, Ame
 // Consult https://www.iana.org/time-zones for time zone IDs of other locations
 var myHolidayCalendar = "en.usa#holiday@group.v.calendar.google.com";
 // Consult https://gist.github.com/dhoeric/76bd1c15168ee0ee61ad3bf1730dcb65#file-cal-csv for calendar IDs of other countries
-var myHolidayExceptions = [ // still create events on these holidays
+var myHolidayExceptions = [
+  // still create events on these holidays
   "Oct 31 2024", // Halloween
   "Nov 5 2024", // Election Day (General Election)
-  "Nov 11 2024" // Veterans Day
+  "Nov 11 2024", // Veterans Day
 ];
-var myHalfDays = [ // repeat this event once
-  "Nov 22 2024"
+var myHalfDays = [
+  // repeat this event once
+  "Nov 22 2024",
 ];
-var myExtraHolidays = [ // don't create events on these non-holidays
+var myExtraHolidays = [
+  // don't create events on these non-holidays
   "Nov 25 2024", // Thanksgiving Break
   "Nov 26 2024", // Thanksgiving Break
   "Nov 27 2024", // Thanksgiving Break
   "Dec 23 2024", // Winter Holiday Break
   "Dec 26 2024", // Winter Holiday Break
   "Dec 27 2024", // Winter Holiday Break
-  "Dec 30 2024" // Winter Holiday Break
+  "Dec 30 2024", // Winter Holiday Break
 ];
 // Accepted date formats: Mmm DD YYYY, MM/DD/YYYY, DD Mmm YYYY
 // Why not accept YYYY/MM/DD ? Because it defaults to Coordinated Universal Time
@@ -50,14 +53,7 @@ function createCalendar() {
   }
 
   // Define the words to cycle through
-  var words = [
-    "J Day",
-    "I Day",
-    "A Day",
-    "Y Day",
-    "O Day",
-    "U Day"
-  ];
+  var words = ["J Day", "I Day", "A Day", "Y Day", "O Day", "U Day"];
 
   // Define the start and end months
   var startMonth = parseInt(myStartMonth);
