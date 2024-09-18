@@ -44,7 +44,7 @@ var myDryRun = false; // test script before running it in production
 // The script below comes with absolutely no warranty. Use it at your own risk.
 
 function createCalendar() {
-  // Create a new calendar named "JIA YOU"
+  // Create a new calendar
   if (!myDryRun) {
     var calendar = CalendarApp.createCalendar(myCalendarName); // built-in function
 
