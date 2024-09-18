@@ -51,13 +51,13 @@ function createCalendar() {
 
   // Define the words to cycle through
   var words = [
-    "J &nbsp; Day",
-    "I &nbsp; Day",
-    "A &nbsp; Day",
-    "Y &nbsp; Day",
-    "O &nbsp; Day",
-    "U &nbsp; Day"
-  ]; // Added extra spacing
+    "J Day",
+    "I Day",
+    "A Day",
+    "Y Day",
+    "O Day",
+    "U Day"
+  ];
 
   // Define the start and end months
   var startMonth = parseInt(myStartMonth);
