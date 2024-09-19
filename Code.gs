@@ -17,7 +17,7 @@ function createCalendar(
   endMonth,
   dryRun
 ) {
-  // Create a new calendar named "JIA YOU"
+  // Create a new calendar
   if (!dryRun) {
     var calendar = CalendarApp.createCalendar(calendarName); // built-in function
 
@@ -26,14 +26,7 @@ function createCalendar(
   }
 
   // Define the words to cycle through
-  var words = [
-    "J &nbsp; Day",
-    "I &nbsp; Day",
-    "A &nbsp; Day",
-    "Y &nbsp; Day",
-    "O &nbsp; Day",
-    "U &nbsp; Day",
-  ]; // Added extra spacing
+  var words = ["J Day", "I Day", "A Day", "Y Day", "O Day", "U Day"];
 
   // Define the start and end months
   var startMonth = parseInt(startMonth);
@@ -41,17 +34,17 @@ function createCalendar(
   var year = new Date().getFullYear(); // Current year
 
   // Split strings into lists of dates
-  holidayExceptions = holidayExceptions.split("; ");
+  holidayExceptions = holidayExceptions.split(", ");
   for (var i = 0; i < holidayExceptions.length; i++) {
     holidayExceptions[i] = new Date(holidayExceptions[i]);
   }
 
-  halfDays = halfDays.split("; ");
+  halfDays = halfDays.split(", ");
   for (var j = 0; j < halfDays.length; j++) {
     halfDays[j] = new Date(halfDays[j]);
   }
 
-  extraHolidays = extraHolidays.split("; ");
+  extraHolidays = extraHolidays.split(", ");
   for (var k = 0; k < extraHolidays.length; k++) {
     extraHolidays[k] = new Date(extraHolidays[k]);
   }
@@ -103,7 +96,6 @@ function createCalendar(
 
       // Create an event with the current word
       var word = words[eventIndex % words.length];
-
       if (!dryRun) {
         calendar.createAllDayEvent(word, date);
       }
@@ -150,19 +142,19 @@ function getHolidays(year, holidayCalendar, holidayExceptions, extraHolidays) {
   var events = calendar.getEvents(start, end);
 
   // Exempt these holidays
-  var match = "no";
+  var match = false;
   for (var n = 0; n < events.length; n++) {
     for (var o = 0; o < holidayExceptions.length; o++) {
       if (
         events[n].getAllDayStartDate().toDateString() ===
         holidayExceptions[o].toDateString()
       ) {
-        match = "yes";
+        match = true;
         continue;
       }
     }
-    if (match === "yes") {
-      match = "no"; // reset
+    if (match === true) {
+      match = false; // reset
       // then skip
     } else {
       holidays.push(events[n].getAllDayStartDate());

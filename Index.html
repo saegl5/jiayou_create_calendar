@@ -69,8 +69,8 @@
       
         <label for="calendarName">Calendar name:</label>
         <input type="text" id="calendarName" name="calendarName" value="JIA YOU" required>
-        <!-- Must name it differently from the owner name -->
-        </br>
+        <text>Must name it differently from the owner name</text>
+        </br></br>
 
         <label for="timeZone">Time zone:</label>
         <select id="timeZone" name="timeZone">
@@ -93,23 +93,29 @@
 
         <!--still create events on these holidays-->
         <label for="holidayExceptions">List exceptions:</label>
-        <textarea type="text" id="holidayExceptions" name="holidayExceptions" rows="1" placeholder="Optional">Oct 31, 2024; Nov 5, 2024; Nov 11, 2024</textarea>
+        <textarea type="text" id="holidayExceptions" name="holidayExceptions" rows="1" placeholder="Optional">Oct 31 2024; Nov 5 2024; Nov 11 2024</textarea>
         <!-- prefilled for convenience and clarity -->
-        <text>Accepted formats: Mmm DD YYYY; MM/DD/YYYY; DD Mmm YYYY</text>
+        <text>Accepted formats: Mmm DD YYYY, MM/DD/YYYY, DD Mmm YYYY</text><br>
+        <text>Comma-separated list of dates</text>
+        <!-- Why not accept YYYY/MM/DD ? Because it defaults to Coordinated Universal Time -->
         </br></br>
 
         <!--repeat this event once-->
         <label for="halfDays">List half-days:</label>
-        <textarea type="text" id="halfDays" name="halfDays" rows="1" placeholder="Optional">Nov 22, 2024</textarea>
+        <textarea type="text" id="halfDays" name="halfDays" rows="1" placeholder="Optional">Nov 22 2024</textarea>
         <!-- prefilled for convenience and clarity -->
-        <text>Accepted formats: Mmm DD YYYY; MM/DD/YYYY; DD Mmm YYYY</text>
+        <text>Accepted formats: Mmm DD YYYY, MM/DD/YYYY, DD Mmm YYYY</text><br>
+        <text>Comma-separated list of dates</text>
+        <!-- Why not accept YYYY/MM/DD ? Because it defaults to Coordinated Universal Time -->
         </br></br>
 
         <!--don't create events on these non-holidays-->
         <label for="extraHolidays">List extra holidays:</label>
-        <textarea type="text" id="extraHolidays" name="extraHolidays" rows="3" placeholder="Optional">Oct 10, 2024; Oct 11, 2024; Nov 1, 2024; Nov 8, 2024; Nov 25, 2024; Nov 26, 2024; Nov 27, 2024; Dec 23, 2024; Dec 26, 2024; Dec 27, 2024; Dec 30, 2024</textarea>
+        <textarea type="text" id="extraHolidays" name="extraHolidays" rows="3" placeholder="Optional">Oct 10 2024; Oct 11 2024; Nov 1 2024; Nov 8 2024; Nov 25 2024; Nov 26 2024; Nov 27 2024; Dec 23 2024; Dec 26 2024; Dec 27 2024; Dec 30 2024</textarea>
         <!-- prefilled for convenience and clarity -->
-        <text>Accepted formats: Mmm DD YYYY; MM/DD/YYYY; DD Mmm YYYY</text>
+        <text>Accepted formats: Mmm DD YYYY, MM/DD/YYYY, DD Mmm YYYY</text><br>
+        <text>Comma-separated list of dates</text>
+        <!-- Why not accept YYYY/MM/DD ? Because it defaults to Coordinated Universal Time -->
         </br></br>
 
         <label for="startMonth">Start month:</label>
@@ -148,19 +154,23 @@
         <!-- preselected for convenience -->
         </br>
 
+        <!-- If startMonth > endMonth, then the calendar will roll over to the new year -->
+
       </div>
 
       </br>
 
       <div>
-        <input type="checkbox" id="dryRun" name="dryRun"/>
+        <input type="checkbox" id="dryRun" name="dryRun" unchecked />
         <label for="dryRun">Dry run</label>
+        <!-- test script before running it in production -->
       </div>
 
       </br>
 
       <input type="submit" value="Submit">
       <div id="wait">&nbsp;</div>
+      <!-- id="wait" div displays function return messages -->
     </form>
     
     <script>
@@ -177,7 +187,7 @@
         var startMonth = document.getElementById('startMonth').value;
         var endMonth = document.getElementById('endMonth').value;
 
-        var dryRun = document.getElementById('dryRun').checked;
+        var dryRun = document.getElementById('dryRun').checked; // by default, checkbox is unchecked, meaning .checked is false
         
         document.getElementById("wait").innerHTML = "Please wait...";
 
