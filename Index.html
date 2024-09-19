@@ -65,12 +65,12 @@
       <div id="settings">
 
         <text id="settings"><center>Event Settings</center></text>
-        </br>
+        <br>
       
         <label for="calendarName">Calendar name:</label>
         <input type="text" id="calendarName" name="calendarName" value="JIA YOU" required>
         <text>Must name it differently from the owner name</text>
-        </br></br>
+        <br><br>
 
         <label for="timeZone">Time zone:</label>
         <select id="timeZone" name="timeZone">
@@ -81,7 +81,7 @@
           <!-- Consult https://www.iana.org/time-zones for time zone IDs of other locations. -->
         </select>
         <!-- preselected for convenience -->
-        </br>
+        <br>
 
         <label for="holidayCalendar">Public holiday calendar:</label>
         <select id="holidayCalendar" name="holidayCalendar">
@@ -89,7 +89,7 @@
           <!-- Consult https://gist.github.com/dhoeric/76bd1c15168ee0ee61ad3bf1730dcb65#file-cal-csv for calendar IDs of other countries -->
         </select>
         <!-- preselected for convenience -->
-        </br>
+        <br>
 
         <!--still create events on these holidays-->
         <label for="holidayExceptions">List exceptions:</label>
@@ -98,7 +98,7 @@
         <text>Accepted formats: Mmm DD YYYY, MM/DD/YYYY, DD Mmm YYYY</text><br>
         <text>Comma-separated list of dates</text>
         <!-- Why not accept YYYY/MM/DD ? Because it defaults to Coordinated Universal Time -->
-        </br></br>
+        <br><br>
 
         <!--repeat this event once-->
         <label for="halfDays">List half-days:</label>
@@ -107,7 +107,7 @@
         <text>Accepted formats: Mmm DD YYYY, MM/DD/YYYY, DD Mmm YYYY</text><br>
         <text>Comma-separated list of dates</text>
         <!-- Why not accept YYYY/MM/DD ? Because it defaults to Coordinated Universal Time -->
-        </br></br>
+        <br><br>
 
         <!--don't create events on these non-holidays-->
         <label for="extraHolidays">List extra holidays:</label>
@@ -116,7 +116,7 @@
         <text>Accepted formats: Mmm DD YYYY, MM/DD/YYYY, DD Mmm YYYY</text><br>
         <text>Comma-separated list of dates</text>
         <!-- Why not accept YYYY/MM/DD ? Because it defaults to Coordinated Universal Time -->
-        </br></br>
+        <br><br>
 
         <label for="startMonth">Start month:</label>
         <select id="startMonth" name="startMonth">
@@ -134,7 +134,7 @@
           <option value="12">December</option>
         </select>
         <!-- preselected for convenience -->
-        </br>
+        <br>
 
         <label for="endMonth">End month:</label>
         <select id="endMonth" name="endMonth">
@@ -152,13 +152,13 @@
           <option value="12" selected="selected">December</option>
         </select>
         <!-- preselected for convenience -->
-        </br>
+        <br>
 
         <!-- If startMonth > endMonth, then the calendar will roll over to the new year -->
 
       </div>
 
-      </br>
+      <br>
 
       <div>
         <input type="checkbox" id="dryRun" name="dryRun" unchecked />
@@ -166,7 +166,7 @@
         <!-- test script before running it in production -->
       </div>
 
-      </br>
+      <br>
 
       <input type="submit" value="Submit">
       <div id="wait">&nbsp;</div>
