@@ -65,6 +65,9 @@ function createCalendar(
     endMonth += 12;
   }
 
+  var firstEvent = true; // for first event, to which subsequent events will be chained
+  var eventSeries = ""; // for chaining events
+
   // Loop through each month
   for (var month = startMonth; month <= endMonth; month++) {
     // Determine the number of days in the month
@@ -97,8 +100,20 @@ function createCalendar(
       // Create an event with the current word
       var word = words[eventIndex % words.length];
       if (!dryRun) {
-        calendar.createAllDayEvent(word, date);
+        createEvent();
       }
+
+      // function nested to align with Web app for adding events
+      function createEvent() {
+        if (firstEvent) {
+          eventSeries = calendar.createAllDayEventSeries(word, date, CalendarApp.newRecurrence().addDate(date));
+          firstEvent = false;
+        } // chain subsequent event to first event
+        else
+          eventSeries.setRecurrence(CalendarApp.newRecurrence().addDate(date), date);
+        return null;
+      }
+
 
       // Log which words were created
       Logger.log("Created " + word + " on " + date + "!");
