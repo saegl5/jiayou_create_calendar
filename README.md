@@ -22,5 +22,11 @@ Google Web app for batch creating a calendar of events that cycles the words "J 
 10. Optionally perform a dry run to test the Web app before running it in production. Consult logs for output.
 11. Press submit. (Requires another authorization. **_Note also that creating calendars is subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en)._**)
 
+## Next Steps
+
+Consult the [Web app for adding events](https://github.com/saegl5/jiayou_add_events).
+
+In addition, you can export the calendar directly from [Google Calendar](https://calendar.google.com/calendar/) and can import it into another calendar on your smartphone. 'Whatever way makes it easier for you to keep track of today's letter...
+
 <hr>
 Made with &heartsuit; in Visual Studio Code
