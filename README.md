@@ -28,6 +28,7 @@ Access to [Google Apps Script](https://script.google.com/)
 
 ## Next Steps
 
+- If you deploy the Web app such that it executes as `User accessing the web app` where `Anyone with Google account` can access it, then you can share the URL for them to create a calendar in their own account.
 - Consult the [Web app for adding events](https://github.com/saegl5/jiayou_add_events).
 - You can extend the app script to create a calendar cycling any letters or words and in any language.
 - You can also export the calendar directly from [Google Calendar](https://calendar.google.com/calendar/) and can import it into another calendar on your smartphone. ('Whatever way makes it easier for you to keep track of today's letter...)
