@@ -8,6 +8,10 @@ Google Web app for batch creating a calendar of events that cycles the words "J 
 
 <img src="screenshots/calendar.png" alt="screenshot of calendar" width="800"><br>"JIA YOU" calendar of events was created.
 
+## Prerequisite
+
+Access to [Google Apps Script](https://script.google.com/)
+
 ## Getting Started
 
 1. Go to [Google Apps Script](https://script.google.com/), and create a new project.
