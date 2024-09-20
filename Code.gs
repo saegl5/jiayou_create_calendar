@@ -106,14 +106,20 @@ function createCalendar(
       // function nested to align with Web app for adding events
       function createEvent() {
         if (firstEvent) {
-          eventSeries = calendar.createAllDayEventSeries(word, date, CalendarApp.newRecurrence().addDate(date));
+          eventSeries = calendar.createAllDayEventSeries(
+            word,
+            date,
+            CalendarApp.newRecurrence().addDate(date)
+          );
           firstEvent = false;
         } // chain subsequent event to first event
         else
-          eventSeries.setRecurrence(CalendarApp.newRecurrence().addDate(date), date);
+          eventSeries.setRecurrence(
+            CalendarApp.newRecurrence().addDate(date),
+            date
+          );
         return null;
       }
-
 
       // Log which words were created
       Logger.log("Created " + word + " on " + date + "!");
