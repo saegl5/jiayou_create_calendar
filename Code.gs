@@ -140,7 +140,7 @@ function createCalendar(
       }
     }
   }
-  return "Calendar created!";
+  return "Calendar created! Go to your Google Calendar...";
 }
 
 // Function to check if a date is a holiday
