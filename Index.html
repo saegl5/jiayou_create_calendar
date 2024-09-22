@@ -50,7 +50,9 @@
         font-style: italic;
         color: var(--description);
       }
-      div[id="section"], div[id="dry"] {
+      div[id="section"],
+      div[id="dry"],
+      .mid {
         text-align: center;
       }
       div[id="settings"] {
@@ -76,6 +78,17 @@
       }
       h1 {
         text-align: center;
+      }
+      div[id="table"] {
+        display: table;
+        width: 100%;
+      }
+      div[id="row"] {
+        display: table-row;
+      }
+      div[id="cell"],
+      .mid {
+        display: table-cell;
       }
     </style>
   </head>
@@ -174,18 +187,18 @@ Oct 10 2024, Oct 11 2024, Nov 1 2024, Nov 8 2024, Nov 25 2024, Nov 26 2024, Nov 
         <!-- Why not accept YYYY/MM/DD ? Because it defaults to Coordinated Universal Time -->
         <br /><br />
 
-        <div style="display: table; width: 100%">
-          <div style="display: table-row">
-            <div style="display: table-cell">
+        <div id="table">
+          <div id="row">
+            <div id="cell">
               <label for="startMonth">Start month:</label>
             </div>
-            <div style="display: table-cell; text-align: center;">&nbsp;&nbsp;-&nbsp;&nbsp;</div>
-            <div style="display: table-cell">
+            <div id="cell" class="mid">&nbsp;&nbsp;-&nbsp;&nbsp;</div>
+            <div id="cell">
               <label for="endMonth">End month:</label>
             </div>
           </div>
-          <div style="display: table-row">
-            <div style="display: table-cell">
+          <div id="row">
+            <div id="cell">
               <select id="startMonth" name="startMonth">
                 <option value="1">January</option>
                 <option value="2">February</option>
@@ -201,10 +214,10 @@ Oct 10 2024, Oct 11 2024, Nov 1 2024, Nov 8 2024, Nov 25 2024, Nov 26 2024, Nov 
                 <option value="12">December</option>
               </select>
             </div>
-            <div style="display: table-cell">
-              <p></p>
+            <div id="cell" class="mid">
+              <!-- empty -->
             </div>
-            <div style="display: table-cell">
+            <div id="cell">
               <select id="endMonth" name="endMonth">
                 <option value="1">January</option>
                 <option value="2">February</option>
