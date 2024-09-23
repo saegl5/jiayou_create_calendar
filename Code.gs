@@ -17,7 +17,50 @@ function createCalendar(
   endMonth,
   dryRun
 ) {
-  // Create a new calendar
+  // handle exceptions first
+  if (
+    holidayExceptions.includes(";") ||
+    halfDays.includes(";") ||
+    extraHolidays.includes(";")
+  ) {
+    return "Use comma-separated dates!";
+  }
+
+  // Split strings into lists of dates, in case we might encounter exceptions
+  holidayExceptions = holidayExceptions.split(", ");
+  for (var i = 0; i < holidayExceptions.length; i++) {
+    holidayExceptions[i] = new Date(holidayExceptions[i]);
+  }
+  if (
+    holidayExceptions.length > 1 &&
+    holidayExceptions[0].getFullYear() !== holidayExceptions[1].getFullYear()
+    // checks first two items because likely users will use a consistent style for additional dates
+  )
+    return "Use accepted date formats!";
+
+  halfDays = halfDays.split(", ");
+  for (var j = 0; j < halfDays.length; j++) {
+    halfDays[j] = new Date(halfDays[j]);
+  }
+  if (
+    halfDays.length > 1 &&
+    halfDays[0].getFullYear() !== halfDays[1].getFullYear()
+    // checks first two items because likely users will use a consistent style for additional dates
+  )
+    return "Use accepted date formats!";
+
+  extraHolidays = extraHolidays.split(", ");
+  for (var k = 0; k < extraHolidays.length; k++) {
+    extraHolidays[k] = new Date(extraHolidays[k]);
+  }
+  if (
+    extraHolidays.length > 1 &&
+    extraHolidays[0].getFullYear() !== extraHolidays[1].getFullYear()
+    // checks first two items because likely users will use a consistent style for additional dates
+  )
+    return "Use accepted date formats!";
+
+  // Otherwise, create a new calendar
   if (!dryRun) {
     var calendar = CalendarApp.createCalendar(calendarName); // built-in function
 
@@ -32,22 +75,6 @@ function createCalendar(
   var startMonth = parseInt(startMonth);
   var endMonth = parseInt(endMonth);
   var year = new Date().getFullYear(); // Current year
-
-  // Split strings into lists of dates
-  holidayExceptions = holidayExceptions.split(", ");
-  for (var i = 0; i < holidayExceptions.length; i++) {
-    holidayExceptions[i] = new Date(holidayExceptions[i]);
-  }
-
-  halfDays = halfDays.split(", ");
-  for (var j = 0; j < halfDays.length; j++) {
-    halfDays[j] = new Date(halfDays[j]);
-  }
-
-  extraHolidays = extraHolidays.split(", ");
-  for (var k = 0; k < extraHolidays.length; k++) {
-    extraHolidays[k] = new Date(extraHolidays[k]);
-  }
 
   // Get the holidays starting the current year
   var holidays = getHolidays(
