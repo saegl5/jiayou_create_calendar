@@ -127,7 +127,7 @@ function createCalendar(
       // Create an event with the current word
       var word = words[eventIndex % words.length];
       if (!dryRun) {
-        createEvent();
+        createEvent(); // all-day events
       }
 
       // function nested to align with Web app for adding events
