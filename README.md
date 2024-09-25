@@ -1,6 +1,6 @@
 # Create 加油 ("jiā yóu") Calendar
 
-Google Web app for creating a calendar of events that cycles the words "J Day," "I Day," "A Day," "Y Day," "O Day," and "U Day," except on weekends and holidays. Modify as needed, and back up your calendars before you run the app. Without an app script one would need to create these events manually.
+Google Web app for creating a calendar of individual events that cycles the words "J Day," "I Day," "A Day," "Y Day," "O Day," and "U Day," except on weekends and holidays. Modify as needed, and back up your calendars before you run the app. Without an app script one would need to create these events manually.
 
 ## Visual Example
 
@@ -30,7 +30,7 @@ Access to [Google Apps Script](https://script.google.com/)
 
 - If you deploy the Web app such that it executes as `User accessing the web app` where `Anyone with Google account` can access it, then you can share the URL for them to create a calendar in their own account. (You may wish to hide the dry run option.)
 - Consult the [Web app for adding events](https://github.com/saegl5/jiayou_add_events).
-- You can extend the app script to create a calendar cycling any letters or words and in any language.
+- You can extend the app script to create a calendar cycling any letters or words and in any language. Feel free to fork, too!
 - You can also export the calendar directly from [Google Calendar](https://calendar.google.com/calendar/) and can import it into another calendar on your smartphone. ('Whatever way makes it easier for you to keep track of today's letter...)
 
 <hr>
