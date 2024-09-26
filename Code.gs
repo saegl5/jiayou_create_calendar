@@ -9,56 +9,56 @@ function doGet() {
 function createCalendar(
   calendarName,
   timeZone,
-  holidayCalendar,
-  holidayExceptions,
-  halfDays,
-  extraHolidays,
   startMonth,
   endMonth,
   dryRun
 ) {
-  // handle exceptions first
-  if (
-    holidayExceptions.includes(";") ||
-    halfDays.includes(";") ||
-    extraHolidays.includes(";")
-  ) {
-    return "Use comma-separated dates!";
-  }
+  var holidayCalendar = "en.usa#holiday@group.v.calendar.google.com";
+  var holidayExceptions =
+  [
+    "Apr 21 2025", 
+    "Mar 17 2025", 
+    "Feb 14 2025", 
+    "Oct 31 2024", 
+    "Nov 5 2024", 
+    "Nov 11 2024", 
+    "May 1 2025", 
+    "May 5 2025"
+  ];
+  var halfDays = 
+  [
+    "Nov 22 2024", 
+    "Nov 1 2024", 
+    "Nov 8 2024", 
+    "Jan 24 2025", 
+    "Mar 21 2025", 
+    "Mar 28 2025", 
+    "Jun 6 2025"
+  ]
+  var extraHolidays =
+  [
+    "Oct 10 2024", "Oct 11 2024", 
+    "Nov 1 2024", "Nov 8 2024", "Nov 25 2024", "Nov 26 2024", "Nov 27 2024", "Nov 28 2024", "Nov 29 2024", 
+    "Dec 23 2024", "Dec 26 2024", "Dec 27 2024", "Dec 30 2024", "Dec 24 2024", "Dec 25 2024", "Dec 31 2024", 
+    "Jan 1 2025", "Jan 2 2025", "Jan 3 2025", "Jan 20 2025", "Jan 27 2025", "Jan 28 2025", "Jan 29 2025", 
+    "Feb 17 2025", "Feb 18 2025", "Feb 19 2025", "Feb 20 2025", "Feb 21 2025", 
+    "Mar 10 2025", "Mar 11 2025", 
+    "Apr 14 2025", "Apr 15 2025", "Apr 16 2025", "Apr 17 2025", "Apr 17 2025", "Apr 18 2025", 
+    "May 26 2025"
+  ];
 
-  // Split strings into lists of dates, in case we might encounter exceptions
-  holidayExceptions = holidayExceptions.split(", ");
+  // Convert the strings to date objects
   for (var i = 0; i < holidayExceptions.length; i++) {
     holidayExceptions[i] = new Date(holidayExceptions[i]);
   }
-  if (
-    holidayExceptions.length > 1 &&
-    holidayExceptions[0].getFullYear() !== holidayExceptions[1].getFullYear()
-    // checks first two items because likely users will use a consistent style for additional dates
-  )
-    return "Use accepted date formats!";
 
-  halfDays = halfDays.split(", ");
   for (var j = 0; j < halfDays.length; j++) {
     halfDays[j] = new Date(halfDays[j]);
   }
-  if (
-    halfDays.length > 1 &&
-    halfDays[0].getFullYear() !== halfDays[1].getFullYear()
-    // checks first two items because likely users will use a consistent style for additional dates
-  )
-    return "Use accepted date formats!";
 
-  extraHolidays = extraHolidays.split(", ");
   for (var k = 0; k < extraHolidays.length; k++) {
     extraHolidays[k] = new Date(extraHolidays[k]);
   }
-  if (
-    extraHolidays.length > 1 &&
-    extraHolidays[0].getFullYear() !== extraHolidays[1].getFullYear()
-    // checks first two items because likely users will use a consistent style for additional dates
-  )
-    return "Use accepted date formats!";
 
   // Otherwise, create a new calendar
   if (!dryRun) {
@@ -139,7 +139,6 @@ function createCalendar(
       }
 
       // function nested to align with Web app for adding events
-      // TODO: REDUCE CODE CLUTTER
       function createEvent() {
         if (firstEvent < 6) { // Create first days for each 6 days j,i,a,y,o,u
           switch (word) {
