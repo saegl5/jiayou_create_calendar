@@ -1,3 +1,5 @@
+<!-- hide dryRun checkbox and update reference ID before deployment -->
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -96,6 +98,9 @@
       div[id="issues"] {
         font-size: smaller;
       }
+      .reference {
+        font-style: normal;
+      }
     </style>
   </head>
   <body>
@@ -187,7 +192,7 @@
       <div id="dry">
         <input type="checkbox" id="dryRun" name="dryRun" unchecked />
         <label for="dryRun">Dry run</label>
-        <!-- test script before running it in production, hide for production -->
+        <!-- test script before running it in production, hide for production by commenting or removing these lines of code -->
       </div>
 
       <br />
@@ -202,6 +207,13 @@
       <a href="https://github.com/saegl5/jiayou_create_calendar/issues"
         >GitHub</a
       >.
+
+      <br />
+
+      <text class="reference"
+        >Reference ID: 2a95ff189d4f2af88b505a0c870fa158c885eb02</text
+      >
+      <!-- Latest commit SHA from main branch that includes major updates, minor updates, or bug fixes -->
     </div>
 
     <script>
