@@ -35,7 +35,7 @@
       input,
       textarea,
       div {
-        font-family: system-ui;
+        font-family: "Courier New", Courier, monospace;
         font-size: medium;
       }
       h1,
@@ -134,6 +134,70 @@
         <!-- preselected for convenience -->
         <br />
 
+        <label for="holidayCalendar">Public holiday calendar:</label>
+        <select id="holidayCalendar" name="holidayCalendar">
+          <option value="en.usa#holiday@group.v.calendar.google.com">
+            US Holidays
+          </option>
+          <!-- Consult https://gist.github.com/dhoeric/76bd1c15168ee0ee61ad3bf1730dcb65#file-cal-csv for calendar IDs of other countries -->
+        </select>
+        <!-- preselected for convenience -->
+        <br />
+
+        <!--still create events on these holidays-->
+        <label for="holidayExceptions">List exceptions:</label>
+        <textarea
+          type="text"
+          id="holidayExceptions"
+          name="holidayExceptions"
+          rows="1"
+          placeholder="Optional"
+        >
+Oct 31 2024, Nov 5 2024, Nov 11 2024</textarea
+        >
+        <!-- prefilled for convenience and clarity -->
+        <text>Accepted formats: Mmm DD YYYY, MM/DD/YYYY, DD Mmm YYYY</text
+        ><br />
+        <text>Comma-separated list of dates</text>
+        <!-- Why not accept YYYY/MM/DD ? Because it defaults to Coordinated Universal Time -->
+        <br /><br />
+
+        <!--repeat this event once-->
+        <label for="halfDays">List half-days:</label>
+        <textarea
+          type="text"
+          id="halfDays"
+          name="halfDays"
+          rows="1"
+          placeholder="Optional"
+        >
+Nov 22 2024</textarea
+        >
+        <!-- prefilled for convenience and clarity -->
+        <text>Accepted formats: Mmm DD YYYY, MM/DD/YYYY, DD Mmm YYYY</text
+        ><br />
+        <text>Comma-separated list of dates</text>
+        <!-- Why not accept YYYY/MM/DD ? Because it defaults to Coordinated Universal Time -->
+        <br /><br />
+
+        <!--don't create events on these non-holidays-->
+        <label for="extraHolidays">List extra holidays:</label>
+        <textarea
+          type="text"
+          id="extraHolidays"
+          name="extraHolidays"
+          rows="3"
+          placeholder="Optional"
+        >
+Oct 10 2024, Oct 11 2024, Nov 1 2024, Nov 8 2024, Nov 25 2024, Nov 26 2024, Nov 27 2024, Dec 23 2024, Dec 26 2024, Dec 27 2024, Dec 30 2024</textarea
+        >
+        <!-- prefilled for convenience and clarity -->
+        <text>Accepted formats: Mmm DD YYYY, MM/DD/YYYY, DD Mmm YYYY</text
+        ><br />
+        <text>Comma-separated list of dates</text>
+        <!-- Why not accept YYYY/MM/DD ? Because it defaults to Coordinated Universal Time -->
+        <br /><br />
+
         <div id="table">
           <div id="row">
             <div id="cell">
@@ -225,6 +289,12 @@
 
           var calendarName = document.getElementById("calendarName").value;
           var timeZone = document.getElementById("timeZone").value;
+          var holidayCalendar =
+            document.getElementById("holidayCalendar").value;
+          var holidayExceptions =
+            document.getElementById("holidayExceptions").value;
+          var halfDays = document.getElementById("halfDays").value;
+          var extraHolidays = document.getElementById("extraHolidays").value;
           var startMonth = document.getElementById("startMonth").value;
           var endMonth = document.getElementById("endMonth").value;
 
@@ -239,6 +309,10 @@
             .createCalendar(
               calendarName,
               timeZone,
+              holidayCalendar,
+              holidayExceptions,
+              halfDays,
+              extraHolidays,
               startMonth,
               endMonth,
               dryRun
