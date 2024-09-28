@@ -33,5 +33,11 @@ Access to [Google Apps Script](https://script.google.com/)
 - You can extend the app script to create a calendar cycling any letters or words and in any language. Feel free to fork, too!
 - You can also export the calendar directly from [Google Calendar](https://calendar.google.com/calendar/) and can import it into another calendar on your smartphone. ('Whatever way makes it easier for you to keep track of today's letter...)
 
+## End-user instructions
+Creating a JIAYOU calendar is very easy. The form is already filled out listing all of the holidays of the school year.
+
+1. Fill out calendar name, timezone, and public holiday calendar
+2. For almost everyone, you don't need to change anything else other than Start Month and End Month in the bottom. This changes when the JIAYOU calendar starts and ends.
+
 <hr>
 Made with &heartsuit; in Visual Studio Code

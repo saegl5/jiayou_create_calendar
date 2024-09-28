@@ -27,7 +27,7 @@ function createCalendar(
   }
 
   // Split strings into lists of dates, in case we might encounter exceptions
-  holidayExceptions = holidayExceptions.split(", ");
+  holidayExceptions = holidayExceptions.split(/,\s*/);
   for (var i = 0; i < holidayExceptions.length; i++) {
     holidayExceptions[i] = new Date(holidayExceptions[i]);
   }
@@ -38,7 +38,7 @@ function createCalendar(
   )
     return "Use accepted date formats!";
 
-  halfDays = halfDays.split(", ");
+  halfDays = halfDays.split(/,\s*/);
   for (var j = 0; j < halfDays.length; j++) {
     halfDays[j] = new Date(halfDays[j]);
   }
@@ -49,7 +49,7 @@ function createCalendar(
   )
     return "Use accepted date formats!";
 
-  extraHolidays = extraHolidays.split(", ");
+  extraHolidays = extraHolidays.split(/,\s*/);
   for (var k = 0; k < extraHolidays.length; k++) {
     extraHolidays[k] = new Date(extraHolidays[k]);
   }
@@ -92,6 +92,17 @@ function createCalendar(
     endMonth += 12;
   }
 
+
+  var firstEvent = 0; // for first event, to which subsequent events will be chained
+  var eventJSeries = ""; // for chaining events
+  var eventISeries = ""; // for chaining events
+  var eventASeries = ""; // for chaining events
+  var eventYSeries = ""; // for chaining events
+  var eventOSeries = ""; // for chaining events
+  var eventUSeries = ""; // for chaining events
+
+
+
   // Loop through each month
   for (var month = startMonth; month <= endMonth; month++) {
     // Determine the number of days in the month
@@ -124,8 +135,57 @@ function createCalendar(
       // Create an event with the current word
       var word = words[eventIndex % words.length];
       if (!dryRun) {
-        calendar.createAllDayEvent(word, date); // all-day events
-        // tried recurring events, but these can't be such events because titles cycle
+        createEvent();
+      }
+
+      // function nested to align with Web app for adding events
+      // TODO: REDUCE CODE CLUTTER
+      function createEvent() {
+        if (firstEvent < 6) { // Create first days for each 6 days j,i,a,y,o,u
+          switch (word) {
+            case "J Day":
+              eventJSeries = calendar.createAllDayEventSeries(word, date, CalendarApp.newRecurrence().addDate(date));
+              break;
+            case "I Day":
+              eventISeries = calendar.createAllDayEventSeries(word, date, CalendarApp.newRecurrence().addDate(date));
+              break;
+            case "A Day":
+              eventASeries = calendar.createAllDayEventSeries(word, date, CalendarApp.newRecurrence().addDate(date));
+              break;
+            case "Y Day":
+              eventYSeries = calendar.createAllDayEventSeries(word, date, CalendarApp.newRecurrence().addDate(date));
+              break;
+            case "O Day":
+              eventOSeries = calendar.createAllDayEventSeries(word, date, CalendarApp.newRecurrence().addDate(date));
+              break;
+            case "U Day":
+              eventUSeries = calendar.createAllDayEventSeries(word, date, CalendarApp.newRecurrence().addDate(date));
+              break;
+          }
+          firstEvent++;
+        } // chain subsequent event to first event
+        else
+          switch (word) {
+            case "J Day":
+              eventJSeries.setRecurrence(CalendarApp.newRecurrence().addDate(date), date);
+              break;
+            case "I Day":
+              eventISeries.setRecurrence(CalendarApp.newRecurrence().addDate(date), date);
+              break;
+            case "A Day":
+              eventASeries.setRecurrence(CalendarApp.newRecurrence().addDate(date), date);
+              break;
+            case "Y Day":
+              eventYSeries.setRecurrence(CalendarApp.newRecurrence().addDate(date), date);
+              break;
+            case "O Day":
+              eventOSeries.setRecurrence(CalendarApp.newRecurrence().addDate(date), date);
+              break;
+            case "U Day":
+              eventUSeries.setRecurrence(CalendarApp.newRecurrence().addDate(date), date);
+              break;
+          }
+        return null;
       }
 
       // Log which words were created
