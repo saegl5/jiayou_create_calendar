@@ -108,6 +108,14 @@ function createCalendar(
   ];
   // breaking up the series like this helps mitigate issue #4
   // https://github.com/saegl5/jiayou_add_events/issues/4
+  var firstDate = [
+    "firstDateJ",
+    "firstDateI",
+    "firstDateA",
+    "firstDateY",
+    "firstDateO",
+    "firstDateU",
+  ];
 
   // Loop through each month
   for (var month = startMonth; month <= endMonth; month++) {
@@ -155,6 +163,17 @@ function createCalendar(
           [words[4]]: [eventSeries[4]],
           [words[5]]: [eventSeries[5]],
         };
+        const firstDateMap = {
+          // dictionary
+          [words[0]]: [firstDate[0]],
+          [words[1]]: [firstDate[1]],
+          [words[2]]: [firstDate[2]],
+          [words[3]]: [firstDate[3]],
+          [words[4]]: [firstDate[4]],
+          [words[5]]: [firstDate[5]],
+        };
+        if (eventIndex === words.length)
+          firstEvent = false;
         if (firstEvent) {
           // Create the first letter day for each one: J, I, A, Y, O, and U
           if (eventSeriesMap[word])
@@ -163,13 +182,14 @@ function createCalendar(
               date,
               CalendarApp.newRecurrence().addDate(date)
             ); // all-day events
-          if (eventIndex === words.length) firstEvent = false;
+          this[firstDateMap[word]] = date;
+          // can't set firstEvent = false yet
         } // chain subsequent event to first event
         else {
           if (eventSeriesMap[word])
             this[eventSeriesMap[word]].setRecurrence(
               CalendarApp.newRecurrence().addDate(date),
-              date
+              this[firstDateMap[word]] // date of first event only
             );
         }
         return null;
