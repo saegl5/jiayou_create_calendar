@@ -98,12 +98,14 @@ function createCalendar(
 
   // chain subsequent events to the first event
   var firstEvent = true;
-  var eventJSeries = "";
-  var eventISeries = "";
-  var eventASeries = "";
-  var eventYSeries = "";
-  var eventOSeries = "";
-  var eventUSeries = "";
+  var eventSeries = [
+    "eventSeriesJ",
+    "eventSeriesI",
+    "eventSeriesA",
+    "eventSeriesY",
+    "eventSeriesO",
+    "eventSeriesU",
+  ];
 
   // Loop through each month
   for (var month = startMonth; month <= endMonth; month++) {
@@ -142,23 +144,31 @@ function createCalendar(
 
       // function nested to align with Web app for adding events
       function createEvent() {
-        const eventSeriesMap = { // dictionary
-          "J Day": "eventJSeries",
-          "I Day": "eventISeries",
-          "A Day": "eventASeries",
-          "Y Day": "eventYSeries",
-          "O Day": "eventOSeries",
-          "U Day": "eventUSeries"
-        };        
-        if (firstEvent) { // Create the first letter day for each one: J, I, A, Y, O, and U
+        const eventSeriesMap = {
+          // dictionary
+          [words[0]]: [eventSeries[0]],
+          [words[1]]: [eventSeries[1]],
+          [words[2]]: [eventSeries[2]],
+          [words[3]]: [eventSeries[3]],
+          [words[4]]: [eventSeries[4]],
+          [words[5]]: [eventSeries[5]],
+        };
+        if (firstEvent) {
+          // Create the first letter day for each one: J, I, A, Y, O, and U
           if (eventSeriesMap[word])
-            this[eventSeriesMap[word]] = calendar.createAllDayEventSeries(word, date, CalendarApp.newRecurrence().addDate(date)); // all-day events
-          if (eventIndex === words.length)
-            firstEvent = false;
+            this[eventSeriesMap[word]] = calendar.createAllDayEventSeries(
+              word,
+              date,
+              CalendarApp.newRecurrence().addDate(date)
+            ); // all-day events
+          if (eventIndex === words.length) firstEvent = false;
         } // chain subsequent event to first event
         else {
           if (eventSeriesMap[word])
-            this[eventSeriesMap[word]].setRecurrence(CalendarApp.newRecurrence().addDate(date), date);
+            this[eventSeriesMap[word]].setRecurrence(
+              CalendarApp.newRecurrence().addDate(date),
+              date
+            );
         }
         return null;
       }
