@@ -1,3 +1,14 @@
+Copyright (c) 2024 Ed Silkworth
+All codes except ones with regular expressions and some involving createAllEventSeries() and setRecurrence()
+License: MIT
+
+Copyright (c) 2024 James Armstrong
+Codes involving regular expressions and some codes involving createAllEventSeries() and setRecurrence()
+No license
+
+
+
+
 MIT License
 
 Copyright (c) 2024 Ed Silkworth

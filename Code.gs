@@ -9,7 +9,6 @@ function doGet() {
 function createCalendar(
   calendarName,
   timeZone,
-  holidayCalendar,
   holidayExceptions,
   halfDays,
   extraHolidays,
@@ -17,6 +16,8 @@ function createCalendar(
   endMonth,
   dryRun
 ) {
+  var holidayCalendar = "en.usa#holiday@group.v.calendar.google.com"; // calendar is hard-coded
+
   // handle exceptions first
   if (
     holidayExceptions.includes(";") ||
@@ -27,7 +28,9 @@ function createCalendar(
   }
 
   // Split strings into lists of dates, in case we might encounter exceptions
-  holidayExceptions = holidayExceptions.split(", ");
+  holidayExceptions = holidayExceptions.split(/,\s*/);
+  // permits any number of whitespace characters after the comma
+  // FYI: ,\s* is a regular expression, delimited by /.../
   for (var i = 0; i < holidayExceptions.length; i++) {
     holidayExceptions[i] = new Date(holidayExceptions[i]);
   }
@@ -38,7 +41,8 @@ function createCalendar(
   )
     return "Use accepted date formats!";
 
-  halfDays = halfDays.split(", ");
+  halfDays = halfDays.split(/,\s*/);
+  // again, permits any number of whitespace characters after the comma
   for (var j = 0; j < halfDays.length; j++) {
     halfDays[j] = new Date(halfDays[j]);
   }
@@ -49,7 +53,8 @@ function createCalendar(
   )
     return "Use accepted date formats!";
 
-  extraHolidays = extraHolidays.split(", ");
+  extraHolidays = extraHolidays.split(/,\s*/);
+  // again, permits any number of whitespace characters after the comma
   for (var k = 0; k < extraHolidays.length; k++) {
     extraHolidays[k] = new Date(extraHolidays[k]);
   }
@@ -92,6 +97,27 @@ function createCalendar(
     endMonth += 12;
   }
 
+  // chain subsequent events to the first event
+  var firstEvent = true;
+  var eventSeries = [
+    "eventSeriesJ",
+    "eventSeriesI",
+    "eventSeriesA",
+    "eventSeriesY",
+    "eventSeriesO",
+    "eventSeriesU",
+  ];
+  // breaking up the series like this helps mitigate issue #4
+  // https://github.com/saegl5/jiayou_add_events/issues/4
+  var firstDate = [
+    "firstDateJ",
+    "firstDateI",
+    "firstDateA",
+    "firstDateY",
+    "firstDateO",
+    "firstDateU",
+  ];
+
   // Loop through each month
   for (var month = startMonth; month <= endMonth; month++) {
     // Determine the number of days in the month
@@ -124,8 +150,50 @@ function createCalendar(
       // Create an event with the current word
       var word = words[eventIndex % words.length];
       if (!dryRun) {
-        calendar.createAllDayEvent(word, date); // all-day events
-        // tried recurring events, but these can't be such events because titles cycle
+        createEvent();
+      }
+
+      // function nested to align with Web app for adding events
+      function createEvent() {
+        const eventSeriesMap = {
+          // dictionary
+          [words[0]]: [eventSeries[0]],
+          [words[1]]: [eventSeries[1]],
+          [words[2]]: [eventSeries[2]],
+          [words[3]]: [eventSeries[3]],
+          [words[4]]: [eventSeries[4]],
+          [words[5]]: [eventSeries[5]],
+        };
+        const firstDateMap = {
+          // dictionary
+          [words[0]]: [firstDate[0]],
+          [words[1]]: [firstDate[1]],
+          [words[2]]: [firstDate[2]],
+          [words[3]]: [firstDate[3]],
+          [words[4]]: [firstDate[4]],
+          [words[5]]: [firstDate[5]],
+        };
+        if (eventIndex === words.length)
+          firstEvent = false;
+        if (firstEvent) {
+          // Create the first letter day for each one: J, I, A, Y, O, and U
+          if (eventSeriesMap[word])
+            this[eventSeriesMap[word]] = calendar.createAllDayEventSeries(
+              word,
+              date,
+              CalendarApp.newRecurrence().addDate(date)
+            ); // all-day events
+          this[firstDateMap[word]] = date;
+          // can't set firstEvent = false yet
+        } // chain subsequent event to first event
+        else {
+          if (eventSeriesMap[word])
+            this[eventSeriesMap[word]].setRecurrence(
+              CalendarApp.newRecurrence().addDate(date),
+              this[firstDateMap[word]] // date of first event only
+            );
+        }
+        return null;
       }
 
       // Log which words were created

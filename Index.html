@@ -35,7 +35,7 @@
       input,
       textarea,
       div {
-        font-family: "Courier New", Courier, monospace;
+        font-family: "Courier New", Courier, monospace; /* preserve monospace fonts, so that users easily distinguish input fields from non-input fields */
         font-size: medium;
       }
       h1,
@@ -135,30 +135,31 @@
         <!-- preselected for convenience -->
         <br />
 
-        <label for="holidayCalendar">Public holiday calendar:</label>
-        <select id="holidayCalendar" name="holidayCalendar">
-          <option value="en.usa#holiday@group.v.calendar.google.com">
-            US Holidays
-          </option>
+        <!-- <label for="holidayCalendar">Public holiday calendar:</label> -->
+        <!-- <select id="holidayCalendar" name="holidayCalendar"> -->
+          <!-- <option value="en.usa#holiday@group.v.calendar.google.com"> -->
+            <!-- US Holidays -->
+          <!-- </option> -->
           <!-- Consult https://gist.github.com/dhoeric/76bd1c15168ee0ee61ad3bf1730dcb65#file-cal-csv for calendar IDs of other countries -->
-        </select>
+        <!-- </select> -->
         <!-- preselected for convenience -->
-        <br />
+        <!-- <br /> -->
 
         <!--still create events on these holidays-->
-        <label for="holidayExceptions">List exceptions:</label>
+        <label for="holidayExceptions">List U.S. holiday exceptions:</label>
         <textarea
           type="text"
           id="holidayExceptions"
           name="holidayExceptions"
-          rows="1"
+          rows="2"
           placeholder="Optional"
         >
-Oct 31 2024, Nov 5 2024, Nov 11 2024</textarea
+Oct 31 2024, Nov 5 2024, Nov 11 2024, Feb 14 2025, Mar 17 2025, Apr 21 2025, May 1 2025, May 5 2025</textarea
         >
+        <!-- made more room for additional exceptions -->
         <!-- prefilled for convenience and clarity -->
         <text>Accepted formats: Mmm DD YYYY, MM/DD/YYYY, DD Mmm YYYY</text
-        ><br />
+        ><!-- need to stay generalized --><br />
         <text>Comma-separated list of dates</text>
         <!-- Why not accept YYYY/MM/DD ? Because it defaults to Coordinated Universal Time -->
         <br /><br />
@@ -174,9 +175,11 @@ Oct 31 2024, Nov 5 2024, Nov 11 2024</textarea
         >
 Nov 22 2024</textarea
         >
+        <!-- potentially not half days: Nov 1 2024, Nov 8 2024, Jan 24 2025, Mar 21 2025, Mar 28 2025, Jun 6 2025 -->
+        <!-- had made more room for additional exceptions -->
         <!-- prefilled for convenience and clarity -->
         <text>Accepted formats: Mmm DD YYYY, MM/DD/YYYY, DD Mmm YYYY</text
-        ><br />
+        ><!-- need to stay generalized --><br />
         <text>Comma-separated list of dates</text>
         <!-- Why not accept YYYY/MM/DD ? Because it defaults to Coordinated Universal Time -->
         <br /><br />
@@ -187,14 +190,18 @@ Nov 22 2024</textarea
           type="text"
           id="extraHolidays"
           name="extraHolidays"
-          rows="3"
+          rows="8"
           placeholder="Optional"
         >
-Oct 10 2024, Oct 11 2024, Nov 1 2024, Nov 8 2024, Nov 25 2024, Nov 26 2024, Nov 27 2024, Dec 23 2024, Dec 26 2024, Dec 27 2024, Dec 30 2024</textarea
+Oct 10 2024, Oct 11 2024, Nov 8 2024, Nov 25 2024, Nov 26 2024, Nov 27 2024, Dec 23 2024, Dec 26 2024, Dec 27 2024, Dec 30 2024, Jan 2 2025, Jan 3 2025, Jan 24 2025, Jan 27 2025, Jan 28 2025, Jan 29 2025, Feb 18 2025, Feb 19 2025, Feb 20 2025, Feb 21 2025, Mar 10 2025, Mar 11 2025, Mar 21 2025, Mar 28 2025, Apr 14 2025, Apr 16 2025, Apr 17 2025, Apr 18 2025, Jun 6 2025, Jun 13 2025</textarea
         >
+        <!-- missing: Mar 21 2025, Mar 28 2025, Jun 6 2025, Jun 13 2025, Jan 24 2025 -->
+        <!-- duplicate: Apr 17 2025 -->
+        <!-- redundant: Nov 1 2024, Nov 28 2024, Nov 29 2024, Dec 24 2024, Dec 25 2024, Dec 31 2024, Jan 1 2025, Jan 20 2025, Feb 17 2025, Apr 15 2025, May 26 2025 -->
+        <!-- made more room for additional exceptions -->
         <!-- prefilled for convenience and clarity -->
         <text>Accepted formats: Mmm DD YYYY, MM/DD/YYYY, DD Mmm YYYY</text
-        ><br />
+        ><!-- need to stay generalized --><br />
         <text>Comma-separated list of dates</text>
         <!-- Why not accept YYYY/MM/DD ? Because it defaults to Coordinated Universal Time -->
         <br /><br />
@@ -220,7 +227,7 @@ Oct 10 2024, Oct 11 2024, Nov 1 2024, Nov 8 2024, Nov 25 2024, Nov 26 2024, Nov 
                 <option value="6">June</option>
                 <option value="7">July</option>
                 <option value="8">August</option>
-                <option value="9" selected="selected">September</option>
+                <option value="9" selected>September</option>
                 <option value="10">October</option>
                 <option value="11">November</option>
                 <option value="12">December</option>
@@ -236,13 +243,13 @@ Oct 10 2024, Oct 11 2024, Nov 1 2024, Nov 8 2024, Nov 25 2024, Nov 26 2024, Nov 
                 <option value="3">March</option>
                 <option value="4">April</option>
                 <option value="5">May</option>
-                <option value="6">June</option>
+                <option value="6" selected>June</option> <!-- school ends mid-Jun -->
                 <option value="7">July</option>
                 <option value="8">August</option>
                 <option value="9">September</option>
                 <option value="10">October</option>
                 <option value="11">November</option>
-                <option value="12" selected="selected">December</option>
+                <option value="12">December</option>
               </select>
             </div>
           </div>
@@ -290,8 +297,6 @@ Oct 10 2024, Oct 11 2024, Nov 1 2024, Nov 8 2024, Nov 25 2024, Nov 26 2024, Nov 
 
           var calendarName = document.getElementById("calendarName").value;
           var timeZone = document.getElementById("timeZone").value;
-          var holidayCalendar =
-            document.getElementById("holidayCalendar").value;
           var holidayExceptions =
             document.getElementById("holidayExceptions").value;
           var halfDays = document.getElementById("halfDays").value;
@@ -310,7 +315,6 @@ Oct 10 2024, Oct 11 2024, Nov 1 2024, Nov 8 2024, Nov 25 2024, Nov 26 2024, Nov 
             .createCalendar(
               calendarName,
               timeZone,
-              holidayCalendar,
               holidayExceptions,
               halfDays,
               extraHolidays,
