@@ -9,7 +9,6 @@ function doGet() {
 function createCalendar(
   calendarName,
   timeZone,
-  holidayCalendar,
   holidayExceptions,
   halfDays,
   extraHolidays,
@@ -17,6 +16,8 @@ function createCalendar(
   endMonth,
   dryRun
 ) {
+  var holidayCalendar = "en.usa#holiday@group.v.calendar.google.com";
+
   // handle exceptions first
   if (
     holidayExceptions.includes(";") ||

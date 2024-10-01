@@ -134,15 +134,6 @@
         </select>
         <!-- preselected for convenience -->
         <br />
-
-        <label for="holidayCalendar">Public holiday calendar:</label>
-        <select id="holidayCalendar" name="holidayCalendar">
-          <option value="en.usa#holiday@group.v.calendar.google.com">
-            US Holidays
-          </option>
-          <!-- Consult https://gist.github.com/dhoeric/76bd1c15168ee0ee61ad3bf1730dcb65#file-cal-csv for calendar IDs of other countries -->
-        </select>
-        <!-- preselected for convenience -->
         <br />
 
         <!--still create events on these holidays-->
@@ -220,7 +211,7 @@ Oct 10 2024, Oct 11 2024, Nov 1 2024, Nov 8 2024, Nov 25 2024, Nov 26 2024, Nov 
                 <option value="6">June</option>
                 <option value="7">July</option>
                 <option value="8">August</option>
-                <option value="9" selected="selected">September</option>
+                <option value="9" selected>September</option>
                 <option value="10">October</option>
                 <option value="11">November</option>
                 <option value="12">December</option>
@@ -236,13 +227,13 @@ Oct 10 2024, Oct 11 2024, Nov 1 2024, Nov 8 2024, Nov 25 2024, Nov 26 2024, Nov 
                 <option value="3">March</option>
                 <option value="4">April</option>
                 <option value="5">May</option>
-                <option value="6">June</option>
+                <option value="6" selected>June</option>
                 <option value="7">July</option>
                 <option value="8">August</option>
                 <option value="9">September</option>
                 <option value="10">October</option>
                 <option value="11">November</option>
-                <option value="12" selected="selected">December</option>
+                <option value="12">December</option>
               </select>
             </div>
           </div>
@@ -290,8 +281,6 @@ Oct 10 2024, Oct 11 2024, Nov 1 2024, Nov 8 2024, Nov 25 2024, Nov 26 2024, Nov 
 
           var calendarName = document.getElementById("calendarName").value;
           var timeZone = document.getElementById("timeZone").value;
-          var holidayCalendar =
-            document.getElementById("holidayCalendar").value;
           var holidayExceptions =
             document.getElementById("holidayExceptions").value;
           var halfDays = document.getElementById("halfDays").value;
@@ -310,7 +299,6 @@ Oct 10 2024, Oct 11 2024, Nov 1 2024, Nov 8 2024, Nov 25 2024, Nov 26 2024, Nov 
             .createCalendar(
               calendarName,
               timeZone,
-              holidayCalendar,
               holidayExceptions,
               halfDays,
               extraHolidays,
