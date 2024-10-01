@@ -96,16 +96,14 @@ function createCalendar(
     endMonth += 12;
   }
 
-
-  var firstEvent = 0; // for first event, to which subsequent events will be chained
-  var eventJSeries = ""; // for chaining events
-  var eventISeries = ""; // for chaining events
-  var eventASeries = ""; // for chaining events
-  var eventYSeries = ""; // for chaining events
-  var eventOSeries = ""; // for chaining events
-  var eventUSeries = ""; // for chaining events
-
-
+  // chain subsequent events to the first event
+  var firstEvent = true;
+  var eventJSeries = "";
+  var eventISeries = "";
+  var eventASeries = "";
+  var eventYSeries = "";
+  var eventOSeries = "";
+  var eventUSeries = "";
 
   // Loop through each month
   for (var month = startMonth; month <= endMonth; month++) {
@@ -143,52 +141,25 @@ function createCalendar(
       }
 
       // function nested to align with Web app for adding events
-      // TODO: REDUCE CODE CLUTTER
       function createEvent() {
-        if (firstEvent < 6) { // Create first days for each 6 days j,i,a,y,o,u
-          switch (word) {
-            case "J Day":
-              eventJSeries = calendar.createAllDayEventSeries(word, date, CalendarApp.newRecurrence().addDate(date));
-              break;
-            case "I Day":
-              eventISeries = calendar.createAllDayEventSeries(word, date, CalendarApp.newRecurrence().addDate(date));
-              break;
-            case "A Day":
-              eventASeries = calendar.createAllDayEventSeries(word, date, CalendarApp.newRecurrence().addDate(date));
-              break;
-            case "Y Day":
-              eventYSeries = calendar.createAllDayEventSeries(word, date, CalendarApp.newRecurrence().addDate(date));
-              break;
-            case "O Day":
-              eventOSeries = calendar.createAllDayEventSeries(word, date, CalendarApp.newRecurrence().addDate(date));
-              break;
-            case "U Day":
-              eventUSeries = calendar.createAllDayEventSeries(word, date, CalendarApp.newRecurrence().addDate(date));
-              break;
-          }
-          firstEvent++;
+        const eventSeriesMap = { // dictionary
+          "J Day": "eventJSeries",
+          "I Day": "eventISeries",
+          "A Day": "eventASeries",
+          "Y Day": "eventYSeries",
+          "O Day": "eventOSeries",
+          "U Day": "eventUSeries"
+        };        
+        if (firstEvent) { // Create the first letter day for each one: J, I, A, Y, O, and U
+          if (eventSeriesMap[word])
+            this[eventSeriesMap[word]] = calendar.createAllDayEventSeries(word, date, CalendarApp.newRecurrence().addDate(date)); // all-day events
+          if (eventIndex === words.length)
+            firstEvent = false;
         } // chain subsequent event to first event
-        else
-          switch (word) {
-            case "J Day":
-              eventJSeries.setRecurrence(CalendarApp.newRecurrence().addDate(date), date);
-              break;
-            case "I Day":
-              eventISeries.setRecurrence(CalendarApp.newRecurrence().addDate(date), date);
-              break;
-            case "A Day":
-              eventASeries.setRecurrence(CalendarApp.newRecurrence().addDate(date), date);
-              break;
-            case "Y Day":
-              eventYSeries.setRecurrence(CalendarApp.newRecurrence().addDate(date), date);
-              break;
-            case "O Day":
-              eventOSeries.setRecurrence(CalendarApp.newRecurrence().addDate(date), date);
-              break;
-            case "U Day":
-              eventUSeries.setRecurrence(CalendarApp.newRecurrence().addDate(date), date);
-              break;
-          }
+        else {
+          if (eventSeriesMap[word])
+            this[eventSeriesMap[word]].setRecurrence(CalendarApp.newRecurrence().addDate(date), date);
+        }
         return null;
       }
 
