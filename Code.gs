@@ -28,6 +28,8 @@ function createCalendar(
 
   // Split strings into lists of dates, in case we might encounter exceptions
   holidayExceptions = holidayExceptions.split(/,\s*/);
+  // permits any number of whitespace characters after the comma
+  // FYI: ,\s* is a regular expression, delimited by /.../
   for (var i = 0; i < holidayExceptions.length; i++) {
     holidayExceptions[i] = new Date(holidayExceptions[i]);
   }
@@ -39,6 +41,7 @@ function createCalendar(
     return "Use accepted date formats!";
 
   halfDays = halfDays.split(/,\s*/);
+  // again, permits any number of whitespace characters after the comma
   for (var j = 0; j < halfDays.length; j++) {
     halfDays[j] = new Date(halfDays[j]);
   }
@@ -50,6 +53,7 @@ function createCalendar(
     return "Use accepted date formats!";
 
   extraHolidays = extraHolidays.split(/,\s*/);
+  // again, permits any number of whitespace characters after the comma
   for (var k = 0; k < extraHolidays.length; k++) {
     extraHolidays[k] = new Date(extraHolidays[k]);
   }
