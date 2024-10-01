@@ -106,6 +106,8 @@ function createCalendar(
     "eventSeriesO",
     "eventSeriesU",
   ];
+  // breaking up the series like this helps mitigate issue #4
+  // https://github.com/saegl5/jiayou_add_events/issues/4
 
   // Loop through each month
   for (var month = startMonth; month <= endMonth; month++) {
