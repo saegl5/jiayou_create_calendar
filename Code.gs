@@ -110,7 +110,7 @@ function createCalendar(
   ];
   // breaking up the series like this helps mitigate issue #4
   // https://github.com/saegl5/jiayou_add_events/issues/4
-  
+
   // not using a dictionary
   var firstDate = []; // have multiple first dates
   // dateStartTime not used for all-day events
@@ -153,34 +153,24 @@ function createCalendar(
 
       // function nested to align with Web app for adding events
       function createEvent() {
-        const eventSeriesMap = {
-          // dictionary, but could probably have done without it
-          [words[0]]: [eventSeries[0]],
-          [words[1]]: [eventSeries[1]],
-          [words[2]]: [eventSeries[2]],
-          [words[3]]: [eventSeries[3]],
-          [words[4]]: [eventSeries[4]],
-          [words[5]]: [eventSeries[5]],
-        };
-        if (eventIndex === words.length)
-          firstEvent = false;
+        if (eventIndex === words.length) firstEvent = false;
         if (firstEvent) {
           // Create the first letter day for each one: J, I, A, Y, O, and U
-          if (eventSeriesMap[word])
-            this[eventSeriesMap[word]] = calendar.createAllDayEventSeries(
-              word,
-              date,
-              CalendarApp.newRecurrence().addDate(date)
-            ); // all-day events
+          // if (eventSeriesMap[word])
+          eventSeries[eventIndex] = calendar.createAllDayEventSeries(
+            word,
+            date,
+            CalendarApp.newRecurrence().addDate(date)
+          ); // all-day events
           firstDate[eventIndex % words.length] = date; // all letter days are used, so it is easy to pair up firstDate with the letter
           // can't set firstEvent = false yet
         } // chain subsequent event to first event
         else {
-          if (eventSeriesMap[word])
-            this[eventSeriesMap[word]].setRecurrence(
-              CalendarApp.newRecurrence().addDate(date),
-              firstDate[eventIndex % words.length] // date of first event only
-            );
+          // if (eventSeriesMap[word])
+          eventSeries[eventIndex % words.length].setRecurrence(
+            CalendarApp.newRecurrence().addDate(date),
+            firstDate[eventIndex % words.length] // date of first event only
+          );
         }
         return null;
       }
