@@ -146,13 +146,13 @@ function createCalendar(
       // Create an event with the current word
       var word = words[eventIndex % words.length];
       if (!dryRun) {
-        createEvent();
+        createEvent(); // each letter day goes into a separate series
       }
 
       // function nested to align with Web app for adding events
       function createEvent() {
         const eventSeriesMap = {
-          // dictionary
+          // dictionary, but could probably have done without it
           [words[0]]: [eventSeries[0]],
           [words[1]]: [eventSeries[1]],
           [words[2]]: [eventSeries[2]],
