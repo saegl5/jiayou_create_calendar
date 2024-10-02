@@ -99,6 +99,7 @@ function createCalendar(
 
   // chain subsequent events to the first event
   var firstEvent = true;
+  // all letter days are used
   var eventSeries = [
     "eventSeriesJ",
     "eventSeriesI",
@@ -167,7 +168,7 @@ function createCalendar(
               date,
               CalendarApp.newRecurrence().addDate(date)
             ); // all-day events
-          firstDate[eventIndex % words.length] = date;
+          firstDate[eventIndex % words.length] = date; // all letter days are used, so it is easy to pair up firstDate with the letter
           // can't set firstEvent = false yet
         } // chain subsequent event to first event
         else {
