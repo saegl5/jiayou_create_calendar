@@ -111,6 +111,8 @@ function createCalendar(
   // breaking up the series like this helps mitigate issue #4
   // https://github.com/saegl5/jiayou_add_events/issues/4
   var firstDate = [];
+  // dateStartTime not used for all-day events
+  // dateEndTime not used for all-day events
 
   // Loop through each month
   for (var month = startMonth; month <= endMonth; month++) {
