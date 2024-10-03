@@ -6,6 +6,11 @@ function doGet() {
   return HtmlService.createHtmlOutputFromFile("Index");
 }
 
+// Used by Index.html for username
+function getUsername() {
+  return Session.getActiveUser().getEmail();
+}
+
 function createCalendar(
   calendarName,
   timeZone,
@@ -145,6 +150,18 @@ function createCalendar(
         continue;
       }
 
+      // Check if the day is a half-day
+      var halfDay = false;
+      for (var l = 0; l < halfDays.length; l++) {
+        if (date.toDateString() === halfDays[l].toDateString()) {
+          halfDay = true;
+          continue;
+        }
+      }
+      if (halfDay === true) {
+        continue;
+      }
+
       // Create an event with the current word
       var word = words[eventIndex % words.length];
       if (!dryRun) {
@@ -178,17 +195,18 @@ function createCalendar(
       // Log which words were created
       Logger.log("Created " + word + " on " + date + "!");
 
-      // Unless an event is a half-day, increment the event counter
-      var halfDay = "no";
-      for (var l = 0; l < halfDays.length; l++) {
-        if (date.toDateString() === halfDays[l].toDateString()) {
-          halfDay = "yes";
-          continue;
-        }
-      }
-      if (halfDay === "yes") {
-        halfDay = "no"; // reset
+      // Even if an event is a half-day, increment the event counter
+      // var halfDay = false;
+      // for (var l = 0; l < halfDays.length; l++) {
+      //   if (date.toDateString() === halfDays[l].toDateString()) {
+      //     halfDay = true;
+      //     continue;
+      //   }
+      // }
+      if (halfDay === true) {
+        halfDay = false; // reset
         // then skip
+        eventIndex++; // originally skipped, keep comment for legacy
       } else {
         eventIndex++;
       }
