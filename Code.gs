@@ -6,6 +6,11 @@ function doGet() {
   return HtmlService.createHtmlOutputFromFile("Index");
 }
 
+// Used by Index.html for username
+function getUsername() {
+  return Session.getActiveUser().getEmail();
+}
+
 function createCalendar(
   calendarName,
   timeZone,
