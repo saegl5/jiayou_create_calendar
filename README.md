@@ -22,7 +22,7 @@ Access to [Google Apps Script](https://script.google.com/)
 6. Deploy the project as a Web app, and open the assigned URL.
 7. Check the username to ensure that you opened the URL in the correct account.
 8. Modify the calendar name and time zone. (**_Must name it differently from the owner name, otherwise the app will not create the calendar._**)
-9. Add any exceptions to the U.S. holiday schedule, any half-days, and any extra holidays. (Exceptions tell the app script to create events on these holidays; half-days tell the app script to repeat this event once; and extra holidays tell the app script _not_ to create events on these non-holidays.)
+9. Add any exceptions to the U.S. holiday schedule, any half-days, and any extra holidays. (Exceptions tell the app script to create events on these holidays; half-days tell the app script to skip this day; and extra holidays tell the app script _not_ to create events on these non-holidays.)
 10. Modify the start and end months. (If the start month is greater than the end month, then the calendar will roll over to the new year.)
 11. Optionally perform a dry run to test the Web app before running it in production. Consult logs for output.
 12. Press submit. (Requires another authorization. **_Note also that creating calendars is subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en)._**)
