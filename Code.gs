@@ -32,12 +32,20 @@ function createCalendar(
     return "Use comma-separated dates!";
   }
 
+  const regex = /^\d{4}-(\d{2})-(\d{2})$/; // regular expression for identifying a ISO-formatted date (YYYY-MM-DD)
+
   // Split strings into lists of dates, in case we might encounter exceptions
   holidayExceptions = holidayExceptions.split(/,\s*/);
   // permits any number of whitespace characters after the comma
   // FYI: ,\s* is a regular expression, delimited by /.../
   for (var i = 0; i < holidayExceptions.length; i++) {
-    holidayExceptions[i] = new Date(holidayExceptions[i]);
+    // test if date is ISO-formatted
+    if (regex.test(holidayExceptions[i]) === true) {
+      holidayExceptions[i] = new Date(holidayExceptions[i]);
+      holidayExceptions[i] = adjustTime(holidayExceptions[i]);
+    }
+    else
+      holidayExceptions[i] = new Date(holidayExceptions[i]); // don't adjust time zone      
   }
   if (
     holidayExceptions.length > 1 &&
@@ -49,7 +57,13 @@ function createCalendar(
   halfDays = halfDays.split(/,\s*/);
   // again, permits any number of whitespace characters after the comma
   for (var j = 0; j < halfDays.length; j++) {
-    halfDays[j] = new Date(halfDays[j]);
+    // test if date is ISO-formatted
+    if (regex.test(halfDays[j]) === true) {
+      halfDays[j] = new Date(halfDays[j]);
+      halfDays[j] = adjustTime(halfDays[j]);
+    }
+    else
+      halfDays[j] = new Date(halfDays[j]);
   }
   if (
     halfDays.length > 1 &&
@@ -61,7 +75,13 @@ function createCalendar(
   extraHolidays = extraHolidays.split(/,\s*/);
   // again, permits any number of whitespace characters after the comma
   for (var k = 0; k < extraHolidays.length; k++) {
-    extraHolidays[k] = new Date(extraHolidays[k]);
+    // test if date is ISO-formatted
+    if (regex.test(extraHolidays[k]) === true) {
+      extraHolidays[k] = new Date(extraHolidays[k]);
+      extraHolidays[k] = adjustTime(extraHolidays[k]);
+    }
+    else
+      extraHolidays[k] = new Date(extraHolidays[k]);
   }
   if (
     extraHolidays.length > 1 &&
@@ -255,4 +275,15 @@ function getHolidays(year, holidayCalendar, holidayExceptions, extraHolidays) {
   }
 
   return holidays;
+}
+
+// Function to adjust time for ISO-formatted date
+function adjustTime(isoDate) {
+  // Dates formatted as YYYY-MM-DD use Coordinated Universal Time, whereas dates formatted differently use local time
+  // So, we will have to adjust ISO dates' time
+  let timezoneOffset = isoDate.getTimezoneOffset(); // in minutes, varies depending on local time zone and daylight saving time (if observed)
+  let adjustedTime = isoDate.getTime() + timezoneOffset*60*1000; // milliseconds since January 1, 1970 00:00:00 + timezoneOffset in milliseconds
+  let adjustedDate = new Date(adjustedTime);
+  
+  return adjustedDate;
 }
