@@ -96,6 +96,9 @@ function createCalendar(
 
     // Set its time zone
     calendar.setTimeZone(timeZone);
+
+    // Set default color
+    calendar.setColor(CalendarApp.Color.GRAY); // neutral color
   }
 
   // Define the words to cycle through
