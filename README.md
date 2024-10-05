@@ -41,3 +41,7 @@ While you _can_ drag and drop single events of a series to another day or edit t
 
 <hr>
 Made with &heartsuit; in Visual Studio Code
+
+<br>
+
+A special thank you to James Armstrong for adding recurring events and regular expressions.
