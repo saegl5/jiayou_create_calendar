@@ -98,7 +98,7 @@ function createCalendar(
     calendar.setTimeZone(timeZone);
 
     // Set default color
-    calendar.setColor(CalendarApp.Color.GRAY); // neutral color
+    // calendar.setColor(CalendarApp.Color.GRAY); // neutral color, but setting this makes dark text
   }
 
   // Define the words to cycle through
