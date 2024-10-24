@@ -14,12 +14,17 @@ Access to [Google Apps Script](https://script.google.com/)
 
 ## Getting Started
 
+### Build and Deploy
+
 1. Go to [Google Apps Script](https://script.google.com/), and create a new project.
 2. Copy and paste [the script](./Code.gs) into the editor, and save the file.
 3. Run the script to acquire authorization.
 4. Create an HTML file, and name it "Index."
 5. Copy and paste [the markup text](./Index.html) into the editor, and save the file.
 6. Deploy the project as a Web app, and open the assigned URL.
+
+### Configure and Run
+
 7. Check the username to ensure that you opened the URL in the correct account.
 8. Modify the calendar name and time zone.
 9. Add any exceptions to the U.S. holiday schedule, any half-days, and any extra holidays. (Exceptions tell the app script to create events on these holidays; half-days tell the app script to skip this day; and extra holidays tell the app script _not_ to create events on these non-holidays.)
