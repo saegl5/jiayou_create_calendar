@@ -23,7 +23,7 @@ Access to [Google Apps Script](https://script.google.com/)
 5. Copy and paste [the markup text](./Index.html) into the editor, and save the file.
 6. Deploy the project as a Web app, and open the assigned URL.
 
-### Configure and Run
+### How to Use
 
 7. Check the username to ensure that you opened the URL in the correct account.
 8. Modify the calendar name and time zone.
