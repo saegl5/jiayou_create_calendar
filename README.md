@@ -49,4 +49,4 @@ Made with &heartsuit; in Visual Studio Code
 
 <br>
 
-A special thank you to Chi (David) Yu and James Armstrong. Chi contributed the idea of developing the app using Google Apps Script, and James contributed recurring events and regular expressions.
+A special thank you to [Chi (David) Yu](https://github.com/yuchild) and [James Armstrong](https://github.com/jmarmstrong1207). Chi contributed the idea of developing the app using Google Apps Script, and James contributed recurring events and regular expressions.
