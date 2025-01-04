@@ -1,4 +1,4 @@
-Copyright (c) 2024 Ed Silkworth
+Copyright (c) 2024-2025 Ed Silkworth
 All codes except ones with regular expressions and some involving createAllDayEventSeries() and setRecurrence()
 License: MIT
 
@@ -6,12 +6,9 @@ Copyright (c) 2024 James Armstrong
 Codes involving regular expressions and some codes involving createAllDayEventSeries() and setRecurrence()
 No license
 
-
-
-
 MIT License
 
-Copyright (c) 2024 Ed Silkworth
+Copyright (c) 2024-2025 Ed Silkworth
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
