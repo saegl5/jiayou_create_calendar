@@ -110,6 +110,7 @@ function createCalendar(
   var startMonth = parseInt(startMonth);
   var endMonth = parseInt(endMonth);
   var year = new Date().getFullYear(); // Current year
+  // var year = new Date().getFullYear()-1; // Previous year, keep in case you choose to recreate previous calendar next year
 
   // Get the holidays starting the current year
   var holidays = getHolidays(
