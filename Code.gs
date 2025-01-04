@@ -2,6 +2,10 @@
 // If the script below is modified improperly, running it may cause irrevocable damage.
 // The script below comes with absolutely no warranty. Use it at your own risk.
 
+// SUGGESTION
+// Run this script in a summer before an upcoming school year.
+// This is because the script will create events starting in the current year.
+
 function doGet() {
   return HtmlService.createHtmlOutputFromFile("Index").setTitle(
     'Create 加油 ("jiā yóu") Calendar'
