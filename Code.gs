@@ -193,7 +193,7 @@ function createCalendar(
       }
 
       // function nested to align with Web app for adding events
-      function createEvent() {
+      function createEvent() { // Keeping events as recurring, for now, because recurring events are easier to modify and delete than individual ones
         if (eventIndex === words.length) firstEvent = false;
         if (firstEvent) {
           // Create the first letter day for each one: J, I, A, Y, O, and U
