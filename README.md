@@ -40,7 +40,7 @@ Access to [Google Apps Script](https://script.google.com/)
 - Trim the calendar (e.g., delete letter days after Jun 12, if a school calendar ends on Jun 12)
 - Consult the [Web app for adding events](https://github.com/saegl5/jiayou_add_events).
 - You can extend the app script to create a calendar cycling any letters or words and in any language. Feel free to fork, too!
-- You can also export the calendar directly from [Google Calendar](https://calendar.google.com/calendar/) and can import it into another calendar on your smartphone. ('Whatever way makes it easier for you to keep track of today's letter...)
+- ~~You can also export the calendar directly from [Google Calendar](https://calendar.google.com/calendar/) and can import it into another calendar on your smartphone.~~ Incompatible with some clients (e.g., Apple Calendar) as of [commit f30d8ed](https://github.com/saegl5/jiayou_create_calendar/commit/f30d8ed7f7198602e50796649272cdc6f1bd4bd7). Alternative: Check out Jonathan Hsieh's [AileenBot](https://account.aileenbot.com/), and subscribe to community events. ('Whatever way makes it easier for you to keep track of today's letter...)
 
 ## Known Issue
 
