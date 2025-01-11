@@ -127,16 +127,16 @@ function createCalendar(
   }
 
   // chain subsequent events to the first event
-  var firstEvent = true;
+  // var firstEvent = true;
   // all letter days are used
-  var eventSeries = [
-    "eventSeriesJ",
-    "eventSeriesI",
-    "eventSeriesA",
-    "eventSeriesY",
-    "eventSeriesO",
-    "eventSeriesU",
-  ];
+  // var eventSeries = [
+    // "eventSeriesJ",
+    // "eventSeriesI",
+    // "eventSeriesA",
+    // "eventSeriesY",
+    // "eventSeriesO",
+    // "eventSeriesU",
+  // ];
   // breaking up the series like this helps mitigate issue #4
   // https://github.com/saegl5/jiayou_add_events/issues/4
 
@@ -189,32 +189,33 @@ function createCalendar(
       // Create an event with the current word
       var word = words[eventIndex % words.length];
       if (!dryRun) {
-        createEvent(); // each letter day goes into a separate series
+        // createEvent(); // each letter day goes into a separate series
+        calendar.createAllDayEvent(word, date);
       }
 
       // function nested to align with Web app for adding events
-      function createEvent() { // Keeping events as recurring, for now, because recurring events are easier to modify and delete than individual ones
-        if (eventIndex === words.length) firstEvent = false;
-        if (firstEvent) {
+      // function createEvent() { // Keeping events as recurring, for now, because recurring events are easier to modify and delete than individual ones
+        // if (eventIndex === words.length) firstEvent = false;
+        // if (firstEvent) {
           // Create the first letter day for each one: J, I, A, Y, O, and U
           // if (eventSeriesMap[word])
-          eventSeries[eventIndex] = calendar.createAllDayEventSeries(
-            word,
-            date,
-            CalendarApp.newRecurrence().addDate(date)
-          ); // all-day events
-          firstDate[eventIndex % words.length] = date; // all letter days are used, so it is easy to pair up firstDate with the letter
+          // eventSeries[eventIndex] = calendar.createAllDayEventSeries(
+            // word,
+            // date,
+            // CalendarApp.newRecurrence().addDate(date)
+          // ); // all-day events
+          // firstDate[eventIndex % words.length] = date; // all letter days are used, so it is easy to pair up firstDate with the letter
           // can't set firstEvent = false yet
-        } // chain subsequent event to first event
-        else {
+        // } // chain subsequent event to first event
+        // else {
           // if (eventSeriesMap[word])
-          eventSeries[eventIndex % words.length].setRecurrence(
-            CalendarApp.newRecurrence().addDate(date),
-            firstDate[eventIndex % words.length] // date of first event only
-          );
-        }
-        return null;
-      }
+          // eventSeries[eventIndex % words.length].setRecurrence(
+            // CalendarApp.newRecurrence().addDate(date),
+            // firstDate[eventIndex % words.length] // date of first event only
+          // );
+        // }
+        // return null;
+      // }
 
       // Log which words were created
       Logger.log("Created " + word + " on " + date + "!");
