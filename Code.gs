@@ -101,7 +101,7 @@ function createCalendar(
     calendar.setTimeZone(timeZone);
 
     // Set default color
-    calendar.setColor(CalendarApp.Color.GRAY); // neutral color
+    calendar.setColor(CalendarApp.Color.GRAY); // neutral color: #5A6986
   }
 
   // Define the words to cycle through
