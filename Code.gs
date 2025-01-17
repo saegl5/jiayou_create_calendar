@@ -54,6 +54,7 @@ function createCalendar(
   if (
     holidayExceptions.length > 1 &&
     holidayExceptions[0].getFullYear() !== holidayExceptions[1].getFullYear()
+    // holidayExceptions[0].getFullYear()-1 !== holidayExceptions[1].getFullYear()-1 // Previous year, keep in case you choose to recreate previous calendar next year
     // checks first two items because likely users will use a consistent style for additional dates
   )
     return "Use accepted date formats!";
@@ -70,6 +71,7 @@ function createCalendar(
   if (
     halfDays.length > 1 &&
     halfDays[0].getFullYear() !== halfDays[1].getFullYear()
+    // halfDays[0].getFullYear()-1 !== halfDays[1].getFullYear()-1 // Previous year, keep in case you choose to recreate previous calendar next year
     // checks first two items because likely users will use a consistent style for additional dates
   )
     return "Use accepted date formats!";
@@ -86,6 +88,7 @@ function createCalendar(
   if (
     extraHolidays.length > 1 &&
     extraHolidays[0].getFullYear() !== extraHolidays[1].getFullYear()
+    // extraHolidays[0].getFullYear()-1 !== extraHolidays[1].getFullYear()-1 // Previous year, keep in case you choose to recreate previous calendar next year
     // checks first two items because likely users will use a consistent style for additional dates
   )
     return "Use accepted date formats!";
@@ -98,7 +101,7 @@ function createCalendar(
     calendar.setTimeZone(timeZone);
 
     // Set default color
-    // calendar.setColor(CalendarApp.Color.GRAY); // neutral color, but setting this makes dark text
+    calendar.setColor(CalendarApp.Color.GRAY); // neutral color: #5A6986
   }
 
   // Define the words to cycle through
