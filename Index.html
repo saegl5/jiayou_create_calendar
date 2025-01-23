@@ -1,91 +1,66 @@
-<!-- hide dryRun checkbox and label, and update reference ID, before deployment -->
+<!-- hide dryRun and update reference ID, before deployment -->
 
 <!DOCTYPE html>
 <html>
   <head>
     <base target="_top" />
     <!-- <title>Create 加油 ("jiā yóu") Calendar</title> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.1.1/dist/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.1.1/dist/js/materialize.min.js"></script>
     <style>
       /* Basic styling for the form */
       :root {
-        --border: silver;
-        --background: Gainsboro;
-        --foreground: #f8f8f8;
-        --section: darkgrey;
-        --description: darkgrey;
+        /* use three root colors, based on material design */
+        --background: #e0e0e0; /* equal to "grey lighten-2" */
+        --border: black;
+        --container: #fcfcff; /* equal to --md-sys-color-surface */
+        --text: var(--border);
+        --reference: grey;
       }
-      form {
-        max-width: 528px;
-        margin: 0 auto;
-        padding: 15px;
-        border: 1px solid var(--border);
-        border-radius: 5px;
+      body {
         background-color: var(--background);
       }
-      select,
-      input[type="text"],
-      input[type="submit"],
-      textarea {
-        display: block;
-        margin-bottom: 0px;
-        width: 100%;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box; /* compatibility */
+      header,
+      div[id="section"],
+      .mid,
+      div[id="dry"], /* associated checkbox also stylized in code */
+      .button, /* button also stylized in code */
+      div[id="wait"],
+      footer {
+        text-align: center;
       }
-      select,
+      div[id="user"] {
+        font-weight: bold;
+      }
+      form {
+        max-width: 75%; /* allow expansion, was 529px; */
+        margin: 0 auto;
+        padding-left: 5%; /* allow expansion */
+        padding-right: 5%; /* allow expansion */
+        border-radius: 15px; /* more fun-looking */
+      }
+      .container {
+        padding: 20px;
+        border: 2px solid var(--border); /* more pop */
+        border-radius: 15px; /* more fun-looking */
+        background-color: var(--container);
+      }
       input,
       textarea,
-      div {
-        font-family: "Courier New", Courier, monospace; /* preserve monospace fonts, so that users easily distinguish input fields from non-input fields */
-        font-size: medium;
+      span,
+      div[id="wait"] {
+        font-family: monospace; /* preserve monospace fonts, so that users easily distinguish input fields from non-input fields */
+        color: var(--text);
+        font-style: normal;
       }
-      h1,
-      div[id="user"],
-      label,
-      input[type="submit"],
-      text,
-      div[id="section"],
-      div[id="issues"] {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-          sans-serif;
-      }
-      text {
-        font-size: smaller;
+      label {
         font-style: italic;
-        color: var(--description);
       }
-      div[id="user"],
-      div[id="section"],
-      div[id="dry"],
-      div[id="issues"],
-      div[id="wait"],
-      .mid {
-        text-align: center;
-      }
-      div[id="settings"] {
-        text-align: left;
-        padding-top: 10px;
-        padding-left: 15px;
-        padding-right: 15px;
-        border: 1px solid var(--border);
-        border-radius: 5px;
-        background-color: var(--foreground);
-      }
-      div[id="section"] {
-        font-weight: bold;
-        font-size: smaller;
-        color: var(--section);
-      }
-      input[type="checkbox"] {
-        vertical-align: bottom;
-      }
-      input[type="submit"] {
-        border-color: var(--border);
-        border-radius: 5px;
-      }
-      h1 {
-        text-align: center;
+      h5[id="holidayExceptions"], h5[id="halfDays"], h5[id="extraHolidays"], h5[id="months"] {
+        margin-bottom: 0px;
       }
       div[id="table"] {
         display: table;
@@ -98,196 +73,198 @@
       .mid {
         display: table-cell;
       }
-      div[id="issues"] {
-        font-size: smaller;
-      }
       .reference {
-        font-style: normal;
+        font-size: smaller;
+        color: var(--reference);
+        font-family: monospace;
       }
     </style>
   </head>
   <body onload="load()">
-    <h1>Create 加油 ("jiā yóu") Calendar</h1>
-    <div id="user">&nbsp;</div>
+    <header>
+      <h1>Create 加油 ("jiā yóu") Calendar</h1>
+      <div id="user">&nbsp;</div>
+    </header>
+
     <br />
-    <form id="calendarForm">
-      <div id="settings">
-        <div id="section">Event Settings</div>
-        <br />
 
-        <label for="calendarName">Calendar name:</label>
-        <input
-          type="text"
-          id="calendarName"
-          name="calendarName"
-          value="Internal Calendar"
-          required
-        />
-        <!-- <text>Must name it differently from the owner name</text> -->
-        <br /><!--<br />-->
+    <main>
+      <form id="calendarForm">
+        <section class="section">
+          <div class="container">
+            <!-- <div id="settings"> -->
+            <div id="section">Event Settings</div>
+            <!-- <br /> -->
 
-        <label for="timeZone">Time zone:</label>
-        <select id="timeZone" name="timeZone">
-          <option value="America/New_York">Eastern</option>
-          <option value="America/Chicago">Central</option>
-          <option value="America/Denver">Mountain</option>
-          <option value="America/Los_Angeles" selected="selected">
-            Pacific
-          </option>
-          <!-- Consult https://www.iana.org/time-zones for time zone IDs of other locations. -->
-        </select>
-        <!-- preselected for convenience -->
-        <br />
-
-        <!-- <label for="holidayCalendar">Public holiday calendar:</label> -->
-        <!-- <select id="holidayCalendar" name="holidayCalendar"> -->
-        <!-- <option value="en.usa#holiday@group.v.calendar.google.com"> -->
-        <!-- US Holidays -->
-        <!-- </option> -->
-        <!-- Consult https://gist.github.com/dhoeric/76bd1c15168ee0ee61ad3bf1730dcb65#file-cal-csv for calendar IDs of other countries -->
-        <!-- </select> -->
-        <!-- preselected for convenience -->
-        <!-- <br /> -->
-
-        <!--still create events on these holidays-->
-        <label for="holidayExceptions">List U.S. holiday exceptions:</label>
-        <textarea
-          type="text"
-          id="holidayExceptions"
-          name="holidayExceptions"
-          rows="3"
-          placeholder="Optional"
-        >
-Oct 31 2024, Nov 5 2024, Nov 11 2024, Jan 9 2025, Feb 14 2025, Mar 17 2025, Apr 21 2025, May 1 2025, May 5 2025</textarea
-        >
-        <!-- made more room for additional exceptions -->
-        <!-- prefilled for convenience and clarity -->
-        <text>Accepted formats: Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</text
-        ><!-- need to stay generalized --><br />
-        <text>Comma-separated list of dates</text>
-        <br /><br />
-
-        <!--repeat this event once-->
-        <label for="halfDays">List half-days:</label>
-        <textarea
-          type="text"
-          id="halfDays"
-          name="halfDays"
-          rows="2"
-          placeholder="Optional"
-        >
-Nov 1 2024, Nov 8 2024, Nov 22 2024, Jan 24 2025, Mar 21 2025, Mar 28 2025, Jun 6 2025</textarea
-        >
-        <!-- made more room for additional exceptions -->
-        <!-- prefilled for convenience and clarity -->
-        <text>Accepted formats: Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</text
-        ><!-- need to stay generalized --><br />
-        <text>Comma-separated list of dates</text>
-        <br /><br />
-
-        <!--don't create events on these non-holidays-->
-        <label for="extraHolidays">List extra holidays:</label>
-        <textarea
-          type="text"
-          id="extraHolidays"
-          name="extraHolidays"
-          rows="7"
-          placeholder="Optional"
-        >
-Oct 10 2024, Oct 11 2024, Nov 25 2024, Nov 26 2024, Nov 27 2024, Dec 23 2024, Dec 26 2024, Dec 27 2024, Dec 30 2024, Jan 2 2025, Jan 3 2025, Jan 27 2025, Jan 28 2025, Jan 29 2025, Feb 18 2025, Feb 19 2025, Feb 20 2025, Feb 21 2025, Mar 10 2025, Mar 11 2025, Apr 14 2025, Apr 16 2025, Apr 17 2025, Apr 18 2025, Jun 13 2025</textarea
-        >
-        <!-- redundant: Nov 1 2024, Nov 28 2024, Nov 29 2024, Dec 24 2024, Dec 25 2024, Dec 31 2024, Jan 1 2025, Jan 20 2025, Feb 17 2025, Apr 15 2025, May 26 2025 -->
-        <!-- made more room for additional exceptions -->
-        <!-- prefilled for convenience and clarity -->
-        <text>Accepted formats: Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</text
-        ><!-- need to stay generalized --><br />
-        <text>Comma-separated list of dates</text>
-        <br /><br />
-
-        <div id="table">
-          <div id="row">
-            <div id="cell">
-              <label for="startMonth">Start month:</label>
+            <h5>Calendar</h5>
+            <div class="input-field">
+              <input id="calendarName" type="text" class="validate" value="Internal Calendar" required />
+              <label for="calendarName">Name</label>
             </div>
-            <div id="cell" class="mid">&nbsp;&nbsp;-&nbsp;&nbsp;</div>
-            <div id="cell">
-              <label for="endMonth">End month:</label>
+            <!-- <text>Must name it differently from the owner name</text> -->
+            <br /><!--<br />-->
+
+            <h5>Time Zone</h5>
+            <div class="input-field">
+              <select id="timeZone">
+                <option value="America/New_York">Eastern</option>
+                <option value="America/Chicago">Central</option>
+                <option value="America/Denver">Mountain</option>
+                <option value="America/Los_Angeles" selected="selected">Pacific</option>
+                <!-- Consult https://www.iana.org/time-zones for time zone IDs of other locations. -->
+            </select>
+              <label for="timeZone">Zone</label>
             </div>
+            <!-- preselected for convenience -->
+            <br/>
+
+            <!-- <label for="holidayCalendar">Public holiday calendar:</label> -->
+            <!-- <select id="holidayCalendar" name="holidayCalendar"> -->
+            <!-- <option value="en.usa#holiday@group.v.calendar.google.com"> -->
+            <!-- US Holidays -->
+            <!-- </option> -->
+            <!-- Consult https://gist.github.com/dhoeric/76bd1c15168ee0ee61ad3bf1730dcb65#file-cal-csv for calendar IDs of other countries -->
+            <!-- </select> -->
+            <!-- preselected for convenience -->
+            <!-- <br /> -->
+
+            <!--still create events on these dates-->
+            <h5 id="holidayExceptions">Holiday Exceptions</h5>
+            <label for="holidayExceptions">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label>
+            <br><br>
+            <div class="input-field">
+              <textarea id="holidayExceptions" class="materialize-textarea" placeholder="Optional">Oct 31 2024, Nov 5 2024, Nov 11 2024, Jan 9 2025, Feb 14 2025, Mar 17 2025, Apr 21 2025, May 1 2025, May 5 2025</textarea>
+              <label for="holidayExceptions">List dates on which to add letter days, comma-separated</label>
+            </div>
+            <!-- made more room for additional exceptions -->
+            <!-- prefilled for convenience and clarity -->
+            <!-- need to stay generalized -->            
+            <br>
+
+            <!--repeat this event once-->
+            <h5 id="halfDays">Half-days</h5>
+            <label for="halfDays">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label>
+            <br><br>
+            <div class="input-field">
+              <textarea id="halfDays" class="materialize-textarea" placeholder="Optional">Nov 1 2024, Nov 8 2024, Nov 22 2024, Jan 24 2025, Mar 21 2025, Mar 28 2025, Jun 6 2025</textarea>
+              <label for="halfDays">List dates on which to skip letter days, comma-separated</label>
+            </div>
+            <!-- made more room for additional exceptions -->
+            <!-- prefilled for convenience and clarity -->
+            <!-- need to stay generalized -->            
+            <br>
+
+            <!--don't create events on these non-holidays-->
+            <h5 id="extraHolidays">Extra Holidays</h5>
+            <label for="extraHolidays">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label>
+            <br><br>
+            <div class="input-field">
+              <textarea id="extraHolidays" class="materialize-textarea" placeholder="Optional">Oct 10 2024, Oct 11 2024, Nov 25 2024, Nov 26 2024, Nov 27 2024, Dec 23 2024, Dec 26 2024, Dec 27 2024, Dec 30 2024, Jan 2 2025, Jan 3 2025, Jan 27 2025, Jan 28 2025, Jan 29 2025, Feb 18 2025, Feb 19 2025, Feb 20 2025, Feb 21 2025, Mar 10 2025, Mar 11 2025, Apr 14 2025, Apr 16 2025, Apr 17 2025, Apr 18 2025, Jun 13 2025</textarea>
+              <!-- redundant: Nov 1 2024, Nov 28 2024, Nov 29 2024, Dec 24 2024, Dec 25 2024, Dec 31 2024, Jan 1 2025, Jan 20 2025, Feb 17 2025, Apr 15 2025, May 26 2025 -->
+            <label for="extraHolidays">List dates to skip more letter days, comma-separated</label>
+            </div>
+            <!-- made more room for additional exceptions -->
+            <!-- prefilled for convenience and clarity -->
+            <!-- need to stay generalized -->            
+            <br>
+            
+            <h5 id="months">Date</h5>
+            <div id="table">
+              <div id="row">
+                <div id="cell">
+                  <div class="input-field">
+                    <select id="startMonth">
+                      <option value="1">January</option>
+                      <option value="2">February</option>
+                      <option value="3">March</option>
+                      <option value="4">April</option>
+                      <option value="5">May</option>
+                      <option value="6">June</option>
+                      <option value="7">July</option>
+                      <option value="8">August</option>
+                      <option value="9" selected="selected">September</option>
+                      <option value="10">October</option>
+                      <option value="11">November</option>
+                      <option value="12">December</option>                    
+                    </select>
+                    <label for="startMonth">Start</label>
+                  </div>
+                </div>
+                <div id="cell" class="mid">
+                  &emsp;-&emsp;
+                </div>
+                <div id="cell">
+                  <div class="input-field">
+                    <select id="endMonth">
+                      <option value="1">January</option>
+                      <option value="2">February</option>
+                      <option value="3">March</option>
+                      <option value="4">April</option>
+                      <option value="5">May</option>
+                      <option value="6" selected="selected">June</option>
+                      <!-- school ends mid-Jun -->
+                      <option value="7">July</option>
+                      <option value="8">August</option>
+                      <option value="9">September</option>
+                      <option value="10">October</option>
+                      <option value="11">November</option>
+                      <option value="12">December</option>
+                    </select>
+                    <label for="endMonth">End</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- preselected for convenience -->
+            <!-- If startMonth > endMonth, then the calendar will roll over to the new year -->
+            <br />
+            <!-- </div> -->
+
+            <br />
+
+            <div id="dry">
+              <label>
+                <!-- add "hidden" to label tag above to hide dryRun-->
+                <input type="checkbox" class="filled-in" id="dryRun" unchecked />
+                <span>Dry run</span>
+                <!-- test script before running it in production, hide for production by commenting or removing these lines of code -->
+              </label>
+            </div>
+
+            <br />
+
+            <div class="button">
+              <button class="btn filled rounded waves-effect waves-light" type="submit">Submit</button>
+            </div>
+          
+            <div id="wait">&nbsp;</div>
+            <!-- id="wait" div displays function return messages -->
           </div>
-          <div id="row">
-            <div id="cell">
-              <select id="startMonth" name="startMonth">
-                <option value="1">January</option>
-                <option value="2">February</option>
-                <option value="3">March</option>
-                <option value="4">April</option>
-                <option value="5">May</option>
-                <option value="6">June</option>
-                <option value="7">July</option>
-                <option value="8">August</option>
-                <option value="9" selected>September</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">December</option>
-              </select>
-            </div>
-            <div id="cell" class="mid">
-              <!-- empty -->
-            </div>
-            <div id="cell">
-              <select id="endMonth" name="endMonth">
-                <option value="1">January</option>
-                <option value="2">February</option>
-                <option value="3">March</option>
-                <option value="4">April</option>
-                <option value="5">May</option>
-                <option value="6" selected>June</option>
-                <!-- school ends mid-Jun -->
-                <option value="7">July</option>
-                <option value="8">August</option>
-                <option value="9">September</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">December</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <!-- preselected for convenience -->
-        <!-- If startMonth > endMonth, then the calendar will roll over to the new year -->
-        <br />
-      </div>
+        </section>
+      </form>
+    </main>
 
-      <br />
-
-      <div id="dry">
-        <input type="checkbox" id="dryRun" name="dryRun" unchecked />
-        <!-- add "hidden" to hide -->
-        <label for="dryRun">Dry run<br /><br /></label>
-        <!-- add "hidden" to hide -->
-        <!-- test script before running it in production, hide for production by commenting or removing these lines of code -->
-      </div>
-
-      <input type="submit" value="Submit" />
-      <div id="wait">&nbsp;</div>
-      <!-- id="wait" div displays function return messages -->
-    </form>
-
-    <div id="issues">
-      Technical difficulties? Search issues or open a new one on
-      <a href="https://github.com/saegl5/jiayou_create_calendar/issues"
-        >GitHub</a
-      >.
-
-      <br />
-
-      <text class="reference"
-        >Reference ID: 108acadcf5f53cb054a1cf3be12fd50ff88c7f12</text
-      >
-      <!-- Latest commit SHA from main branch that includes major updates, minor updates, or bug fixes -->
-    </div>
+    <footer>
+      <p>
+        Technical difficulties? Search issues or open a new one on
+        <a href="https://github.com/saegl5/jiayou_create_calendar/issues">GitHub</a>.
+        <br>
+        <text class="reference"
+          >Reference ID: 108acadcf5f53cb054a1cf3be12fd50ff88c7f12</text
+        >
+        <!-- Latest commit SHA from main branch that includes major updates, minor updates, or bug fixes -->
+      </p>
+    </footer>
 
     <script>
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const elems = document.querySelectorAll("select");
+        M.FormSelect.init(elems);
+        M.AutoInit(); /* redundant */
+        load();
+      });
+
       // JavaScript handles form submission and sends data to the Google Apps Script
       function load() {
         google.script.run
