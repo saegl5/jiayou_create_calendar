@@ -13,7 +13,7 @@
     <style>
       /* Basic styling for the form */
       :root {
-        /* use three root colors, based on material design */
+        /* use few root colors, based on material design */
         --background: #e0e0e0; /* equal to "grey lighten-2" */
         --border: black;
         --container: #fcfcff; /* equal to --md-sys-color-surface */
@@ -59,8 +59,9 @@
       label {
         font-style: italic;
       }
-      h5[id="holidayExceptions"], h5[id="halfDays"], h5[id="extraHolidays"], h5[id="months"] {
-        margin-bottom: 0px;
+      .extra {
+        padding-left: 17px;
+        color: var(--reference);
       }
       div[id="table"] {
         display: table;
@@ -72,6 +73,9 @@
       div[id="cell"],
       .mid {
         display: table-cell;
+      }
+      .mid {
+        border-bottom: 1px solid var(--border);
       }
       .reference {
         font-size: smaller;
@@ -129,46 +133,49 @@
             <!-- <br /> -->
 
             <!--still create events on these dates-->
-            <h5 id="holidayExceptions">Holiday Exceptions</h5>
-            <label for="holidayExceptions">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label>
-            <br><br>
+            <h5>Holiday Exceptions</h5>
+            <!-- <label for="holidayExceptions">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label> -->
+            <!-- <br><br> -->
             <div class="input-field">
               <textarea id="holidayExceptions" class="materialize-textarea" placeholder="Optional">Oct 31 2024, Nov 5 2024, Nov 11 2024, Jan 9 2025, Feb 14 2025, Mar 17 2025, Apr 21 2025, May 1 2025, May 5 2025</textarea>
               <label for="holidayExceptions">List dates on which to add letter days, comma-separated</label>
             </div>
+            <label for="holidayExceptions" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label>
             <!-- made more room for additional exceptions -->
             <!-- prefilled for convenience and clarity -->
-            <!-- need to stay generalized -->            
-            <br>
+            <!-- need to stay generalized -->         
+            <br><br>
 
             <!--repeat this event once-->
-            <h5 id="halfDays">Half-days</h5>
-            <label for="halfDays">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label>
-            <br><br>
+            <h5>Half-days</h5>
+            <!-- <label for="halfDays">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label> -->
+            <!-- <br><br> -->
             <div class="input-field">
               <textarea id="halfDays" class="materialize-textarea" placeholder="Optional">Nov 1 2024, Nov 8 2024, Nov 22 2024, Jan 24 2025, Mar 21 2025, Mar 28 2025, Jun 6 2025</textarea>
               <label for="halfDays">List dates on which to skip letter days, comma-separated</label>
             </div>
+            <label for="halfDays" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label>
             <!-- made more room for additional exceptions -->
             <!-- prefilled for convenience and clarity -->
             <!-- need to stay generalized -->            
-            <br>
+            <br><br>
 
             <!--don't create events on these non-holidays-->
-            <h5 id="extraHolidays">Extra Holidays</h5>
-            <label for="extraHolidays">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label>
-            <br><br>
+            <h5>Extra Holidays</h5>
+            <!-- <label for="extraHolidays">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label> -->
+            <!-- <br><br> -->
             <div class="input-field">
               <textarea id="extraHolidays" class="materialize-textarea" placeholder="Optional">Oct 10 2024, Oct 11 2024, Nov 25 2024, Nov 26 2024, Nov 27 2024, Dec 23 2024, Dec 26 2024, Dec 27 2024, Dec 30 2024, Jan 2 2025, Jan 3 2025, Jan 27 2025, Jan 28 2025, Jan 29 2025, Feb 18 2025, Feb 19 2025, Feb 20 2025, Feb 21 2025, Mar 10 2025, Mar 11 2025, Apr 14 2025, Apr 16 2025, Apr 17 2025, Apr 18 2025, Jun 13 2025</textarea>
               <!-- redundant: Nov 1 2024, Nov 28 2024, Nov 29 2024, Dec 24 2024, Dec 25 2024, Dec 31 2024, Jan 1 2025, Jan 20 2025, Feb 17 2025, Apr 15 2025, May 26 2025 -->
             <label for="extraHolidays">List dates to skip more letter days, comma-separated</label>
             </div>
+            <label for="extraHolidays" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label>
             <!-- made more room for additional exceptions -->
             <!-- prefilled for convenience and clarity -->
             <!-- need to stay generalized -->            
-            <br>
+            <br><br>
             
-            <h5 id="months">Date</h5>
+            <h5>Date</h5>
             <div id="table">
               <div id="row">
                 <div id="cell">
