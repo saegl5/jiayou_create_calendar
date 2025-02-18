@@ -25,6 +25,8 @@ function createCalendar(
   extraHolidays,
   startMonth,
   endMonth,
+  start,
+  end,
   dryRun
 ) {
   var holidayCalendar = "en.usa#holiday@group.v.calendar.google.com"; // calendar is hard-coded
@@ -149,17 +151,38 @@ function createCalendar(
   // dateEndTime not used for all-day events
 
   // Loop through each month
-  for (var month = startMonth; month <= endMonth; month++) {
+  var month;
+  var daysInMonth;
+  for (month = startMonth; month <= endMonth; month++) {
     // Determine the number of days in the month
     if (month <= 12) {
-      var daysInMonth = new Date(year, month, 0).getDate();
+      daysInMonth = new Date(year, month, 0).getDate();
     } else {
       // roll over
-      var daysInMonth = new Date(year + 1, month % 12, 0).getDate();
+      daysInMonth = new Date(year + 1, month % 12, 0).getDate();
     }
 
     // Loop through each day of the month
-    for (var day = 1; day <= daysInMonth; day++) {
+    var day;
+    if (month === startMonth && start !== "") {
+      start = new Date(start);
+      day = start.getDate();
+      Logger.log(day)
+    }
+    else {
+      day = 1;
+      Logger.log(day)
+    }
+    if (month === endMonth && end !== "") {
+      end = new Date(end);
+      daysInMonth = end.getDate();
+      Logger.log(daysInMonth)
+    }
+    else {
+      // don't change daysInMonth
+      Logger.log(daysInMonth)
+    }
+    for (var day; day <= daysInMonth; day++) {
       if (month <= 12) {
         var date = new Date(year, month - 1, day);
       } else {

@@ -79,6 +79,16 @@
         color: var(--reference);
         font-family: monospace;
       }
+      .collapsible {
+        border: none;
+        box-shadow: none;
+      }
+      .collapsible-header::after {
+        content: "\25BC"; /* larger, unicode down arrow */
+      }
+      .active .collapsible-header::after {
+        content: "\25B2"; /* larger, unicode up arrow */
+      }
     </style>
   </head>
   <body onload="load()">
@@ -172,7 +182,7 @@
             <!-- need to stay generalized -->            
             <br><br>
             
-            <h5>Date</h5>
+            <h5>Month</h5>
             <div id="table">
               <div id="row">
                 <div id="cell">
@@ -225,6 +235,46 @@
             <!-- </div> -->
 
             <br />
+
+            <ul class="collapsible">
+              <li>
+                <div class="collapsible-header">
+                  Specify&nbsp;date
+                </div>
+                <div class="collapsible-body">
+
+                  <h5>Date</h5>
+                  <div id="table">
+                    <div id="row">
+                      <div id="cell">
+                        <div class="input-field">
+                          <input id="start" type="text" class="validate" placeholder="Optional" />
+                          <label for="start">Start</label>
+                          <!-- replacing placeholder="Optional" with the current date is a good idea for convenience -->
+                        </div>
+                      </div>
+                      <div id="cell" class="mid">
+                        &emsp;-&emsp;
+                      </div>
+                      <div id="cell">
+                        <div class="input-field">
+                          <input id="end" type="text" class="validate" placeholder="Optional" />
+                          <label for="end">End</label>                    
+                          <!-- <input type="text" id="end" name="end" placeholder="6/12/2025" /> redundant since internal calendar events end same date -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <label for="dates" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label>
+                  <!-- Confine date range -->
+                  <br><br><br>
+            
+                </div>
+              </li>
+            </ul>
+
+            <br />
+
 
             <div id="dry">
               <label>
@@ -281,6 +331,21 @@
           .getUsername();
       }
 
+      // document
+      //   .getElementById("calendarForm")
+      //   .addEventListener("startMonth", function (event) {
+      //     event.preventDefault(); // Prevents the form from submitting the traditional way
+      //     // document.getElementById("start").value = "test1";
+      //     document.getElementsByClassName("validate").value = "test1";
+      //   });
+
+      // document
+      //   .getElementById("calendarForm")
+      //   .addEventListener("endMonth", function (event) {
+      //     event.preventDefault(); // Prevents the form from submitting the traditional way
+      //     document.getElementById("end").value = "test2";
+      //   });
+
       document
         .getElementById("calendarForm")
         .addEventListener("submit", function (event) {
@@ -296,7 +361,8 @@
           var extraHolidays = document.getElementById("extraHolidays").value;
           var startMonth = document.getElementById("startMonth").value;
           var endMonth = document.getElementById("endMonth").value;
-
+          var start = document.getElementById("start").value;
+          var end = document.getElementById("end").value;
           var dryRun = document.getElementById("dryRun").checked; // by default, checkbox is unchecked, meaning .checked is false
 
           document.getElementById("wait").innerHTML = "Please wait...";
@@ -313,6 +379,8 @@
               extraHolidays,
               startMonth,
               endMonth,
+              start,
+              end,
               dryRun
             );
         }); // public holiday calendar has been hard-coded
