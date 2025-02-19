@@ -146,7 +146,7 @@ function createCalendar(
   // https://github.com/saegl5/jiayou_add_events/issues/4
 
   // not using a dictionary
-  var firstDate = []; // have multiple first dates
+  // var firstDate = []; // have multiple first dates
   // dateStartTime not used for all-day events
   // dateEndTime not used for all-day events
 
