@@ -165,7 +165,10 @@ function createCalendar(
     // Loop through each day of the month
     var day;
     if (month === startMonth && start !== "") {
-      start = new Date(start);
+      if (regex.test(start) === true) {
+        start = new Date(start);
+        start = adjustTime(start);
+      } else start = new Date(start);
       day = start.getDate();
       Logger.log(day)
     }
@@ -174,7 +177,12 @@ function createCalendar(
       Logger.log(day)
     }
     if (month === endMonth && end !== "") {
-      end = new Date(end);
+      if (regex.test(end) === true) {
+        end = new Date(end);
+        end = adjustTime(end);
+      } else {
+        end = new Date(end);
+      }
       daysInMonth = end.getDate();
       Logger.log(daysInMonth)
     }
@@ -280,8 +288,8 @@ function isHoliday(date, holidays) {
 function getHolidays(year, holidayCalendar, holidayExceptions, extraHolidays) {
   var holidays = extraHolidays;
   var calendar = CalendarApp.getCalendarById(holidayCalendar);
-  var start = new Date(year, 0, 1); // Start from January 1st of current year
-  var end = new Date(year + 1, 12, 31); // End on December 31st of next year (roll over)
+  var start = new Date(year, 0, 1); // Start from January 1st of current year, different "start" variable
+  var end = new Date(year + 1, 12, 31); // End on December 31st of next year (roll over), different "end" variable
 
   var events = calendar.getEvents(start, end);
 
