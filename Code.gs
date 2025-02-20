@@ -115,6 +115,23 @@ function createCalendar(
   var year = new Date().getFullYear(); // Current year
   // var year = new Date().getFullYear()-1; // Previous year, keep in case you choose to recreate previous calendar next year
 
+  // Check for dates
+  if (start !== "") {
+    if (regex.test(start) === true) {
+      start = new Date(start);
+      start = adjustTime(start);
+    } else start = new Date(start);
+    startMonth = start.getMonth() + 1 // override startMonth, indices start at 0
+  }
+
+  if (end !== "") {
+    if (regex.test(end) === true) {
+      end = new Date(end);
+      end = adjustTime(end);
+    } else end = new Date(end);
+    endMonth = end.getMonth() + 1 // override endMonth, indices start at 0
+  }
+  
   // Get the holidays starting the current year
   var holidays = getHolidays(
     year,
@@ -164,33 +181,14 @@ function createCalendar(
 
     // Loop through each day of the month
     var day;
-    if (month === startMonth && start !== "") {
-      if (regex.test(start) === true) {
-        start = new Date(start);
-        start = adjustTime(start);
-      } else start = new Date(start);
-      day = start.getDate();
-      Logger.log(day)
-    }
-    else {
-      day = 1;
-      Logger.log(day)
-    }
-    if (month === endMonth && end !== "") {
-      if (regex.test(end) === true) {
-        end = new Date(end);
-        end = adjustTime(end);
-      } else {
-        end = new Date(end);
-      }
-      daysInMonth = end.getDate();
-      Logger.log(daysInMonth)
-    }
-    else {
-      // don't change daysInMonth
-      Logger.log(daysInMonth)
-    }
-    for (var day; day <= daysInMonth; day++) {
+    if (month === startMonth && start !== "")
+      day = start.getDate(); // override day
+    else day = 1;
+    if (month === endMonth && end !== "")
+      daysInMonth = end.getDate(); // override daysInMonth
+    else // don't override daysInMonth
+
+    for (day; day <= daysInMonth; day++) {
       if (month <= 12) {
         var date = new Date(year, month - 1, day);
       } else {
