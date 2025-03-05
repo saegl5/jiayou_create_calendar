@@ -59,9 +59,15 @@
       label {
         font-style: italic;
       }
+      div[id="dry"] > label > span,
+      .collapsible-header > span {
+        font-family: unset;
+      }
       .extra {
         padding-left: 17px;
         color: var(--reference);
+        font-style: italic;
+        font-family: unset;
       }
       div[id="table"] {
         display: table;
@@ -74,14 +80,14 @@
       .mid {
         display: table-cell;
       }
+      .collapsible {
+        border: none;
+        box-shadow: none;
+      }
       .reference {
         font-size: smaller;
         color: var(--reference);
         font-family: monospace;
-      }
-      .collapsible {
-        border: none;
-        box-shadow: none;
       }
       .collapsible-header, .collapsible-body {
         border-bottom: none;
@@ -92,6 +98,17 @@
       .active .collapsible-header::after {
         content: "\25B2"; /* larger, unicode up arrow */
       }
+      input {
+        padding-top: unset !important; /* override Materialize CSS */
+        height: 28px !important; /* override Materialize CSS */
+      }
+      textarea.materialize-textarea {
+        /* preserve padding-top */
+        resize: vertical !important; /* override Materialize CSS */
+      }
+      span[id="dryRun"] {
+        line-height: 20px !important; /* override Materialize CSS */
+      }
     </style>
   </head>
   <body onload="load()">
@@ -100,7 +117,7 @@
       <div id="user">&nbsp;</div>
     </header>
 
-    <br />
+    <!-- <br /> -->
 
     <main>
       <form id="calendarForm">
@@ -113,7 +130,8 @@
             <h5>Calendar</h5>
             <div class="input-field">
               <input id="calendarName" type="text" class="validate" value="Internal Calendar" required />
-              <label for="calendarName">Name</label>
+              <!-- <label for="calendarName">Name</label> -->
+              <span for="calendarName" class="extra">Name</span>
             </div>
             <!-- <text>Must name it differently from the owner name</text> -->
             <br /><!--<br />-->
@@ -127,7 +145,7 @@
                 <option value="America/Los_Angeles" selected="selected">Pacific</option>
                 <!-- Consult https://www.iana.org/time-zones for time zone IDs of other locations. -->
             </select>
-              <label for="timeZone">Zone</label>
+              <!-- <label for="timeZone">Zone</label> -->
             </div>
             <!-- preselected for convenience -->
             <br/>
@@ -150,7 +168,8 @@
               <textarea id="holidayExceptions" class="materialize-textarea" placeholder="Optional">Oct 31 2024, Nov 5 2024, Nov 11 2024, Jan 9 2025, Feb 14 2025, Mar 17 2025, Apr 21 2025, May 1 2025, May 5 2025</textarea>
               <label for="holidayExceptions">List dates on which to add letter days, comma-separated</label>
             </div>
-            <label for="holidayExceptions" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label>
+            <!-- <label for="holidayExceptions" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label> -->
+            <span for="holidayExceptions" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</span>
             <!-- made more room for additional exceptions -->
             <!-- prefilled for convenience and clarity -->
             <!-- need to stay generalized -->         
@@ -164,7 +183,8 @@
               <textarea id="halfDays" class="materialize-textarea" placeholder="Optional">Nov 1 2024, Nov 8 2024, Nov 22 2024, Jan 24 2025, Mar 21 2025, Mar 28 2025, Jun 6 2025</textarea>
               <label for="halfDays">List dates on which to skip letter days, comma-separated</label>
             </div>
-            <label for="halfDays" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label>
+            <!-- <label for="halfDays" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label> -->
+            <span for="halfDays" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</span>
             <!-- made more room for additional exceptions -->
             <!-- prefilled for convenience and clarity -->
             <!-- need to stay generalized -->            
@@ -179,7 +199,8 @@
               <!-- redundant: Nov 1 2024, Nov 28 2024, Nov 29 2024, Dec 24 2024, Dec 25 2024, Dec 31 2024, Jan 1 2025, Jan 20 2025, Feb 17 2025, Apr 15 2025, May 26 2025 -->
             <label for="extraHolidays">List dates to skip more letter days, comma-separated</label>
             </div>
-            <label for="extraHolidays" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label>
+            <!-- <label for="extraHolidays" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label> -->
+            <span for="extraHolidays" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</span>
             <!-- made more room for additional exceptions -->
             <!-- prefilled for convenience and clarity -->
             <!-- need to stay generalized -->            
@@ -204,7 +225,7 @@
                       <option value="11">November</option>
                       <option value="12">December</option>                    
                     </select>
-                    <label for="startMonth">Start</label>
+                    <!-- <label for="startMonth">Start</label> -->
                   </div>
                 </div>
                 <div id="cell" class="mid">
@@ -227,7 +248,7 @@
                       <option value="11">November</option>
                       <option value="12">December</option>
                     </select>
-                    <label for="endMonth">End</label>
+                    <!-- <label for="endMonth">End</label> -->
                   </div>
                 </div>
               </div>
@@ -242,7 +263,7 @@
             <ul class="collapsible">
               <li>
                 <div class="collapsible-header">
-                  Specify&nbsp;date&nbsp;(optional)
+                  <span name="collapsible-header">Specify&nbsp;date&nbsp;(optional)</span>
                 </div>
                 <div class="collapsible-body">
 
@@ -252,7 +273,7 @@
                       <div id="cell">
                         <div class="input-field">
                           <input id="start" type="text" class="validate" placeholder="Optional" />
-                          <label for="start">Start</label>
+                          <!-- <label for="start">Start</label> -->
                           <!-- replacing placeholder="Optional" with the current date is a good idea for convenience -->
                         </div>
                       </div>
@@ -262,13 +283,14 @@
                       <div id="cell">
                         <div class="input-field">
                           <input id="end" type="text" class="validate" placeholder="Optional" />
-                          <label for="end">End</label>                    
+                          <!-- <label for="end">End</label>                     -->
                           <!-- <input type="text" id="end" name="end" placeholder="6/12/2025" /> redundant since internal calendar events end same date -->
                         </div>
                       </div>
                     </div>
                   </div>
-                  <label for="dates" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label>
+                  <!-- <label for="dates" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label> -->
+                  <span for="dates" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</span>
                   <!-- Confine date range -->
                   <br><br><br>
             
@@ -283,7 +305,7 @@
               <label>
                 <!-- add "hidden" to label tag above to hide dryRun-->
                 <input type="checkbox" class="filled-in" id="dryRun" unchecked />
-                <span>Dry run</span>
+                <span id="dryRun">Dry Run</span>
                 <!-- test script before running it in production, hide for production by commenting or removing these lines of code -->
               </label>
             </div>
