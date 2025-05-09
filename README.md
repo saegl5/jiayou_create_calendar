@@ -44,7 +44,7 @@ Access to [Google Apps Script](https://script.google.com/)
 - You can also export the calendar directly from [Google Calendar](https://calendar.google.com/calendar/) and can import it into another calendar on your smartphone. Alternative: Check out Jonathan Hsieh's [AileenBot](https://account.aileenbot.com/), and subscribe to community events. ('Whatever way makes it easier for you to keep track of today's letter...)
 
 <hr>
-Made with &heartsuit; in Visual Studio Code
+Made with &heartsuit; in Visual Studio Code and Zed
 
 <br>
 
