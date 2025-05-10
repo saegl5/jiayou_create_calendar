@@ -23,17 +23,19 @@ Access to [Google Apps Script](https://script.google.com/)
 3. Run the script to acquire authorization.
 4. Create an HTML file, and name it "Index."
 5. Copy and paste [the markup text](./Index.html) into the editor, and save the file.
-6. Deploy the project as a Web app, and open the assigned URL.
+6. Create another Script file, but name it "Script."
+7. Copy and paste [the other script](./Script.gs) into the editor, and save the file.
+8. Deploy the project as a Web app, and open the assigned URL.
 
 ### How to Use
 
-7. Check the username to ensure that you opened the URL in the correct account.
-8. Modify the calendar name and time zone.
-9. Add any exceptions to the U.S. holiday schedule, any half-days, and any extra holidays. (Exceptions tell the app script to create events on these holidays; half-days tell the app script to skip this day; and extra holidays tell the app script _not_ to create events on these non-holidays.)
-10. Modify the start and end months. (If the start month is greater than the end month, then the calendar will roll over to the new year.)
-11. Expand the collapsible region, as well, to specify a date range by inputting a start date and end date. (For consistency, if the start date is later than the end date, then the calendar will roll over to the new year.)
-12. Optionally perform a dry run to test the Web app before running it in production. Consult logs for output.
-13. Press submit. (Requires another authorization. **_Note also that creating calendars is subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en)._**)
+9. Check the username to ensure that you opened the URL in the correct account.
+10. Modify the calendar name and time zone.
+11. Add any exceptions to the U.S. holiday schedule, any half-days, and any extra holidays. (Exceptions tell the app script to create events on these holidays; half-days tell the app script to skip this day; and extra holidays tell the app script _not_ to create events on these non-holidays.)
+12. Modify the start and end months. (If the start month is greater than the end month, then the calendar will roll over to the new year.)
+13. Expand the collapsible region, as well, to specify a date range by inputting a start date and end date. (For consistency, if the start date is later than the end date, then the calendar will roll over to the new year.)
+14. Optionally perform a dry run to test the Web app before running it in production. Consult logs for output.
+15. Press submit. (Requires another authorization. **_Note also that creating calendars is subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en)._**)
 
 ## Next Steps
 
