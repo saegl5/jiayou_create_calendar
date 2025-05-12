@@ -337,7 +337,78 @@
       </p>
     </footer>
 
-    <script src="Script.gs"> // easier to lint script when not embedded in html
+    <script>
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // const elems = document.querySelectorAll("select");
+        // M.FormSelect.init(elems);
+        M.AutoInit();
+        load();
+      });
+
+      // JavaScript handles form submission and sends data to the Google Apps Script
+      function load() {
+        google.script.run
+          .withSuccessHandler(function (response) {
+            document.getElementById("user").innerHTML =
+              "Welcome, " + response + "!";
+          })
+          .getUsername();
+      }
+
+      // document
+      //   .getElementById("calendarForm")
+      //   .addEventListener("startMonth", function (event) {
+      //     event.preventDefault(); // Prevents the form from submitting the traditional way
+      //     // document.getElementById("start").value = "test1";
+      //     document.getElementsByClassName("validate").value = "test1";
+      //   });
+
+      // document
+      //   .getElementById("calendarForm")
+      //   .addEventListener("endMonth", function (event) {
+      //     event.preventDefault(); // Prevents the form from submitting the traditional way
+      //     document.getElementById("end").value = "test2";
+      //   });
+
+      document
+        .getElementById("calendarForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevents the form from submitting the traditional way
+
+          var calendarName = document.getElementById("calendarName").value;
+          var timeZone = document.getElementById("timeZone").value;
+          // var holidayCalendar =
+          //   document.getElementById("holidayCalendar").value;
+          var holidayExceptions =
+            document.getElementById("holidayExceptions").value;
+          var halfDays = document.getElementById("halfDays").value;
+          var extraHolidays = document.getElementById("extraHolidays").value;
+          var startMonth = document.getElementById("startMonth").value;
+          var endMonth = document.getElementById("endMonth").value;
+          var start = document.getElementById("start").value;
+          var end = document.getElementById("end").value;
+          var dryRun = document.getElementById("dryRun").checked; // by default, checkbox is unchecked, meaning .checked is false
+
+          document.getElementById("wait").innerHTML = "Please wait...";
+
+          google.script.run
+            .withSuccessHandler(function (response) {
+              document.getElementById("wait").innerHTML = response; // Displays a success message when completed
+            })
+            .createCalendar(
+              calendarName,
+              timeZone,
+              holidayExceptions,
+              halfDays,
+              extraHolidays,
+              startMonth,
+              endMonth,
+              start,
+              end,
+              dryRun
+            );
+        }); // public holiday calendar has been hard-coded
     </script>
   </body>
 </html>
