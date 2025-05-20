@@ -13,6 +13,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">    
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols+2&display=swap" rel="stylesheet">
     <style>
       /* Basic styling for the form */
@@ -37,9 +38,9 @@
       footer {
         text-align: center;
       }
-      div[id="user"] {
-        font-weight: bold;
-      }
+      /* div[id="user"] { */
+        /* font-weight: bold; */
+      /* } */
       form {
         max-width: 95%;
         margin: 0 auto;
@@ -59,7 +60,8 @@
       input,
       textarea,
       span,
-      div[id="wait"] {
+      div[id="wait"],
+      div[id="user"] {
         font-family: monospace; /* preserve monospace fonts, so that users easily distinguish input fields from non-input fields */
         color: var(--text);
         font-style: normal;
@@ -119,11 +121,21 @@
       span[id="dryRun"] {
         line-height: 20px !important; /* override Materialize CSS */
       }
+      h1 {
+          display: inline;
+      }
+      h1[id="sansFixed"] { 
+          font-family: system-ui;
+      }
+      h1[id="serifFixed"] {
+          font-family: "Noto Serif SC", serif;
+      }
     </style>
   </head>
   <body onload="load()">
     <header>
-      <h1>Create 加油 ("jiā yóu") Calendar</h1>
+      <h1 id="sansFixed">Create</h1><h1 id="serifFixed"> 加油 </h1><h1 id="sansFixed">("jiā yóu") Calendar</h1>
+      <br><br>
       <div id="user">&nbsp;</div>
     </header>
 
@@ -361,7 +373,7 @@
         google.script.run
           .withSuccessHandler(function (response) {
             document.getElementById("user").innerHTML =
-              "Welcome, " + response + "!";
+              "Welcome, " + response;
           })
           .getUsername();
       }
