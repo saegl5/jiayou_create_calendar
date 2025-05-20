@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.1.1/dist/css/materialize.min.css">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.1.1/dist/js/materialize.min.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols+2&display=swap" rel="stylesheet">
     <style>
       /* Basic styling for the form */
       :root {
@@ -22,6 +26,7 @@
       }
       body {
         background-color: var(--background);
+        font-optical-sizing: auto; /* suggested by google font */
       }
       header,
       div[id="section"],
@@ -36,14 +41,17 @@
         font-weight: bold;
       }
       form {
-        max-width: 1000px;
+        max-width: 95%;
         margin: 0 auto;
         padding-left: 5%; /* allow expansion */
         padding-right: 5%; /* allow expansion */
         border-radius: 15px; /* more fun-looking */
       }
       .container {
-        padding: 20px;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        padding-left: 15px;
+        padding-right: 15px;
         border: 2px solid var(--border); /* more pop */
         border-radius: 15px; /* more fun-looking */
         background-color: var(--container);
@@ -93,10 +101,12 @@
         border-bottom: none;
       }
       .collapsible-header::after {
-        content: "\25BC"; /* larger, unicode down arrow */
+        font-family: "Noto Sans Symbols 2", sans-serif !important;
+        font-size: 0.9em;
+        content: "\1F783"; /* unicode down arrow matches dropdown arrow */
       }
       .active .collapsible-header::after {
-        content: "\25B2"; /* larger, unicode up arrow */
+        content: "\1F781"; /* unicode up arrow in same style as up arrow */
       }
       input {
         padding-top: unset !important; /* override Materialize CSS */
@@ -229,7 +239,7 @@
                   </div>
                 </div>
                 <div id="cell" class="mid">
-                  &emsp;-&emsp;
+                  &emsp;&ndash;&emsp;
                 </div>
                 <div id="cell">
                   <div class="input-field">
@@ -278,7 +288,7 @@
                         </div>
                       </div>
                       <div id="cell" class="mid">
-                        &emsp;-&emsp;
+                        &emsp;&ndash;&emsp;
                       </div>
                       <div id="cell">
                         <div class="input-field">
