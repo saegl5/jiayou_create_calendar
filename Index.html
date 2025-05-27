@@ -17,13 +17,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols+2&display=swap" rel="stylesheet">
     <style>
       /* Basic styling for the form */
+      /* use few root colors, based on material design */
       :root {
-        /* use few root colors, based on material design */
-        --background: #e0e0e0; /* equal to "grey lighten-2" */
-        --border: black;
-        --container: #fcfcff; /* equal to --md-sys-color-surface */
-        --text: var(--border);
-        --reference: grey;
+          /* Light mode colors (default) */
+          --background: #e0e0e0ff; /* equal to "grey lighten-2" */
+          --border: black;
+          --border-textarea: var(--md-sys-color-primary-light);
+          --container: #fcfcffff; /* equal to --md-sys-color-surface */
+          --text: black;
+          --reference: grey;
+        }
+        
+      /* Dark mode colors */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --background: #e0e0e011; /* dark background */
+          --border: white; /* light border for contrast */
+          --border-textarea: var(--md-sys-color-primary-dark);
+          --container: #fcfcff11; /* dark container */
+          --text: white; /* light text */
+          --reference: grey; /* keep */
+        }
       }
       body {
         background-color: var(--background);
@@ -65,6 +79,11 @@
         font-family: monospace; /* preserve monospace fonts, so that users easily distinguish input fields from non-input fields */
         color: var(--text);
         font-style: normal;
+      }
+      
+      textarea:focus {
+        outline: 2px solid var(--border-textarea);
+        outline-offset: 2px;
       }
       label {
         font-style: italic;
