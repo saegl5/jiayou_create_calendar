@@ -6,9 +6,17 @@ _Suggestion: Run this script in a summer before an upcoming school year; this is
 
 ## Visual Example
 
-<img src="screenshots/calendarForm.png" alt="screenshot of calendar form" width="500"><br>Form for creating "JIA YOU" calendar of events. (Username is hidden.)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="screenshots/calendarFormDark.png">
+  <source media="(prefers-color-scheme: light)" srcset="screenshots/calendarForm.png">
+  <img src="screenshots/calendarForm.png" alt="screenshot of calendar form" width="500">
+</picture>Form for creating "JIA YOU" calendar of events. (Username is hidden.)<br><br>
 
-<img src="screenshots/calendar.png" alt="screenshot of calendar" width="800"><br>"JIA YOU" calendar of events was created.
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="screenshots/calendarDark.png">
+  <source media="(prefers-color-scheme: light)" srcset="screenshots/calendar.png">
+  <img src="screenshots/calendar.png" alt="screenshot of calendar" width="800">
+</picture>"JIA YOU" calendar of events was created.
 
 ## Prerequisite
 
