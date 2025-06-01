@@ -148,6 +148,12 @@ function createCalendar(
     endMonth += 12;
   }
 
+  // CAUTION // 
+  // ------- //
+  // I advise against using eventSeries for creating the JIA YOU calendar //
+  // Chaining events together may potentially disrupt AileenBot from reading the calendar events //
+  // ------- //
+  
   // chain subsequent events to the first event
   // var firstEvent = true;
   // all letter days are used
@@ -224,6 +230,12 @@ function createCalendar(
         // createEvent(); // each letter day goes into a separate series
         calendar.createAllDayEvent(word, date);
       }
+      
+      // CAUTION // 
+      // ------- //
+      // Again, I advise against using eventSeries for creating the JIA YOU calendar //
+      // Chaining events together may potentially disrupt AileenBot from reading the calendar events //
+      // ------- //
 
       // function nested to align with Web app for adding events
       // function createEvent() { // Keeping events as recurring, for now, because recurring events are easier to modify and delete than individual ones
