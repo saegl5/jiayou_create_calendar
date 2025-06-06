@@ -16,7 +16,7 @@ _Suggestion: Run this script in a summer before an upcoming school year; this is
   <source media="(prefers-color-scheme: dark)" srcset="screenshots/calendarDark.png">
   <source media="(prefers-color-scheme: light)" srcset="screenshots/calendar.png">
   <img src="screenshots/calendar.png" alt="screenshot of calendar" width="800" style="display: block; margin-left: 0; margin-right: auto;">
-</picture><p>"JIA YOU" calendar of events was created.
+</picture>"JIA YOU" calendar of events was created.
 
 ## Prerequisite
 
