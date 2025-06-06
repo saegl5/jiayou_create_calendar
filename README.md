@@ -10,13 +10,13 @@ _Suggestion: Run this script in a summer before an upcoming school year; this is
   <source media="(prefers-color-scheme: dark)" srcset="screenshots/calendarFormDark.png">
   <source media="(prefers-color-scheme: light)" srcset="screenshots/calendarForm.png">
   <img src="screenshots/calendarForm.png" alt="screenshot of calendar form" width="500" style="display: block; margin-left: 0; margin-right: auto;">
-</picture>Form for creating "JIA YOU" calendar of events. (Username is hidden.)<br><br>
+</picture><p>Form for creating "JIA YOU" calendar of events. (Username is hidden.)<br><br>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="screenshots/calendarDark.png">
   <source media="(prefers-color-scheme: light)" srcset="screenshots/calendar.png">
   <img src="screenshots/calendar.png" alt="screenshot of calendar" width="800" style="display: block; margin-left: 0; margin-right: auto;">
-</picture>"JIA YOU" calendar of events was created.
+</picture><p>"JIA YOU" calendar of events was created.
 
 ## Prerequisite
 
