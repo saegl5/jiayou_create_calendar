@@ -51,6 +51,10 @@ Access to [Google Apps Script](https://script.google.com/)
 - You can extend the app script to create a calendar cycling any letters or words and in any language. Feel free to fork, too!
 - You can also export the calendar directly from [Google Calendar](https://calendar.google.com/calendar/) and can import it into another calendar on your smartphone. Alternative: Check out Jonathan Hsieh's [AileenBot](https://account.aileenbot.com/), and subscribe to community events. ('Whatever way makes it easier for you to keep track of today's letter...)
 
+## Known Issues
+
+Periodically, new holidays are added to a U.S. calendar (e.g., Jan 9 2025 to observe the passing of former President Jimmy Carter) in the middle of a school year. Although one can simply recreate the (one) calendar, users who referenced the original calendar&mdash;to [add events on its letter days](https://github.com/saegl5/jiayou_add_events)&mdash;would have to recreate all of their events. One might wish to develop a school policy on how to handle such exceptions, for example manually deleting that letter day and manually creating a makeup day.
+
 <hr>
 Made with &heartsuit; in Visual Studio Code and Zed
 
