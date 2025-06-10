@@ -56,7 +56,7 @@ Access to [Google Apps Script](https://script.google.com/)
 Periodically, new holidays are added to a U.S. calendar (e.g., Jan 9 2025 to observe the passing of former President Jimmy Carter) in the middle of a school year. Although one can simply recreate the (one) calendar, users who referenced the original calendar&mdash;to [add events on its letter days](https://github.com/saegl5/jiayou_add_events)&mdash;would have to recreate all of their events. One might wish to develop a school policy on how to handle such exceptions, for example manually deleting that letter day and manually creating a makeup day.
 
 <hr>
-Made with &heartsuit; in Visual Studio Code and Zed
+Made with &heartsuit; in Visual Studio Code
 
 <br>
 
