@@ -19,13 +19,13 @@
       /* Basic styling for the form */
       /* use few root colors, based on material design */
       :root {
-          /* Light mode colors (default) */
-          --background: #e0e0e0ff; /* equal to "grey lighten-2" */
-          --border: black;
-          --border-textarea: var(--md-sys-color-primary-light);
-          --container: #fcfcffff; /* equal to --md-sys-color-surface */
-          --text: black;
-          --reference: grey;
+        /* Light mode colors (default) */
+        --background: #e0e0e0ff; /* equal to "grey lighten-2" */
+        --border: black;
+        --border-textarea: var(--md-sys-color-primary-light);
+        --container: #fcfcffff; /* equal to --md-sys-color-surface */
+        --text: black;
+        --reference: grey;
         }
         
       /* Dark mode colors */
@@ -128,6 +128,9 @@
       }
       .active .collapsible-header::after {
         content: "\1F781"; /* unicode up arrow in same style as up arrow */
+      }
+      .collapsible-header > span {
+        width: 100%;
       }
       input {
         padding-top: unset !important; /* override Materialize CSS */
