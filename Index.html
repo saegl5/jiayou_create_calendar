@@ -118,6 +118,9 @@
         color: var(--reference);
         font-family: monospace;
       }
+      .collapsible-header {
+        position: relative;
+      }
       .collapsible-header, .collapsible-body {
         border-bottom: none;
       }
@@ -125,6 +128,10 @@
         font-family: "Noto Sans Symbols 2", sans-serif !important;
         font-size: 0.9em;
         content: "\1F783"; /* unicode down arrow matches dropdown arrow */
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-25%);
       }
       .active .collapsible-header::after {
         content: "\1F781"; /* unicode up arrow in same style as up arrow */
