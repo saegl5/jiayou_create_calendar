@@ -53,7 +53,8 @@ Access to [Google Apps Script](https://script.google.com/)
 
 ## Known Issues
 
-Periodically, new holidays are added to a U.S. calendar (e.g., Jan 9 2025 to observe the passing of former President Jimmy Carter) in the middle of a school year. Although one can simply recreate the (one) calendar, users who referenced the original calendar&mdash;to [add events on its letter days](https://github.com/saegl5/jiayou_add_events)&mdash;would have to recreate all of their events. One might wish to develop a school policy on how to handle such exceptions, for example manually deleting that letter day and manually creating a makeup day.
+1. Periodically, new holidays are added to a U.S. calendar (e.g., Jan 9 2025 to observe the passing of former President Jimmy Carter) in the middle of a school year. Although one can simply recreate the (one) calendar, users who referenced the original calendar&mdash;to [add events on its letter days](https://github.com/saegl5/jiayou_add_events)&mdash;would have to recreate all of their events. One might wish to develop a school policy on how to handle such exceptions, for example manually deleting that letter day and manually creating a makeup day.
+2. [Index.html](./Index.html) is verbose; while one *can* modularize styles and scripts to make it less verbose,  Microsoft's Live Preview - VS Code Extension cannot run server-side JavaScript. (Note to self: If the extension ever can run server-side JavaScript, then place styles and scripts into separate HTML files, call them using `<?!= include('Stylesheet') ?>` and `<?!= include('JavaScript') ?>`, and then, in [Code.gs](./Code.gs), create a template from the Index and create HTML output from the separate HTML files.)
 
 <hr>
 Made with &heartsuit; in Visual Studio Code
