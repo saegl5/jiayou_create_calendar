@@ -8,7 +8,7 @@
 
 function doGet() {
   return HtmlService.createHtmlOutputFromFile("Index").setTitle(
-    'Create 加油 ("jiā yóu") Calendar'
+    'Create 加油 Calendar'
   );
 }
 

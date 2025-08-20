@@ -1,6 +1,8 @@
-# Create 加油 ("jiā yóu") Calendar
+# Create 加油 Calendar
 
-Google Web app for creating a calendar of individual events that cycles the words "J Day," "I Day," "A Day," "Y Day," "O Day," and "U Day," except on weekends and holidays. Modify as needed, and back up your calendars before you run the app. Without an app script, one would need to create these events manually.
+加油 is a common Chinese expression consisting of two characters, pronounced *jiā yóu* in Mandarin; it is often used as an encouragement.
+
+Create 加油 Calendar is a Google Web app for creating a calendar of individual events that cycles the words "J Day," "I Day," "A Day," "Y Day," "O Day," and "U Day," except on weekends and holidays. Modify as needed, and back up your calendars before you run the app. Without an app script, one would need to create these events manually.
 
 _Suggestion: Run this script in a summer before an upcoming school year; this is because the script will create events starting in the current year._
 
