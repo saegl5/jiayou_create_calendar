@@ -224,11 +224,15 @@ function createCalendar(
         }
       }
       if (halfDay === true) {
-        continue;
+        // eventIndex -= 1; // uncomment to repeat previous letter day
+        continue; // comment out to repeat previous letter day
       }
 
       // Create an event with the current word
       var word = words[eventIndex % words.length];
+      if (halfDay === true) {
+        // word += " (Repeat)"; // uncomment to repeat previous letter day
+      }
       if (!dryRun) {
         // createEvent(); // each letter day goes into a separate series
         calendar.createAllDayEvent(word, date);
@@ -278,7 +282,7 @@ function createCalendar(
       if (halfDay === true) {
         halfDay = false; // reset
         // then skip
-        eventIndex++; // originally skipped, keep comment for legacy
+        eventIndex++; // originally skipped, keep comment for legacy, in fact I was supposed to repeat previous letter day not current one
       } else {
         eventIndex++;
       }
