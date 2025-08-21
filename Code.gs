@@ -195,7 +195,7 @@ function createCalendar(
     else day = 1;
     if (month === endMonth && end !== "")
       daysInMonth = end.getDate(); // override daysInMonth
-    else // don't override daysInMonth
+    // else // don't override daysInMonth, leaving "else" hanging confused web app
 
     for (day; day <= daysInMonth; day++) {
       if (month <= 12) {
