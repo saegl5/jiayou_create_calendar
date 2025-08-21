@@ -39,7 +39,7 @@ Access to [Google Apps Script](https://script.google.com/)
 
 7. Check the username to ensure that you opened the URL in the correct account.
 8. Modify the calendar name and time zone.
-9. Add any exceptions to the U.S. holiday schedule, any half-days, and any extra holidays. (Exceptions tell the app script to create events on these holidays; half-days tell the app script to skip this day; and extra holidays tell the app script _not_ to create events on these non-holidays. Order does _not_ matter.)
+9. Add any exceptions to the U.S. holiday schedule, any half-days, and any extra holidays. (Consult [Google Calendar](https://calendar.google.com/calendar/) for the U.S. holiday schedule. Exceptions tell the app script to create events on these holidays; half-days tell the app script to skip this day; and extra holidays tell the app script _not_ to create events on these non-holidays. Order does _not_ matter.)
 10. Modify the start and end months. (If the start month is greater than the end month, then the calendar will roll over to the new year.)
 11. Expand the collapsible region, as well, to specify a date range by inputting a start date and end date. (For consistency, if the start date is later than the end date, then the calendar will roll over to the new year.)
 12. Optionally perform a dry run to test the Web app before running it in production. Consult logs for output.
