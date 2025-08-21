@@ -55,7 +55,8 @@ function createCalendar(
   }
   if (
     holidayExceptions.length > 1 &&
-    holidayExceptions[0].getFullYear() !== holidayExceptions[1].getFullYear()
+    holidayExceptions[0].getFullYear() !== holidayExceptions[1].getFullYear() &&
+    holidayExceptions[0].getFullYear() !== holidayExceptions[1].getFullYear()-1 // could have two different years
     // holidayExceptions[0].getFullYear()-1 !== holidayExceptions[1].getFullYear()-1 // Previous year, keep in case you choose to recreate previous calendar next year
     // checks first two items because likely users will use a consistent style for additional dates
   )
@@ -72,7 +73,8 @@ function createCalendar(
   }
   if (
     halfDays.length > 1 &&
-    halfDays[0].getFullYear() !== halfDays[1].getFullYear()
+    halfDays[0].getFullYear() !== halfDays[1].getFullYear() &&
+    halfDays[0].getFullYear() !== halfDays[1].getFullYear()-1 // could have two different years
     // halfDays[0].getFullYear()-1 !== halfDays[1].getFullYear()-1 // Previous year, keep in case you choose to recreate previous calendar next year
     // checks first two items because likely users will use a consistent style for additional dates
   )
@@ -89,7 +91,8 @@ function createCalendar(
   }
   if (
     extraHolidays.length > 1 &&
-    extraHolidays[0].getFullYear() !== extraHolidays[1].getFullYear()
+    extraHolidays[0].getFullYear() !== extraHolidays[1].getFullYear() &&
+    extraHolidays[0].getFullYear() !== extraHolidays[1].getFullYear()-1 // could have two different years
     // extraHolidays[0].getFullYear()-1 !== extraHolidays[1].getFullYear()-1 // Previous year, keep in case you choose to recreate previous calendar next year
     // checks first two items because likely users will use a consistent style for additional dates
   )
