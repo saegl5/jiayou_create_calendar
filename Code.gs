@@ -23,8 +23,8 @@ function createCalendar(
   holidayExceptions,
   halfDays,
   extraHolidays,
-  startMonth,
-  endMonth,
+  // startMonth,
+  // endMonth,
   start,
   end,
   dryRun
@@ -113,27 +113,29 @@ function createCalendar(
   var words = ["J Day", "I Day", "A Day", "Y Day", "O Day", "U Day"];
 
   // Define the start and end months
-  var startMonth = parseInt(startMonth);
-  var endMonth = parseInt(endMonth);
+  // var startMonth = parseInt(startMonth);
+  var startMonth;
+  // var endMonth = parseInt(endMonth);
+  var endMonth;
   var year = new Date().getFullYear(); // Current year
   // var year = new Date().getFullYear()-1; // Previous year, keep in case you choose to recreate previous calendar next year
 
   // Check for dates
-  if (start !== "") {
-    if (regex.test(start) === true) {
-      start = new Date(start);
-      start = adjustTime(start);
-    } else start = new Date(start);
-    startMonth = start.getMonth() + 1 // override startMonth, indices start at 0
-  }
+  // if (start !== "") {, required now
+  if (regex.test(start) === true) {
+    start = new Date(start);
+    start = adjustTime(start);
+  } else start = new Date(start);
+  startMonth = start.getMonth() + 1 // override startMonth, indices start at 0
+  // }
 
-  if (end !== "") {
-    if (regex.test(end) === true) {
-      end = new Date(end);
-      end = adjustTime(end);
-    } else end = new Date(end);
-    endMonth = end.getMonth() + 1 // override endMonth, indices start at 0
-  }
+  // if (end !== "") {, required now
+  if (regex.test(end) === true) {
+    end = new Date(end);
+    end = adjustTime(end);
+  } else end = new Date(end);
+  endMonth = end.getMonth() + 1 // override endMonth, indices start at 0
+  // }
   
   // Get the holidays starting the current year
   var holidays = getHolidays(
