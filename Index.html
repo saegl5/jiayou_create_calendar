@@ -257,26 +257,14 @@
             <!-- need to stay generalized -->            
             <br><br>
             
-            <h5>Months</h5>
+            <h5>Date</h5>
             <div id="table">
               <div id="row">
                 <div id="cell">
                   <div class="input-field">
-                    <select id="startMonth">
-                      <option value="1">January</option>
-                      <option value="2">February</option>
-                      <option value="3">March</option>
-                      <option value="4">April</option>
-                      <option value="5">May</option>
-                      <option value="6">June</option>
-                      <option value="7">July</option>
-                      <option value="8" selected="selected">August</option>
-                      <option value="9">September</option>
-                      <option value="10">October</option>
-                      <option value="11">November</option>
-                      <option value="12">December</option>                    
-                    </select>
-                    <!-- <label for="startMonth">Start</label> -->
+                    <input id="start" type="text" class="validate" placeholder="Optional" />
+                    <!-- <label for="start">Start</label> -->
+                    <!-- replacing placeholder="Optional" with the current date is a good idea for convenience -->
                   </div>
                 </div>
                 <div id="cell" class="mid">
@@ -284,48 +272,47 @@
                 </div>
                 <div id="cell">
                   <div class="input-field">
-                    <select id="endMonth">
-                      <option value="1">January</option>
-                      <option value="2">February</option>
-                      <option value="3">March</option>
-                      <option value="4">April</option>
-                      <option value="5">May</option>
-                      <option value="6" selected="selected">June</option>
-                      <!-- school ends mid-Jun -->
-                      <option value="7">July</option>
-                      <option value="8">August</option>
-                      <option value="9">September</option>
-                      <option value="10">October</option>
-                      <option value="11">November</option>
-                      <option value="12">December</option>
-                    </select>
-                    <!-- <label for="endMonth">End</label> -->
+                    <input id="end" type="text" class="validate" placeholder="Optional" />
+                    <!-- <label for="end">End</label>                     -->
+                    <!-- <input type="text" id="end" name="end" placeholder="6/12/2025" /> redundant since internal calendar events end same date -->
                   </div>
                 </div>
               </div>
             </div>
-            <!-- preselected for convenience -->
-            <!-- If startMonth > endMonth, then the calendar will roll over to the new year -->
-            <br />
-            <!-- </div> -->
+            <!-- <label for="dates" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label> -->
+            <span for="dates" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</span>
+            <!-- Confine date range -->
+            <br>
 
             <br />
 
             <ul class="collapsible">
               <li>
                 <div class="collapsible-header">
-                  <span name="collapsible-header">Specify&nbsp;date&nbsp;(optional)</span>
+                  <span name="collapsible-header">Specify&nbsp;months</span>
                 </div>
                 <div class="collapsible-body">
 
-                  <h5>Date</h5>
+                  <h5>Months</h5>
                   <div id="table">
                     <div id="row">
                       <div id="cell">
                         <div class="input-field">
-                          <input id="start" type="text" class="validate" placeholder="Optional" />
-                          <!-- <label for="start">Start</label> -->
-                          <!-- replacing placeholder="Optional" with the current date is a good idea for convenience -->
+                          <select id="startMonth">
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8" selected="selected">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>                    
+                          </select>
+                          <!-- <label for="startMonth">Start</label> -->
                         </div>
                       </div>
                       <div id="cell" class="mid">
@@ -333,18 +320,31 @@
                       </div>
                       <div id="cell">
                         <div class="input-field">
-                          <input id="end" type="text" class="validate" placeholder="Optional" />
-                          <!-- <label for="end">End</label>                     -->
-                          <!-- <input type="text" id="end" name="end" placeholder="6/12/2025" /> redundant since internal calendar events end same date -->
+                          <select id="endMonth">
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6" selected="selected">June</option>
+                            <!-- school ends mid-Jun -->
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                          </select>
+                          <!-- <label for="endMonth">End</label> -->
                         </div>
                       </div>
                     </div>
                   </div>
-                  <!-- <label for="dates" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label> -->
-                  <span for="dates" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</span>
-                  <!-- Confine date range -->
-                  <br><br><br>
-            
+                  <!-- preselected for convenience -->
+                  <!-- If startMonth > endMonth, then the calendar will roll over to the new year -->
+                  <br /><br /><br />
+                  <!-- </div> -->
+                              
                 </div>
               </li>
             </ul>
