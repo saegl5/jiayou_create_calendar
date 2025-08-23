@@ -226,14 +226,14 @@ function createCalendar(
         }
       }
       if (halfDay === true) {
-        // eventIndex -= 1; // uncomment to repeat previous letter day
-        continue; // comment out to repeat previous letter day
+        eventIndex -= 1; // uncomment to repeat previous letter day
+        // continue; // comment out to repeat previous letter day
       }
 
       // Create an event with the current word
       var word = words[eventIndex % words.length];
       if (halfDay === true) {
-        // word += " (Repeat)"; // uncomment to repeat previous letter day
+        word += " (Repeat)"; // uncomment to repeat previous letter day
       }
       if (!dryRun) {
         // createEvent(); // each letter day goes into a separate series
