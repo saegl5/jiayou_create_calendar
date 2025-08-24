@@ -136,6 +136,7 @@ function createCalendar(
       var word = words[eventIndex % words.length];
       if (!dryRun) {
         // createEvent();
+        Utilities.sleep(1000); // mitigate use limit
         calendar.createAllDayEvent(word, date);
       }
 
