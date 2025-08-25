@@ -151,8 +151,21 @@ function createCalendar(
         continue;
       }
 
-      // Create an event with the current word
+      // Check if the day is a half-day
+      var halfDay = "no";
+      for (var l = 0; l < halfDays.length; l++) {
+        if (date.toDateString() === halfDays[l].toDateString()) {
+          halfDay = "yes";
+          continue;
+        }
+      }
+      if (halfDay === "yes")
+        eventIndex -= 1; // to repeat the previous word
+
+      // Create an event with the current or previous word
       var word = words[eventIndex % words.length];
+      if (halfDay === "yes")
+        word += " (Repeat)"; // note the repeated word
       if (!dryRun) {
         // createEvent();
         Utilities.sleep(1000); // mitigate use limit
@@ -212,20 +225,13 @@ function createCalendar(
       // Log which words were created
       Logger.log("Created " + word + " on " + date + "!");
 
-      // Unless an event is a half-day, increment the event counter
-      var halfDay = "no";
-      for (var l = 0; l < halfDays.length; l++) {
-        if (date.toDateString() === halfDays[l].toDateString()) {
-          halfDay = "yes";
-          continue;
-        }
-      }
-      if (halfDay === "yes") {
-        halfDay = "no"; // reset
-        // then skip
-      } else {
-        eventIndex++;
-      }
+      // if (halfDay === "yes") {
+        // halfDay = "no"; // reset
+        // then skip to repeat letter day
+      // } else {
+      eventIndex++; // increment the event counter anyway
+      // }
+
     }
   }
   return "Calendar created! Go to your Google Calendar...";
