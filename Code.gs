@@ -227,7 +227,7 @@ function createCalendar(
       }
       if (halfDay === true) {
         eventIndex -= 1; // uncomment to repeat previous letter day
-        // continue; // comment out to repeat previous letter day
+        // continue; // uncomment to skip this day, now considered legacy code
       }
 
       // Create an event with the current word
@@ -274,16 +274,8 @@ function createCalendar(
       // Log which words were created
       Logger.log("Created " + word + " on " + date + "!");
 
-      // Even if an event is a half-day, increment the event counter
-      // var halfDay = false;
-      // for (var l = 0; l < halfDays.length; l++) {
-      //   if (date.toDateString() === halfDays[l].toDateString()) {
-      //     halfDay = true;
-      //     continue;
-      //   }
-      // }
       if (halfDay === true) {
-        halfDay = false; // reset
+        // halfDay = false; // reset, redundant
         // then skip
         eventIndex++; // originally skipped, keep comment for legacy, in fact I was supposed to repeat previous letter day not current one
       } else {
