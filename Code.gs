@@ -12,8 +12,10 @@ function createCalendar(
   holidayExceptions,
   halfDays,
   extraHolidays,
-  startMonth,
-  endMonth,
+  // startMonth,
+  // endMonth,
+  start,
+  end,
   dryRun
 ) {
   var holidayCalendar = "en.usa#holiday@group.v.calendar.google.com";
@@ -75,9 +77,15 @@ function createCalendar(
   // Define the words to cycle through
   var words = ["J Day", "I Day", "A Day", "Y Day", "O Day", "U Day"];
 
+  // Process dates
+  start = new Date(start);
+  end = new Date(end);
+
   // Define the start and end months
-  var startMonth = parseInt(startMonth);
-  var endMonth = parseInt(endMonth);
+  // var startMonth = parseInt(startMonth);
+  var startMonth = start.getMonth() + 1 // indices start at 0;
+  // var endMonth = parseInt(endMonth);
+  var endMonth = end.getMonth() + 1 // indices start at 0;
   var year = new Date().getFullYear(); // Current year
 
   // Get the holidays starting the current year
@@ -117,7 +125,15 @@ function createCalendar(
     }
 
     // Loop through each day of the month
-    for (var day = 1; day <= daysInMonth; day++) {
+    var day;
+    if (month === startMonth)
+      day = start.getDate(); // override day
+    else day = 1;
+    if (month === endMonth)
+      daysInMonth = end.getDate(); // override daysInMonth
+    // else don't override daysInMonth, leaving "else" hanging confused web app
+
+    for (day; day <= daysInMonth; day++) {
       if (month <= 12) {
         var date = new Date(year, month - 1, day);
       } else {
