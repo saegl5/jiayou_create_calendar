@@ -192,10 +192,10 @@ function createCalendar(
 
     // Loop through each day of the month
     var day;
-    if (month === startMonth && start !== "")
+    if (month === startMonth) // && start !== "")
       day = start.getDate(); // override day
     else day = 1;
-    if (month === endMonth && end !== "")
+    if (month === endMonth) // && end !== "")
       daysInMonth = end.getDate(); // override daysInMonth
     // else // don't override daysInMonth, leaving "else" hanging confused web app
 
