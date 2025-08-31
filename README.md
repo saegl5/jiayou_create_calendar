@@ -33,16 +33,17 @@ Access to [Google Apps Script](https://script.google.com/)
 3. Run the script to acquire authorization.
 4. Create an HTML file, and name it "Index."
 5. Copy and paste [the markup text](./Index.html) into the editor, and save the file.
-6. Deploy the project as a Web app, and open the assigned URL.
+6. Repeat steps 4-5 to create [Script.html](./Script.html) and [Style.html](./Style.html)
+7. Deploy the project as a Web app, and open the assigned URL.
 
 ### How to Use
 
-7. Check the username to ensure that you opened the URL in the correct account.
-8. Modify the calendar name and time zone.
-9. Add any exceptions to the U.S. holiday schedule, any half-days, and any extra holidays. (Consult [Google Calendar](https://calendar.google.com/calendar/) for the U.S. holiday schedule. Exceptions tell the app script to create events on these holidays; half-days tell the app script to repeat previous day; and extra holidays tell the app script _not_ to create events on these non-holidays. Order does _not_ matter.)
-10. Specify a date range by inputting a start date and end date. (If the start date is later than the end date, then the calendar will roll over to the new year.)
-11. Optionally perform a dry run to test the Web app before running it in production. Consult logs for output.
-12. Press submit. (Requires another authorization. **_Note also that creating calendars is subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en)._**)
+8. Check the username to ensure that you opened the URL in the correct account.
+9. Modify the calendar name and time zone.
+10. Add any exceptions to the U.S. holiday schedule, any half-days, and any extra holidays. (Consult [Google Calendar](https://calendar.google.com/calendar/) for the U.S. holiday schedule. Exceptions tell the app script to create events on these holidays; half-days tell the app script to repeat previous day; and extra holidays tell the app script _not_ to create events on these non-holidays. Order does _not_ matter.)
+11. Specify a date range by inputting a start date and end date. (If the start date is later than the end date, then the calendar will roll over to the new year.)
+12. Optionally perform a dry run to test the Web app before running it in production. Consult logs for output.
+13. Press submit. (Requires another authorization. **_Note also that creating calendars is subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en)._**)
 
 ## Next Steps
 
@@ -53,8 +54,7 @@ Access to [Google Apps Script](https://script.google.com/)
 
 ## Known Issues
 
-1. Periodically, new holidays are added to a U.S. calendar (e.g., Jan 9 2025 to observe the passing of former President Jimmy Carter) in the middle of a school year. Although one can simply recreate the (one) calendar, users who referenced the original calendar&mdash;to [add events on its letter days](https://github.com/saegl5/jiayou_add_events)&mdash;would have to recreate all of their events. One might wish to develop a school policy on how to handle such exceptions, for example manually deleting that letter day and manually creating a makeup day.
-2. [Index.html](./Index.html) is verbose; while one *can* modularize styles and scripts to make it less verbose,  Microsoft's Live Preview - VS Code Extension cannot run server-side JavaScript. (Note to self: If the extension ever can run server-side JavaScript, then place styles and scripts into separate HTML files, call them using `<?!= include('Stylesheet') ?>` and `<?!= include('JavaScript') ?>`, and then, in [Code.gs](./Code.gs), create a template from the Index and create HTML output from the separate HTML files.)
+Periodically, new holidays are added to a U.S. calendar (e.g., Jan 9 2025 to observe the passing of former President Jimmy Carter) in the middle of a school year. Although one can simply recreate the (one) calendar, users who referenced the original calendar&mdash;to [add events on its letter days](https://github.com/saegl5/jiayou_add_events)&mdash;would have to recreate all of their events. One might wish to develop a school policy on how to handle such exceptions, for example manually deleting that letter day and manually creating a makeup day.
 
 <hr>
 Made with &heartsuit; in Visual Studio Code

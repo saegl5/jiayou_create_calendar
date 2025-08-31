@@ -7,9 +7,13 @@
 // This is because the script will create events starting in the current year.
 
 function doGet() {
-  return HtmlService.createHtmlOutputFromFile("Index").setTitle(
-    'Create 加油 Calendar'
-  );
+  var template = HtmlService.createTemplateFromFile("Index"); // don't createHtmlOutputFromFile() yet
+  return template.evaluate().setTitle('Create 加油 Calendar');
+}
+
+// Function to include Stylesheet and JavaScript in Index
+function include(filename) {
+  return HtmlService.createHtmlOutputFromFile(filename).getContent(); // now createHtmlOutputFromFile()
 }
 
 // Used by Index.html for username
