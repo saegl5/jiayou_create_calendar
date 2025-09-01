@@ -241,7 +241,7 @@ function createCalendar(
       }
       if (!dryRun) {
         // createEvent(); // each letter day goes into a separate series
-        Utilities.sleep(1000); // mitigate use limit
+        Utilities.sleep(500); // mitigate use limit
         calendar.createAllDayEvent(word, date);
       }
       
