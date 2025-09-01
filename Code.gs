@@ -31,6 +31,7 @@ function createCalendar(
   // endMonth,
   start,
   end,
+  markWeek,
   dryRun
 ) {
   var holidayCalendar = "en.usa#holiday@group.v.calendar.google.com"; // calendar is hard-coded
@@ -152,6 +153,9 @@ function createCalendar(
   // Event counter
   var eventIndex = 0;
 
+  // Weekly cycle counter
+  var weekIndex = 0;
+
   // Allow roll over
   if (startMonth > endMonth) {
     endMonth += 12;
@@ -234,8 +238,15 @@ function createCalendar(
         // continue; // uncomment to skip this day, now considered legacy code
       }
 
+      // Check if new weekly cycle
+      if (halfDay === false && eventIndex % words.length === 0)
+        weekIndex++;
+
       // Create an event with the current word
       var word = words[eventIndex % words.length];
+      if (markWeek === true) {
+        word += " (Wk " + weekIndex + ")";
+      }
       if (halfDay === true) {
         word += " (Repeat)"; // uncomment to repeat previous letter day
       }

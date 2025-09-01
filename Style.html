@@ -29,6 +29,7 @@
     header,
     div[id="section"],
     .mid,
+    div[id="mark"], /* associated checkbox also stylized in code */
     div[id="dry"], /* associated checkbox also stylized in code */
     .button, /* button also stylized in code */
     div[id="wait"],
@@ -71,6 +72,7 @@
     label {
     font-style: italic;
     }
+    div[id="mark"] > label > span,
     div[id="dry"] > label > span {
     /* .collapsible-header > span { */
     font-family: unset;
@@ -130,7 +132,7 @@
     /* preserve padding-top */
     resize: vertical !important; /* override Materialize CSS */
     }
-    span[id="dryRun"] {
+    span[id="markWeek"], span[id="dryRun"] {
     line-height: 20px !important; /* override Materialize CSS */
     }
     h1 {

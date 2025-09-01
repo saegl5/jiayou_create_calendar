@@ -49,6 +49,7 @@
         // var endMonth = document.getElementById("endMonth").value;
         var start = document.getElementById("start").value;
         var end = document.getElementById("end").value;
+        var markWeek = document.getElementById("markWeek").checked; // by default, checkbox is unchecked, meaning .checked is false
         var dryRun = document.getElementById("dryRun").checked; // by default, checkbox is unchecked, meaning .checked is false
 
         document.getElementById("wait").innerHTML = "Please wait...";
@@ -67,6 +68,7 @@
             // endMonth,
             start,
             end,
+            markWeek,
             dryRun
         );
     }); // public holiday calendar has been hard-coded
