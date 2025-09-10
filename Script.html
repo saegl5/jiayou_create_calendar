@@ -15,6 +15,7 @@
             "Welcome, " + response;
         })
         .getUsername();
+         document.getElementById("markText").setAttribute("disabled", "true");
     }
 
     // document
@@ -31,6 +32,14 @@
     //     event.preventDefault(); // Prevents the form from submitting the traditional way
     //     document.getElementById("end").value = "test2";
     //   });
+
+    document.getElementById("markWeek")
+        .addEventListener("change", function (event) {
+            if (document.getElementById("markWeek").checked === false)
+                document.getElementById("markText").setAttribute("disabled", "true");
+            else document.getElementById("markText").removeAttribute("disabled");
+        }
+    );
 
     document
     .getElementById("calendarForm")
@@ -50,6 +59,7 @@
         var start = document.getElementById("start").value;
         var end = document.getElementById("end").value;
         var markWeek = document.getElementById("markWeek").checked; // by default, checkbox is unchecked, meaning .checked is false
+        var markText = document.getElementById("markText").value;
         var dryRun = document.getElementById("dryRun").checked; // by default, checkbox is unchecked, meaning .checked is false
 
         document.getElementById("wait").innerHTML = "Please wait...";
@@ -69,6 +79,7 @@
             start,
             end,
             markWeek,
+            markText,
             dryRun
         );
     }); // public holiday calendar has been hard-coded

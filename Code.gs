@@ -32,6 +32,7 @@ function createCalendar(
   start,
   end,
   markWeek,
+  markText,
   dryRun
 ) {
   var holidayCalendar = "en.usa#holiday@group.v.calendar.google.com"; // calendar is hard-coded
@@ -245,7 +246,13 @@ function createCalendar(
       // Create an event with the current word
       var word = words[eventIndex % words.length];
       if (markWeek === true) {
-        word += " (Wk " + weekIndex + ")";
+        if (markText === "") 
+          word += " (Wk " + weekIndex + ")"; // default text
+        else {
+          if (markText.includes("#"))
+            word += " " + markText.replace("#", weekIndex);
+          else word += " " + markText; // user-defined text
+        }
       }
       if (halfDay === true) {
         word += " (Repeat)"; // uncomment to repeat previous letter day
