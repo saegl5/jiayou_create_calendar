@@ -194,9 +194,11 @@ function createCalendar(
     // Determine the number of days in the month
     if (month <= 12) {
       daysInMonth = new Date(year, month, 0).getDate();
+      // Months are zero-indexed, but a day value of 0 means “the last day of the previous month”
     } else {
       // roll over
       daysInMonth = new Date(year + 1, month % 12, 0).getDate();
+      // Months are zero-indexed, but a day value of 0 means “the last day of the previous month”
     }
 
     // Loop through each day of the month
