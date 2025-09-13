@@ -24,7 +24,158 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols+2&display=swap"
       rel="stylesheet"
     />
-    <?!= include('Style') ?>
+    <style>
+      /* Basic styling for the form */
+      /* use few root colors, based on material design */
+      :root {
+        /* Light mode colors (default) */
+        --background: #e0e0e0ff; /* equal to "grey lighten-2" */
+        --border: black;
+        --border-textarea: var(--md-sys-color-primary-light);
+        --container: #fcfcffff; /* equal to --md-sys-color-surface */
+        --text: black;
+        --reference: grey;
+      }
+
+      /* Dark mode colors */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --background: #e0e0e011; /* dark background */
+          --border: white; /* light border for contrast */
+          --border-textarea: var(--md-sys-color-primary-dark);
+          --container: #fcfcff11; /* dark container */
+          --text: white; /* light text */
+          --reference: grey; /* keep */
+        }
+      }
+      body {
+        background-color: var(--background);
+        font-optical-sizing: auto; /* suggested by google font */
+      }
+      header,
+    div[id="section"],
+    .mid,
+    /*div[id="mark"],*/ /* associated checkbox also stylized in code */
+    div[id="dry"], /* associated checkbox also stylized in code */
+    .button, /* button also stylized in code */
+    div[id="wait"],
+    footer {
+        text-align: center;
+      }
+      /* div[id="user"] { */
+      /* font-weight: bold; */
+      /* } */
+      form {
+        max-width: 95%;
+        margin: 0 auto;
+        padding-left: 5%; /* allow expansion */
+        padding-right: 5%; /* allow expansion */
+        border-radius: 15px; /* more fun-looking */
+      }
+      .container {
+        padding-top: 10px;
+        padding-bottom: 20px;
+        padding-left: 15px;
+        padding-right: 15px;
+        border: 2px solid var(--border); /* more pop */
+        border-radius: 15px; /* more fun-looking */
+        background-color: var(--container);
+      }
+      input,
+      textarea,
+      span,
+      div[id="wait"],
+      div[id="user"] {
+        font-family: monospace; /* preserve monospace fonts, so that users easily distinguish input fields from non-input fields */
+        color: var(--text);
+        font-style: normal;
+      }
+
+      textarea:focus {
+        outline: 2px solid var(--border-textarea);
+        outline-offset: 2px;
+      }
+      label {
+        font-style: italic;
+      }
+      div[id="mark"] > label > span,
+      div[id="dry"] > label > span {
+        /* .collapsible-header > span { */
+        font-family: unset;
+      }
+      .extra {
+        padding-left: 17px;
+        color: var(--reference);
+        font-style: italic;
+        font-family: unset;
+      }
+      div[id="table"] {
+        display: table;
+        width: 100%;
+      }
+      div[id="row"] {
+        display: table-row;
+      }
+      div[id="cell"],
+      .mid {
+        display: table-cell;
+      }
+      /* .collapsible {
+    border: none;
+    box-shadow: none;
+    } */
+      .reference {
+        font-size: smaller;
+        color: var(--reference);
+        font-family: monospace;
+      }
+      /* .collapsible-header {
+    position: relative;
+    } */
+      /* .collapsible-header, .collapsible-body {
+    border-bottom: none;
+    } */
+      /* .collapsible-header::after { */
+      /* font-family: "Noto Sans Symbols 2", sans-serif !important; */
+      /* font-size: 0.9em; */
+      /*content: "\1F783";*/ /* unicode down arrow matches dropdown arrow */
+      /* position: absolute; */
+      /* right: 14px; */
+      /* top: 50%; */
+      /* transform: translateY(-25%); */
+      /* } */
+      /* .active .collapsible-header::after { */
+      /*content: "\1F781";*/ /* unicode up arrow in same style as up arrow */
+      /* } */
+      /* .collapsible-header > span {
+    width: 100%;
+    } */
+      input {
+        padding-top: unset !important; /* override Materialize CSS */
+        height: 28px !important; /* override Materialize CSS */
+      }
+      textarea.materialize-textarea {
+        /* preserve padding-top */
+        resize: vertical !important; /* override Materialize CSS */
+      }
+      span[id="markWeek"],
+      span[id="dryRun"] {
+        line-height: 20px !important; /* override Materialize CSS */
+      }
+      h1 {
+        display: inline;
+      }
+      h1[id="sansFixed"] {
+        font-family: system-ui;
+      }
+      h1[id="serifFixed"] {
+        font-family: "Noto Sans SC", sans-serif;
+      }
+      .input-field input:disabled {
+        color: var(--reference);
+      }
+    </style>
+    <!-- <?!= include('Style') ?> -->
   </head>
   <body onload="load()">
     <header>
@@ -344,6 +495,92 @@ Oct 9 2025, Oct 10 2025, Nov 7 2025, Nov 14 2025, Nov 24 2025, Nov 25 2025, Nov 
       </p>
     </footer>
 
-    <?!= include('Script') ?>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // const elems = document.querySelectorAll("select");
+        // M.FormSelect.init(elems);
+        M.AutoInit();
+        load();
+      });
+
+      // JavaScript handles form submission and sends data to the Google Apps Script
+      function load() {
+        google.script.run
+          .withSuccessHandler(function (response) {
+            document.getElementById("user").innerHTML = "Welcome, " + response;
+          })
+          .getUsername();
+        document.getElementById("markText").setAttribute("disabled", "true");
+      }
+
+      // document
+      //   .getElementById("calendarForm")
+      //   .addEventListener("startMonth", function (event) {
+      //     event.preventDefault(); // Prevents the form from submitting the traditional way
+      //     // document.getElementById("start").value = "test1";
+      //     document.getElementsByClassName("validate").value = "test1";
+      //   });
+
+      // document
+      //   .getElementById("calendarForm")
+      //   .addEventListener("endMonth", function (event) {
+      //     event.preventDefault(); // Prevents the form from submitting the traditional way
+      //     document.getElementById("end").value = "test2";
+      //   });
+
+      document
+        .getElementById("markWeek")
+        .addEventListener("change", function (event) {
+          if (document.getElementById("markWeek").checked === false)
+            document
+              .getElementById("markText")
+              .setAttribute("disabled", "true");
+          else document.getElementById("markText").removeAttribute("disabled");
+        });
+
+      document
+        .getElementById("calendarForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevents the form from submitting the traditional way
+
+          var calendarName = document.getElementById("calendarName").value;
+          var timeZone = document.getElementById("timeZone").value;
+          // var holidayCalendar =
+          //   document.getElementById("holidayCalendar").value;
+          var holidayExceptions =
+            document.getElementById("holidayExceptions").value;
+          var halfDays = document.getElementById("halfDays").value;
+          var extraHolidays = document.getElementById("extraHolidays").value;
+          // var startMonth = document.getElementById("startMonth").value;
+          // var endMonth = document.getElementById("endMonth").value;
+          var start = document.getElementById("start").value;
+          var end = document.getElementById("end").value;
+          var markWeek = document.getElementById("markWeek").checked; // by default, checkbox is unchecked, meaning .checked is false
+          var markText = document.getElementById("markText").value;
+          var dryRun = document.getElementById("dryRun").checked; // by default, checkbox is unchecked, meaning .checked is false
+
+          document.getElementById("wait").innerHTML = "Please wait...";
+
+          google.script.run
+            .withSuccessHandler(function (response) {
+              document.getElementById("wait").innerHTML = response; // Displays a success message when completed
+            })
+            .createCalendar(
+              calendarName,
+              timeZone,
+              holidayExceptions,
+              halfDays,
+              extraHolidays,
+              // startMonth,
+              // endMonth,
+              start,
+              end,
+              markWeek,
+              markText,
+              dryRun
+            );
+        }); // public holiday calendar has been hard-coded
+    </script>
+    <!-- <?!= include('Script') ?> -->
   </body>
 </html>
