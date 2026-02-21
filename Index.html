@@ -109,6 +109,15 @@
         font-style: italic;
         font-family: unset;
       }
+      .extra-padding {
+        padding-left: 17px;
+        color: var(--reference);
+        font-style: italic;
+        font-family: unset;
+        margin-top: 3px;
+        display: block; /* allow margin to take effect */
+        margin-bottom: -18px; /* reduce space between extra and next element, since extra is now block-level */
+      }
       div[id="table"] {
         display: table;
         width: 100%;
@@ -206,8 +215,8 @@
                 required
               />
               <!-- <label for="calendarName">Name</label> -->
-              <span for="calendarName" class="extra">Name</span>
             </div>
+            <span for="calendarName" class="extra-padding">Name</span>
             <!-- <text>Must name it differently from the owner name</text> -->
             <br /><!--<br />-->
 
@@ -349,7 +358,7 @@ Oct 9 2025, Oct 10 2025, Nov 7 2025, Nov 14 2025, Nov 24 2025, Nov 25 2025, Nov 
               </div>
             </div>
             <!-- <label for="dates" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label> -->
-            <span for="dates" class="extra"
+            <span for="dates" class="extra-padding"
               >Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</span
             >
             <!-- Confine date range -->
@@ -377,10 +386,10 @@ Oct 9 2025, Oct 10 2025, Nov 7 2025, Nov 14 2025, Nov 24 2025, Nov 25 2025, Nov 
                 value="(Wk #)"
                 placeholder="Optional"
               />
-              <span for="markText" class="extra"
-                >Use hash symbol (#) for week number</span
-              >
             </div>
+            <span for="markText" class="extra-padding"
+              >Use hash symbol (#) for week number</span
+            >
 
             <br />
 
