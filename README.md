@@ -1,6 +1,6 @@
 # Create 加油 Calendar
 
-加油 is a common Chinese expression consisting of two characters, pronounced *jiā yóu* in Mandarin; it is often used as an encouragement.
+加油 is a common Chinese expression consisting of two characters, pronounced _jiā yóu_ in Mandarin; it is often used as an encouragement.
 
 Create 加油 Calendar is a Google Web app for creating a calendar of individual events that cycles the words "J Day," "I Day," "A Day," "Y Day," "O Day," and "U Day," except on weekends and holidays. Modify as needed, and back up your calendars before you run the app. Without an app script, one would need to create these events manually.
 
@@ -33,18 +33,19 @@ Access to [Google Apps Script](https://script.google.com/)
 3. Run the script to acquire authorization.
 4. Create an HTML file, and name it "Index."
 5. Copy and paste [the markup text](./Index.html) into the editor, and save the file.
-6. Repeat steps 4-5 to create [Script.html](./Script.html) and [Style.html](./Style.html)
-7. Deploy the project as a Web app, and open the assigned URL.
+6. Deploy the project as a Web app, and open the assigned URL.
+<!-- 6. Repeat steps 4-5 to create [Script.html](./Script.html) and [Style.html](./Style.html)
+7. Deploy the project as a Web app, and open the assigned URL. -->
 
 ### How to Use
 
-8. Check the username to ensure that you opened the URL in the correct account.
-9. Modify the calendar name and time zone.
-10. Add any exceptions to the U.S. holiday schedule, any repeated-letter days, and any extra holidays. (Consult [Google Calendar](https://calendar.google.com/calendar/) for the U.S. holiday schedule. Exceptions tell the app script to create events on these holidays; repeated days tell the app script to repeat previous day; and extra holidays tell the app script _not_ to create events on these non-holidays. Order does _not_ matter.)
-11. Specify a date range by inputting a start date and end date.
-12. Optionally mark weekly cycles (e.g., "J Day (Wk 1)"), and you can customize the string.
-13. Optionally perform a dry run to test the Web app before running it in production. Consult logs for output.
-14. Press submit. (Requires another authorization. **_Note also that creating calendars is subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en)._**)
+7. Check the username to ensure that you opened the URL in the correct account.
+8. Modify the calendar name and time zone.
+9. Add any exceptions to the U.S. holiday schedule, any repeated-letter days, and any extra holidays. (Consult [Google Calendar](https://calendar.google.com/calendar/) for the U.S. holiday schedule. Exceptions tell the app script to create events on these holidays; repeated days tell the app script to repeat previous day; and extra holidays tell the app script _not_ to create events on these non-holidays. Order does _not_ matter.)
+10. Specify a date range by inputting a start date and end date.
+11. Optionally mark weekly cycles (e.g., "J Day (Wk 1)"), and you can customize the string.
+12. Optionally perform a dry run to test the Web app before running it in production. Consult logs for output.
+13. Press submit. (Requires another authorization. **_Note also that creating calendars is subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en)._**)
 
 ## Next Steps
 

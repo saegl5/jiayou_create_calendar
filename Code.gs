@@ -7,14 +7,20 @@
 // This is because the script will create events starting in the current year.
 
 function doGet() {
-  var template = HtmlService.createTemplateFromFile("Index"); // don't createHtmlOutputFromFile() yet
-  return template.evaluate().setTitle('Create 加油 Calendar');
+  return HtmlService.createHtmlOutputFromFile("Index").setTitle(
+    "Create 加油 Calendar"
+  );
 }
 
-// Function to include Stylesheet and JavaScript in Index
-function include(filename) {
-  return HtmlService.createHtmlOutputFromFile(filename).getContent(); // now createHtmlOutputFromFile()
-}
+// function doGet() {
+//   var template = HtmlService.createTemplateFromFile("Index"); // don't createHtmlOutputFromFile() yet
+//   return template.evaluate().setTitle("Create 加油 Calendar");
+// }
+
+// // Function to include Stylesheet and JavaScript in Index
+// function include(filename) {
+//   return HtmlService.createHtmlOutputFromFile(filename).getContent(); // now createHtmlOutputFromFile()
+// }
 
 // Used by Index.html for username
 function getUsername() {
@@ -62,7 +68,8 @@ function createCalendar(
   if (
     holidayExceptions.length > 1 &&
     holidayExceptions[0].getFullYear() !== holidayExceptions[1].getFullYear() &&
-    holidayExceptions[0].getFullYear() !== holidayExceptions[1].getFullYear()-1 // could have two different years
+    holidayExceptions[0].getFullYear() !==
+      holidayExceptions[1].getFullYear() - 1 // could have two different years
     // holidayExceptions[0].getFullYear()-1 !== holidayExceptions[1].getFullYear()-1 // Previous year, keep in case you choose to recreate previous calendar next year
     // checks first two items because likely users will use a consistent style for additional dates
   )
@@ -80,7 +87,7 @@ function createCalendar(
   if (
     halfDays.length > 1 &&
     halfDays[0].getFullYear() !== halfDays[1].getFullYear() &&
-    halfDays[0].getFullYear() !== halfDays[1].getFullYear()-1 // could have two different years
+    halfDays[0].getFullYear() !== halfDays[1].getFullYear() - 1 // could have two different years
     // halfDays[0].getFullYear()-1 !== halfDays[1].getFullYear()-1 // Previous year, keep in case you choose to recreate previous calendar next year
     // checks first two items because likely users will use a consistent style for additional dates
   )
@@ -98,7 +105,7 @@ function createCalendar(
   if (
     extraHolidays.length > 1 &&
     extraHolidays[0].getFullYear() !== extraHolidays[1].getFullYear() &&
-    extraHolidays[0].getFullYear() !== extraHolidays[1].getFullYear()-1 // could have two different years
+    extraHolidays[0].getFullYear() !== extraHolidays[1].getFullYear() - 1 // could have two different years
     // extraHolidays[0].getFullYear()-1 !== extraHolidays[1].getFullYear()-1 // Previous year, keep in case you choose to recreate previous calendar next year
     // checks first two items because likely users will use a consistent style for additional dates
   )
@@ -132,7 +139,7 @@ function createCalendar(
     start = new Date(start);
     start = adjustTime(start);
   } else start = new Date(start);
-  startMonth = start.getMonth() + 1 // override startMonth, indices start at 0
+  startMonth = start.getMonth() + 1; // override startMonth, indices start at 0
   // }
 
   // if (end !== "") {, required now
@@ -140,9 +147,9 @@ function createCalendar(
     end = new Date(end);
     end = adjustTime(end);
   } else end = new Date(end);
-  endMonth = end.getMonth() + 1 // override endMonth, indices start at 0
+  endMonth = end.getMonth() + 1; // override endMonth, indices start at 0
   // }
-  
+
   // Get the holidays starting the current year
   var holidays = getHolidays(
     year,
@@ -162,22 +169,22 @@ function createCalendar(
     endMonth += 12;
   }
 
-  // CAUTION // 
+  // CAUTION //
   // ------- //
   // I advise against using eventSeries for creating the JIA YOU calendar //
   // Chaining events together may potentially disrupt AileenBot from reading the calendar events //
   // ------- //
-  
+
   // chain subsequent events to the first event
   // var firstEvent = true;
   // all letter days are used
   // var eventSeries = [
-    // "eventSeriesJ",
-    // "eventSeriesI",
-    // "eventSeriesA",
-    // "eventSeriesY",
-    // "eventSeriesO",
-    // "eventSeriesU",
+  // "eventSeriesJ",
+  // "eventSeriesI",
+  // "eventSeriesA",
+  // "eventSeriesY",
+  // "eventSeriesO",
+  // "eventSeriesU",
   // ];
   // breaking up the series like this helps mitigate issue #4
   // https://github.com/saegl5/jiayou_add_events/issues/4
@@ -203,10 +210,12 @@ function createCalendar(
 
     // Loop through each day of the month
     var day;
-    if (month === startMonth) // && start !== "")
+    if (month === startMonth)
+      // && start !== "")
       day = start.getDate(); // override day
     else day = 1;
-    if (month === endMonth) // && end !== "")
+    if (month === endMonth)
+      // && end !== "")
       daysInMonth = end.getDate(); // override daysInMonth
     // else // don't override daysInMonth, leaving "else" hanging confused web app
 
@@ -242,14 +251,12 @@ function createCalendar(
       }
 
       // Check if new weekly cycle
-      if (halfDay === false && eventIndex % words.length === 0)
-        weekIndex++;
+      if (halfDay === false && eventIndex % words.length === 0) weekIndex++;
 
       // Create an event with the current word
       var word = words[eventIndex % words.length];
       if (markWeek === true) {
-        if (markText === "") 
-          word += " (Wk " + weekIndex + ")"; // default text
+        if (markText === "") word += " (Wk " + weekIndex + ")"; // default text
         else {
           if (markText.includes("#"))
             word += " " + markText.replace("#", weekIndex);
@@ -264,8 +271,8 @@ function createCalendar(
         Utilities.sleep(500); // mitigate use limit
         calendar.createAllDayEvent(word, date);
       }
-      
-      // CAUTION // 
+
+      // CAUTION //
       // ------- //
       // Again, I advise against using eventSeries for creating the JIA YOU calendar //
       // Chaining events together may potentially disrupt AileenBot from reading the calendar events //
@@ -273,26 +280,26 @@ function createCalendar(
 
       // function nested to align with Web app for adding events
       // function createEvent() { // Keeping events as recurring, for now, because recurring events are easier to modify and delete than individual ones
-        // if (eventIndex === words.length) firstEvent = false;
-        // if (firstEvent) {
-          // Create the first letter day for each one: J, I, A, Y, O, and U
-          // if (eventSeriesMap[word])
-          // eventSeries[eventIndex] = calendar.createAllDayEventSeries(
-            // word,
-            // date,
-            // CalendarApp.newRecurrence().addDate(date)
-          // ); // all-day events
-          // firstDate[eventIndex % words.length] = date; // all letter days are used, so it is easy to pair up firstDate with the letter
-          // can't set firstEvent = false yet
-        // } // chain subsequent event to first event
-        // else {
-          // if (eventSeriesMap[word])
-          // eventSeries[eventIndex % words.length].setRecurrence(
-            // CalendarApp.newRecurrence().addDate(date),
-            // firstDate[eventIndex % words.length] // date of first event only
-          // );
-        // }
-        // return null;
+      // if (eventIndex === words.length) firstEvent = false;
+      // if (firstEvent) {
+      // Create the first letter day for each one: J, I, A, Y, O, and U
+      // if (eventSeriesMap[word])
+      // eventSeries[eventIndex] = calendar.createAllDayEventSeries(
+      // word,
+      // date,
+      // CalendarApp.newRecurrence().addDate(date)
+      // ); // all-day events
+      // firstDate[eventIndex % words.length] = date; // all letter days are used, so it is easy to pair up firstDate with the letter
+      // can't set firstEvent = false yet
+      // } // chain subsequent event to first event
+      // else {
+      // if (eventSeriesMap[word])
+      // eventSeries[eventIndex % words.length].setRecurrence(
+      // CalendarApp.newRecurrence().addDate(date),
+      // firstDate[eventIndex % words.length] // date of first event only
+      // );
+      // }
+      // return null;
       // }
 
       // Log which words were created

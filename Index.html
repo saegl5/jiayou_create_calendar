@@ -7,20 +7,209 @@
     <!-- <title>Create 加油 ("jiā yóu") Calendar</title> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.2.2/dist/css/materialize.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.3.2/dist/css/materialize.min.css"
+    />
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.2.2/dist/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.3.2/dist/js/materialize.min.js"></script>
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">    
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols+2&display=swap" rel="stylesheet">
-    <?!= include('Style') ?>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols+2&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Basic styling for the form */
+      /* use few root colors, based on material design */
+      :root {
+        /* Light mode colors (default) */
+        --background: #e0e0e0ff; /* equal to "grey lighten-2" */
+        --border: black;
+        --border-textarea: var(--md-sys-color-primary-light);
+        --container: #fcfcffff; /* equal to --md-sys-color-surface */
+        --text: black;
+        --reference: grey;
+      }
+
+      /* Dark mode colors */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --background: #e0e0e011; /* dark background */
+          --border: white; /* light border for contrast */
+          --border-textarea: var(--md-sys-color-primary-dark);
+          --container: #fcfcff11; /* dark container */
+          --text: white; /* light text */
+          --reference: grey; /* keep */
+        }
+      }
+      body {
+        background-color: var(--background);
+        font-optical-sizing: auto; /* suggested by google font */
+      }
+      header,
+    div[id="section"],
+    .mid,
+    /*div[id="mark"],*/ /* associated checkbox also stylized in code */
+    div[id="dry"], /* associated checkbox also stylized in code */
+    .button, /* button also stylized in code */
+    div[id="wait"],
+    footer {
+        text-align: center;
+      }
+      /* div[id="user"] { */
+      /* font-weight: bold; */
+      /* } */
+      form {
+        max-width: 95%;
+        margin: 0 auto;
+        padding-left: 5%; /* allow expansion */
+        padding-right: 5%; /* allow expansion */
+        border-radius: 15px; /* more fun-looking */
+      }
+      .container {
+        padding-top: 10px;
+        padding-bottom: 20px;
+        padding-left: 15px;
+        padding-right: 15px;
+        border: 2px solid var(--border); /* more pop */
+        border-radius: 15px; /* more fun-looking */
+        background-color: var(--container);
+      }
+      .input-field input {
+        width: 100%; /* correct span */
+        background: transparent; /* reset background */
+      }
+      input,
+      textarea,
+      span,
+      div[id="wait"],
+      div[id="user"] {
+        font-family: monospace; /* preserve monospace fonts, so that users easily distinguish input fields from non-input fields */
+        color: var(--text);
+        font-style: normal;
+      }
+
+      input:focus, textarea:focus {
+        outline: 2px solid var(--border-textarea);
+        /* outline-offset: 2px; */ /* all same */
+      }
+      label {
+        font-style: italic;
+      }
+      div[id="mark"] > label > span,
+      div[id="dry"] > label > span {
+        /* .collapsible-header > span { */
+        font-family: unset;
+      }
+      /* ensure checkbox labels centered vertically with the checkbox */
+      div[id="mark"] > label,
+      div[id="dry"] > label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      label[hidden] {
+        display: none !important; /* override inline-flex */
+      }
+      /* Suppress brief outline on mouse click but keep keyboard focus visible */
+      input[type="checkbox"]:focus:not(:focus-visible) {
+        outline: none !important;
+      }
+      .extra {
+        padding-left: 17px;
+        color: var(--reference);
+        font-style: italic;
+        font-family: unset;
+      }
+      .extra-padding {
+        padding-left: 17px;
+        color: var(--reference);
+        font-style: italic;
+        font-family: unset;
+        margin-top: 3px;
+        display: block; /* allow margin to take effect */
+        margin-bottom: -18px; /* reduce space between extra and next element, since extra is now block-level */
+      }
+      div[id="table"] {
+        display: table;
+        width: 100%;
+      }
+      div[id="row"] {
+        display: table-row;
+      }
+      div[id="cell"],
+      .mid {
+        display: table-cell;
+      }
+      /* .collapsible {
+    border: none;
+    box-shadow: none;
+    } */
+      .reference {
+        font-size: smaller;
+        color: var(--reference);
+        font-family: monospace;
+      }
+      /* .collapsible-header {
+    position: relative;
+    } */
+      /* .collapsible-header, .collapsible-body {
+    border-bottom: none;
+    } */
+      /* .collapsible-header::after { */
+      /* font-family: "Noto Sans Symbols 2", sans-serif !important; */
+      /* font-size: 0.9em; */
+      /*content: "\1F783";*/ /* unicode down arrow matches dropdown arrow */
+      /* position: absolute; */
+      /* right: 14px; */
+      /* top: 50%; */
+      /* transform: translateY(-25%); */
+      /* } */
+      /* .active .collapsible-header::after { */
+      /*content: "\1F781";*/ /* unicode up arrow in same style as up arrow */
+      /* } */
+      /* .collapsible-header > span {
+    width: 100%;
+    } */
+      input:not([type="checkbox"]) {
+        padding-top: unset !important; /* override Materialize CSS */
+        height: 28px !important; /* override Materialize CSS */
+      }
+      textarea.materialize-textarea {
+        /* preserve padding-top */
+        resize: vertical !important; /* override Materialize CSS */
+      }
+      span[id="markWeek"],
+      span[id="dryRun"] {
+        line-height: 20px !important; /* override Materialize CSS */
+      }
+      h1 {
+        display: inline;
+      }
+      h1[id="sansFixed"] {
+        font-family: system-ui;
+      }
+      h1[id="serifFixed"] {
+        font-family: "Noto Sans SC", sans-serif;
+      }
+      .input-field input:disabled {
+        color: var(--reference);
+      }
+    </style>
+    <!-- <?!= include('Style') ?> -->
   </head>
   <body onload="load()">
     <header>
-      <h1 id="sansFixed">Create</h1><h1 id="serifFixed"> 加油 </h1><h1 id="sansFixed">Calendar</h1>
-      <br><br>
+      <h1 id="sansFixed">Create</h1>
+      <h1 id="serifFixed">&nbsp;加油&nbsp;</h1>
+      <h1 id="sansFixed">Calendar</h1>
+      <br /><br />
       <div id="user">&nbsp;</div>
     </header>
 
@@ -36,10 +225,16 @@
 
             <h5>Calendar</h5>
             <div class="input-field">
-              <input id="calendarName" type="text" class="validate" value="Internal Calendar" required />
+              <input
+                id="calendarName"
+                type="text"
+                class="validate"
+                value="Internal Calendar"
+                required
+              />
               <!-- <label for="calendarName">Name</label> -->
-              <span for="calendarName" class="extra">Name</span>
             </div>
+            <span for="calendarName" class="extra-padding">Name</span>
             <!-- <text>Must name it differently from the owner name</text> -->
             <br /><!--<br />-->
 
@@ -49,13 +244,15 @@
                 <option value="America/New_York">Eastern</option>
                 <option value="America/Chicago">Central</option>
                 <option value="America/Denver">Mountain</option>
-                <option value="America/Los_Angeles" selected="selected">Pacific</option>
+                <option value="America/Los_Angeles" selected="selected">
+                  Pacific
+                </option>
                 <!-- Consult https://www.iana.org/time-zones for time zone IDs of other locations. -->
-            </select>
+              </select>
               <!-- <label for="timeZone">Zone</label> -->
             </div>
             <!-- preselected for convenience -->
-            <br/>
+            <br />
 
             <!-- <label for="holidayCalendar">Public holiday calendar:</label> -->
             <!-- <select id="holidayCalendar" name="holidayCalendar"> -->
@@ -72,15 +269,25 @@
             <!-- <label for="holidayExceptions">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label> -->
             <!-- <br><br> -->
             <div class="input-field">
-              <textarea id="holidayExceptions" class="materialize-textarea" placeholder="Optional">Sep 23 2025, Sep 24 2025, Oct 2 2025, Oct 21 2025, Oct 31 2025, Nov 4 2025, Nov 11 2025, Dec 15 2025, Feb 2 2026, Mar 17 2026, Apr 1 2026, Apr 15 2026, Apr 22 2026, May 5 2026, May 27 2026</textarea>
-              <label for="holidayExceptions">List dates on which to add letter days, comma-separated</label>
+              <textarea
+                id="holidayExceptions"
+                class="materialize-textarea"
+                placeholder="Optional"
+              >
+Sep 23 2025, Sep 24 2025, Oct 2 2025, Oct 21 2025, Oct 31 2025, Nov 4 2025, Nov 11 2025, Dec 15 2025, Feb 2 2026, Mar 17 2026, Apr 1 2026, Apr 15 2026, Apr 22 2026, May 5 2026, May 27 2026</textarea
+              >
+              <label for="holidayExceptions"
+                >List dates on which to add letter days, comma-separated</label
+              >
             </div>
             <!-- <label for="holidayExceptions" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label> -->
-            <span for="holidayExceptions" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</span>
+            <span for="holidayExceptions" class="extra"
+              >Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</span
+            >
             <!-- made more room for additional exceptions -->
             <!-- prefilled for convenience and clarity -->
-            <!-- need to stay generalized -->         
-            <br><br>
+            <!-- need to stay generalized -->
+            <br /><br />
 
             <!--repeat this event once-->
             <!-- <h5>Half-days</h5> -->
@@ -88,49 +295,80 @@
             <!-- <label for="halfDays">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label> -->
             <!-- <br><br> -->
             <div class="input-field">
-              <textarea id="halfDays" class="materialize-textarea" placeholder="Optional">Nov 21 2025, Feb 12 2026, Jun 5 2026</textarea>
-              <label for="halfDays">List dates on which to repeat previous letter day, comma-separated</label>
+              <textarea
+                id="halfDays"
+                class="materialize-textarea"
+                placeholder="Optional"
+              >
+Nov 21 2025, Feb 12 2026, Jun 5 2026</textarea
+              >
+              <label for="halfDays"
+                >List dates on which to repeat previous letter day,
+                comma-separated</label
+              >
             </div>
             <!-- <label for="halfDays" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label> -->
-            <span for="halfDays" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</span>
+            <span for="halfDays" class="extra"
+              >Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</span
+            >
             <!-- made more room for additional exceptions -->
             <!-- prefilled for convenience and clarity -->
             <!-- need to stay generalized -->
             <!-- kept references to half days for legacy -->
-            <br><br>
+            <br /><br />
 
             <!--don't create events on these non-holidays-->
             <h5>Extra Holidays</h5>
             <!-- <label for="extraHolidays">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label> -->
             <!-- <br><br> -->
             <div class="input-field">
-              <textarea id="extraHolidays" class="materialize-textarea" placeholder="Optional">Oct 9 2025, Oct 10 2025, Nov 7 2025, Nov 14 2025, Nov 24 2025, Nov 25 2025, Nov 26 2025, Nov 28 2025, Dec 22 2025, Dec 23 2025, Dec 26 2025, Dec 29 2025, Dec 30 2025, Jan 2 2026, Feb 13 2026, Feb 17 2026, Feb 18 2026, Feb 19 2026, Feb 20 2026, Mar 20 2026, Mar 27 2026, Apr 2 2026, Apr 3 2026, Apr 6 2026, Apr 7 2026, Apr 8 2026, Apr 9 2026, Apr 10 2026, May 22 2026</textarea>
+              <textarea
+                id="extraHolidays"
+                class="materialize-textarea"
+                placeholder="Optional"
+              >
+Oct 9 2025, Oct 10 2025, Nov 7 2025, Nov 14 2025, Nov 24 2025, Nov 25 2025, Nov 26 2025, Nov 28 2025, Dec 22 2025, Dec 23 2025, Dec 26 2025, Dec 29 2025, Dec 30 2025, Jan 2 2026, Feb 13 2026, Feb 17 2026, Feb 18 2026, Feb 19 2026, Feb 20 2026, Mar 20 2026, Mar 27 2026, Apr 2 2026, Apr 3 2026, Apr 6 2026, Apr 7 2026, Apr 8 2026, Apr 9 2026, Apr 10 2026, May 22 2026</textarea
+              >
               <!-- redundant: Nov 1 2024, Nov 28 2024, Nov 29 2024, Dec 24 2024, Dec 25 2024, Dec 31 2024, Jan 1 2025, Jan 20 2025, Feb 17 2025, Apr 15 2025, May 26 2025 -->
-            <label for="extraHolidays">List dates to skip more letter days, comma-separated</label>
+              <label for="extraHolidays"
+                >List dates to skip more letter days, comma-separated</label
+              >
             </div>
             <!-- <label for="extraHolidays" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label> -->
-            <span for="extraHolidays" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</span>
+            <span for="extraHolidays" class="extra"
+              >Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</span
+            >
             <!-- made more room for additional exceptions -->
             <!-- prefilled for convenience and clarity -->
-            <!-- need to stay generalized -->            
-            <br><br>
-            
+            <!-- need to stay generalized -->
+            <br /><br />
+
             <h5>Date</h5>
             <div id="table">
               <div id="row">
                 <div id="cell">
                   <div class="input-field">
-                    <input id="start" type="text" class="validate" placeholder="Required" required />
+                    <input
+                      id="start"
+                      type="text"
+                      class="validate"
+                      placeholder="Required"
+                      required
+                    />
                     <!-- <label for="start">Start</label> -->
                     <!-- replacing placeholder="Optional" with the current date is a good idea for convenience -->
                   </div>
                 </div>
-                <div id="cell" class="mid">
-                  &emsp;&ndash;&emsp;
-                </div>
+                <div id="cell" class="mid">&emsp;&ndash;&emsp;</div>
                 <div id="cell">
                   <div class="input-field">
-                    <input id="end" type="text" class="validate" placeholder="Required" required />
+                    <input
+                      id="end"
+                      type="text"
+                      class="validate"
+                      placeholder="Required"
+                      required
+                    />
                     <!-- <label for="end">End</label>                     -->
                     <!-- <input type="text" id="end" name="end" placeholder="6/12/2025" /> redundant since internal calendar events end same date -->
                   </div>
@@ -138,97 +376,116 @@
               </div>
             </div>
             <!-- <label for="dates" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</label> -->
-            <span for="dates" class="extra">Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</span>
+            <span for="dates" class="extra-padding"
+              >Mmm DD YYYY, MM/DD/YYYY, YYYY-MM-DD</span
+            >
             <!-- Confine date range -->
-            <br>
+            <br />
 
             <br />
 
             <h5>Option</h5>
             <div id="mark">
               <label>
-                <input type="checkbox" class="filled-in" id="markWeek" unchecked />
+                <input
+                  type="checkbox"
+                  class="filled-in"
+                  id="markWeek"
+                  unchecked
+                />
                 <span id="markWeek">Mark Weekly Cycle</span>
               </label>
             </div>
             <div class="input-field">
-              <input id="markText" type="text" class="validate" value="(Wk #)" placeholder="Optional" />
-              <span for="markText" class="extra">Use hash symbol (#) for week number</span>
+              <input
+                id="markText"
+                type="text"
+                class="validate"
+                value="(Wk #)"
+                placeholder="Optional"
+                disabled="disabled"
+              />
             </div>
+            <span for="markText" class="extra-padding"
+              >Use hash symbol (#) for week number</span
+            >
 
             <br />
 
-
             <!-- <ul class="collapsible"> -->
-              <!-- <li> -->
-                <!-- <div class="collapsible-header"> -->
-                  <!-- <span name="collapsible-header">Specify&nbsp;months</span> -->
-                <!-- </div> -->
-                <!-- <div class="collapsible-body"> -->
+            <!-- <li> -->
+            <!-- <div class="collapsible-header"> -->
+            <!-- <span name="collapsible-header">Specify&nbsp;months</span> -->
+            <!-- </div> -->
+            <!-- <div class="collapsible-body"> -->
 
-                  <!-- <h5>Months</h5> -->
-                  <!-- <div id="table"> -->
-                    <!-- <div id="row"> -->
-                      <!-- <div id="cell"> -->
-                        <!-- <div class="input-field"> -->
-                          <!-- <select id="startMonth"> -->
-                            <!-- <option value="1">January</option> -->
-                            <!-- <option value="2">February</option> -->
-                            <!-- <option value="3">March</option> -->
-                            <!-- <option value="4">April</option> -->
-                            <!-- <option value="5">May</option> -->
-                            <!-- <option value="6">June</option> -->
-                            <!-- <option value="7">July</option> -->
-                            <!-- <option value="8" selected="selected">August</option> -->
-                            <!-- <option value="9">September</option> -->
-                            <!-- <option value="10">October</option> -->
-                            <!-- <option value="11">November</option> -->
-                            <!-- <option value="12">December</option>                     -->
-                          <!-- </select> -->
-                          <!-- <label for="startMonth">Start</label> -->
-                        <!-- </div> -->
-                      <!-- </div> -->
-                      <!-- <div id="cell" class="mid"> -->
-                        <!-- &emsp;&ndash;&emsp; -->
-                      <!-- </div> -->
-                      <!-- <div id="cell"> -->
-                        <!-- <div class="input-field"> -->
-                          <!-- <select id="endMonth"> -->
-                            <!-- <option value="1">January</option> -->
-                            <!-- <option value="2">February</option> -->
-                            <!-- <option value="3">March</option> -->
-                            <!-- <option value="4">April</option> -->
-                            <!-- <option value="5">May</option> -->
-                            <!-- <option value="6" selected="selected">June</option> -->
-                            <!-- school ends mid-Jun -->
-                            <!-- <option value="7">July</option> -->
-                            <!-- <option value="8">August</option> -->
-                            <!-- <option value="9">September</option> -->
-                            <!-- <option value="10">October</option> -->
-                            <!-- <option value="11">November</option> -->
-                            <!-- <option value="12">December</option> -->
-                          <!-- </select> -->
-                          <!-- <label for="endMonth">End</label> -->
-                        <!-- </div> -->
-                      <!-- </div> -->
-                    <!-- </div> -->
-                  <!-- </div> -->
-                  <!-- preselected for convenience -->
-                  <!-- If startMonth > endMonth, then the calendar will roll over to the new year -->
-                  <!-- <br /><br /><br /> -->
-                  <!-- </div> -->
-                              
-                <!-- </div> -->
-              <!-- </li> -->
+            <!-- <h5>Months</h5> -->
+            <!-- <div id="table"> -->
+            <!-- <div id="row"> -->
+            <!-- <div id="cell"> -->
+            <!-- <div class="input-field"> -->
+            <!-- <select id="startMonth"> -->
+            <!-- <option value="1">January</option> -->
+            <!-- <option value="2">February</option> -->
+            <!-- <option value="3">March</option> -->
+            <!-- <option value="4">April</option> -->
+            <!-- <option value="5">May</option> -->
+            <!-- <option value="6">June</option> -->
+            <!-- <option value="7">July</option> -->
+            <!-- <option value="8" selected="selected">August</option> -->
+            <!-- <option value="9">September</option> -->
+            <!-- <option value="10">October</option> -->
+            <!-- <option value="11">November</option> -->
+            <!-- <option value="12">December</option>                     -->
+            <!-- </select> -->
+            <!-- <label for="startMonth">Start</label> -->
+            <!-- </div> -->
+            <!-- </div> -->
+            <!-- <div id="cell" class="mid"> -->
+            <!-- &emsp;&ndash;&emsp; -->
+            <!-- </div> -->
+            <!-- <div id="cell"> -->
+            <!-- <div class="input-field"> -->
+            <!-- <select id="endMonth"> -->
+            <!-- <option value="1">January</option> -->
+            <!-- <option value="2">February</option> -->
+            <!-- <option value="3">March</option> -->
+            <!-- <option value="4">April</option> -->
+            <!-- <option value="5">May</option> -->
+            <!-- <option value="6" selected="selected">June</option> -->
+            <!-- school ends mid-Jun -->
+            <!-- <option value="7">July</option> -->
+            <!-- <option value="8">August</option> -->
+            <!-- <option value="9">September</option> -->
+            <!-- <option value="10">October</option> -->
+            <!-- <option value="11">November</option> -->
+            <!-- <option value="12">December</option> -->
+            <!-- </select> -->
+            <!-- <label for="endMonth">End</label> -->
+            <!-- </div> -->
+            <!-- </div> -->
+            <!-- </div> -->
+            <!-- </div> -->
+            <!-- preselected for convenience -->
+            <!-- If startMonth > endMonth, then the calendar will roll over to the new year -->
+            <!-- <br /><br /><br /> -->
+            <!-- </div> -->
+
+            <!-- </div> -->
+            <!-- </li> -->
             <!-- </ul> -->
 
             <br />
 
-
             <div id="dry">
               <label>
                 <!-- add "hidden" to label tag above to hide dryRun-->
-                <input type="checkbox" class="filled-in" id="dryRun" unchecked />
+                <input
+                  type="checkbox"
+                  class="filled-in"
+                  id="dryRun"
+                  unchecked
+                />
                 <span id="dryRun">Dry Run</span>
                 <!-- test script before running it in production, hide for production by commenting or removing these lines of code -->
               </label>
@@ -237,11 +494,16 @@
             <br />
 
             <div class="button">
-              <button class="btn filled rounded waves-effect waves-light" type="submit">Submit</button>
+              <button
+                class="btn filled rounded waves-effect waves-light"
+                type="submit"
+              >
+                Submit
+              </button>
             </div>
 
-            <br>
-          
+            <br />
+
             <div id="wait">&nbsp;</div>
             <!-- id="wait" div displays function return messages -->
           </div>
@@ -252,16 +514,101 @@
     <footer>
       <p>
         Technical difficulties? Search issues or open a new one on
-        <a href="https://github.com/saegl5/jiayou_create_calendar/issues">GitHub</a>.
-        <br>
-        <text class="reference"
-          >Version 2.8.0</text
-        >
+        <a href="https://github.com/saegl5/jiayou_create_calendar/issues"
+          >GitHub</a
+        >.
+        <br />
+        <text class="reference">Version 2.9.0</text>
         <!-- Latest tag that includes major updates, minor updates, or bug fixes -->
       </p>
     </footer>
 
-    <?!= include('Script') ?>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // const elems = document.querySelectorAll("select");
+        // M.FormSelect.init(elems);
+        M.AutoInit();
+        load();
+      });
 
+      // JavaScript handles form submission and sends data to the Google Apps Script
+      function load() {
+        google.script.run
+          .withSuccessHandler(function (response) {
+            document.getElementById("user").innerHTML = "Welcome, " + response;
+          })
+          .getUsername();
+        document.getElementById("markText").setAttribute("disabled", "true");
+      }
+
+      // document
+      //   .getElementById("calendarForm")
+      //   .addEventListener("startMonth", function (event) {
+      //     event.preventDefault(); // Prevents the form from submitting the traditional way
+      //     // document.getElementById("start").value = "test1";
+      //     document.getElementsByClassName("validate").value = "test1";
+      //   });
+
+      // document
+      //   .getElementById("calendarForm")
+      //   .addEventListener("endMonth", function (event) {
+      //     event.preventDefault(); // Prevents the form from submitting the traditional way
+      //     document.getElementById("end").value = "test2";
+      //   });
+
+      document
+        .getElementById("markWeek")
+        .addEventListener("change", function (event) {
+          if (document.getElementById("markWeek").checked === false)
+            document
+              .getElementById("markText")
+              .setAttribute("disabled", "true");
+          else document.getElementById("markText").removeAttribute("disabled");
+        });
+
+      document
+        .getElementById("calendarForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevents the form from submitting the traditional way
+
+          var calendarName = document.getElementById("calendarName").value;
+          var timeZone = document.getElementById("timeZone").value;
+          // var holidayCalendar =
+          //   document.getElementById("holidayCalendar").value;
+          var holidayExceptions =
+            document.getElementById("holidayExceptions").value;
+          var halfDays = document.getElementById("halfDays").value;
+          var extraHolidays = document.getElementById("extraHolidays").value;
+          // var startMonth = document.getElementById("startMonth").value;
+          // var endMonth = document.getElementById("endMonth").value;
+          var start = document.getElementById("start").value;
+          var end = document.getElementById("end").value;
+          var markWeek = document.getElementById("markWeek").checked; // by default, checkbox is unchecked, meaning .checked is false
+          var markText = document.getElementById("markText").value;
+          var dryRun = document.getElementById("dryRun").checked; // by default, checkbox is unchecked, meaning .checked is false
+
+          document.getElementById("wait").innerHTML = "Please wait...";
+
+          google.script.run
+            .withSuccessHandler(function (response) {
+              document.getElementById("wait").innerHTML = response; // Displays a success message when completed
+            })
+            .createCalendar(
+              calendarName,
+              timeZone,
+              holidayExceptions,
+              halfDays,
+              extraHolidays,
+              // startMonth,
+              // endMonth,
+              start,
+              end,
+              markWeek,
+              markText,
+              dryRun
+            );
+        }); // public holiday calendar has been hard-coded
+    </script>
+    <!-- <?!= include('Script') ?> -->
   </body>
 </html>
