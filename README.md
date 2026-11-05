@@ -53,6 +53,7 @@ Access to [Google Apps Script](https://script.google.com/)
 - Consult the [Web app for adding events](https://github.com/saegl5/jiayou_add_events).
 - You can extend the app script to create a calendar cycling any letters or words and in any language. Feel free to fork, too!
 - You can also export the calendar directly from [Google Calendar](https://calendar.google.com/calendar/) and can import it into another calendar on your smartphone. ~~Alternative: Check out Jonathan Hsieh's [AileenBot](https://account.aileenbot.com/)~~ (being sunsetted), and subscribe to community events. ('Whatever way makes it easier for you to keep track of today's letter...)
+- Create any extra events manually (e.g., special "U Day (Preschool)" when only preschool classes are held).
 
 ## Known Issues
 
